@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cerita KKN — Desa Warung Menteng</title>
+  <meta name="description" content="Cerita mahasiswa KKN membangun desa digital dan website Desa Warung Menteng." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .page-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      background: var(--green, #2d6a4f);
+      position: relative;
+      overflow: hidden;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(201,169,78,0.08) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .page-hero h1 { font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 12px; letter-spacing: -1px; font-family: 'Playfair Display', serif; }
+    .page-hero p { color: rgba(255,255,255,0.55); font-size: 1.1rem; max-width: 540px; font-weight: 300; }
+    .page-hero .container { position: relative; z-index: 1; }
+    .kkn-story { padding: 80px 0; }
+    .kkn-story h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; margin-top: 48px; color: #3d2b1f; }
+    .kkn-story h2:first-child { margin-top: 0; }
+    .kkn-story p { color: #5c4033; line-height: 1.8; margin-bottom: 16px; max-width: 720px; font-weight: 300; }
+    .kkn-story ul { margin-bottom: 24px; padding-left: 20px; max-width: 720px; }
+    .kkn-story ul li { list-style: disc; color: #5c4033; margin-bottom: 10px; line-height: 1.7; font-weight: 300; }
+    .kkn-story ul li strong { color: #2d6a4f; }
+    .kkn-quote {
+      background: #fff;
+      padding: 48px;
+      color: #3d2b1f;
+      margin-top: 48px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(61,43,31,0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+    .kkn-quote::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(45,106,79,0.04) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .kkn-quote p { color: #5c4033; max-width: 100%; position: relative; font-weight: 300; }
+    .kkn-quote .author { margin-top: 24px; font-weight: 700; color: #2d6a4f; position: relative; letter-spacing: 1px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #2d6a4f;
+      font-weight: 600;
+      margin-bottom: 32px;
+      transition: gap 0.3s;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .back-link:hover { gap: 16px; }
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 2rem; }
+      .kkn-quote { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="index.html" class="logo">
+        <div class="logo-icon">WM</div>
+        Warung Menteng
+      </a>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links"></ul>
+      <button class="search-toggle" aria-label="Cari" id="searchToggle">&#x1F50D;</button>
+    </nav>
+    <div class="search-bar" id="searchBar">
+      <input type="text" id="searchInput" placeholder="Cari berita, UMKM, destinasi..." />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Cerita Mahasiswa</div>
+    <h1>Membangun Desa Digital<br>Warung Menteng</h1>
+    <p>Kisah pengabdian mahasiswa KKN dalam mengembangkan potensi desa melalui transformasi digital</p>
+  </div>
+</section>
+
+<section class="kkn-story">
+  <div class="container" style="max-width:800px;">
+    <a href="index.html" class="back-link">&larr; Kembali ke Beranda</a>
+
+    <h2>Latar Belakang</h2>
+    <p>Desa Warung Menteng, yang terletak di Kecamatan Cijeruk, Kabupaten Bogor, menyimpan potensi wisata yang luar biasa. Dari agrowisata Warso Farm, camping di Bukit Alesano, situs sejarah Tugu Maseng, hingga keramahan budaya Sunda &mdash; semua aset ini belum dikenal luas oleh masyarakat.</p>
+    <p>Melihat potensi ini, sekelompok mahasiswa yang melaksanakan program <strong>Kuliah Kerja Nyata (KKN)</strong> berkomitmen untuk membantu desa dalam mengembangkan potensi wisatanya melalui transformasi digital. Salah satu program utamanya adalah menciptakan <strong>website pariwisata</strong> yang bisa memperkenalkan Desa Warung Menteng ke khalayak yang lebih luas.</p>
+
+    <h2>Program Kerja KKN</h2>
+    <ul>
+      <li><strong>Pengembangan Website Desa Wisata</strong> &mdash; Membangun website informatif dan menarik untuk mempromosikan potensi wisata desa, lengkap dengan galeri, informasi destinasi, dan petunjuk lokasi.</li>
+      <li><strong>Digital Marketing Workshop</strong> &mdash; Melatih pemuda desa dan pelaku UMKM dalam menggunakan media sosial dan platform digital untuk promosi wisata dan produk lokal.</li>
+      <li><strong>Pembuatan Konten Wisata</strong> &mdash; Mendokumentasikan destinasi wisata desa dalam bentuk foto dan video profesional untuk keperluan promosi digital.</li>
+      <li><strong>Pelatihan Administrasi Digital</strong> &mdash; Membantu perangkat desa dalam digitalisasi administrasi dan pelayanan publik berbasis teknologi.</li>
+      <li><strong>Edukasi Sadar Wisata</strong> &mdash; Sosialisasi kepada masyarakat tentang pentingnya peran sebagai tuan rumah yang baik bagi wisatawan.</li>
+    </ul>
+
+    <h2>Dampak Program</h2>
+    <p>Program KKN ini telah memberikan dampak positif bagi Desa Warung Menteng, antara lain:</p>
+    <ul>
+      <li>Terciptanya <strong>website desa wisata</strong> yang menjadi pintu gerbang informasi bagi wisatawan</li>
+      <li>Meningkatnya <strong>kesadaran digital</strong> masyarakat dan perangkat desa</li>
+      <li>Terbentuknya <strong>konten promosi</strong> yang dapat digunakan untuk memperkenalkan desa ke khalayak luas</li>
+      <li>Semakin dikenalnya <strong>destinasi wisata</strong> Desa Warung Menteng di media sosial</li>
+    </ul>
+
+    <h2>Harapan ke Depan</h2>
+    <p>Dengan adanya website ini, kami berharap Desa Warung Menteng semakin dikenal luas, kunjungan wisatawan meningkat, dan perekonomian desa semakin maju. Lebih dari itu, kami ingin program ini menjadi awal dari transformasi digital desa yang berkelanjutan.</p>
+
+    <div class="kkn-quote">
+      <p>"Desa digital bukan sekadar website. Ini tentang membuka pintu kesempatan bagi desa untuk berkembang, dikenal, dan maju. Mari bersama-sama membangun Desa Warung Menteng yang lebih baik!"</p>
+      <div class="author">&mdash; Tim KKN Desa Warung Menteng</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" id="footerContent">
+  </div>
+</footer>
+
+<div class="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <div class="lightbox-content"></div>
+</div>
+
+<div class="search-overlay" id="searchOverlay"></div>
+
+<script src="data/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

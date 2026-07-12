@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desa Warung Menteng — Desa Wisata Bogor</title>
+  <meta name="description" content="Website resmi Desa Warung Menteng, Kecamatan Cijeruk, Kabupaten Bogor. Informasi wisata, UMKM, layanan desa, dan potensi desa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">
+        <div class="logo-icon">WM</div>
+        Warung Menteng
+      </a>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+      </ul>
+      <button class="search-toggle" aria-label="Cari" id="searchToggle">&#x1F50D;</button>
+    </nav>
+    <div class="search-bar" id="searchBar">
+      <input type="text" id="searchInput" placeholder="Cari berita, UMKM, destinasi..." />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img id="heroBgImg" src="https://images.unsplash.com/photo-1759574981176-2ccab9970471?w=1200&q=80" alt="" />
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge"></div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroDesc"></p>
+      <div class="hero-buttons">
+        <a href="#wisata" class="btn btn-primary">Jelajahi Wisata</a>
+        <a href="#tentang" class="btn btn-outline">Profil Desa</a>
+      </div>
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tentang">
+
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">Tentang Desa</div>
+        <h2 class="section-title" id="profileTitle"></h2>
+        <div class="section-divider left"></div>
+        <p class="section-desc" style="margin-bottom:24px;" id="profileDesc1"></p>
+        <p style="color:#5c4033;line-height:1.8;" id="profileDesc2"></p>
+      </div>
+      <div class="reveal">
+        <div class="stats-row" id="profileStats"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:80px;">
+    <div class="text-center reveal">
+      <div class="section-label">Lokasi & Kontak</div>
+      <h2 class="section-title">Temukan Kami</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc mx-auto" style="margin-bottom:48px;">
+        Kunjungi kantor desa atau hubungi kami untuk informasi lebih lanjut
+      </p>
+    </div>
+    <div class="reveal">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+        <div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Alamat Kantor Desa</h3>
+          <p style="color:#5c4033;line-height:1.8;margin-bottom:16px;" id="tentangAddress"></p>
+          <div class="map-container" style="height:280px;">
+            <div class="map-placeholder">
+              <div class="icon">&#x1F4CD;</div>
+              <p style="font-weight:600;margin-bottom:4px;">Google Maps</p>
+              <a id="tentangMapsLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:12px;font-size:0.85rem;padding:10px 24px;">Buka Google Maps</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Informasi Kontak</h3>
+          <div id="tentangContact"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:80px;">
+    <div class="text-center reveal">
+      <div class="section-label">Perangkat Desa</div>
+      <h2 class="section-title">Aparatur Pemerintahan Desa</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc mx-auto" style="margin-bottom:48px;">
+        Perangkat Desa Warung Menteng yang melayani masyarakat
+      </p>
+    </div>
+    <div class="perangkat-grid" id="perangkatGrid"></div>
+  </div>
+
+  <div class="container" style="margin-top:80px;">
+    <div class="text-center reveal">
+      <div class="section-label">Struktur Organisasi</div>
+      <h2 class="section-title">Bagan Struktur Pemerintahan</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc mx-auto" style="margin-bottom:48px;">
+        Struktur organisasi Pemerintahan Desa Warung Menteng
+      </p>
+    </div>
+    <div id="strukturChart"></div>
+  </div>
+
+  <div class="container" style="margin-top:80px;">
+    <div class="text-center reveal">
+      <div class="section-label">Anggaran Desa</div>
+      <h2 class="section-title">Rencana Anggaran Pendapatan dan Belanja Desa</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc mx-auto" style="margin-bottom:48px;">
+        Alokasi anggaran Desa Warung Menteng Tahun 2026
+      </p>
+    </div>
+    <div class="table-wrapper" id="anggaranTable"></div>
+  </div>
+
+  <div class="container" style="margin-top:80px;">
+    <div class="text-center reveal">
+      <div class="section-label">Hubungi Kami</div>
+      <h2 class="section-title">Kirim Pesan</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc mx-auto" style="margin-bottom:48px;">
+        Punya pertanyaan atau pesan? Silakan isi form di bawah ini
+      </p>
+    </div>
+    <div class="reveal" style="max-width:640px;margin:0 auto;">
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" required placeholder="Masukkan nama Anda" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="contoh@email.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subjek</label>
+          <input type="text" id="subject" required placeholder="Tujuan pesan" />
+        </div>
+        <div class="form-group">
+          <label for="message">Pesan</label>
+          <textarea id="message" required placeholder="Tulis pesan Anda di sini..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+      </form>
+    </div>
+  </div>
+
+</section>
+
+<section class="section bg-light" id="berita">
+  <div class="container text-center">
+    <div class="section-label reveal">Berita & Pengumuman</div>
+    <h2 class="section-title reveal">Informasi Terbaru Desa</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+      Berita terbaru, pengumuman, dan informasi seputar Desa Warung Menteng
+    </p>
+  </div>
+  <div class="container">
+    <div class="press-list" id="newsGrid"></div>
+  </div>
+</section>
+
+<section class="section bg-light" id="wisata">
+  <div class="container text-center">
+    <div class="section-label reveal">Wisata</div>
+    <h2 class="section-title reveal">Jelajahi Pesona Warung Menteng</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+      Dari destinasi alam, kuliner khas, hingga penginapan nyaman — semuanya ada di sini
+    </p>
+  </div>
+
+  <div class="container" style="margin-bottom:48px;">
+    <h3 class="reveal" style="font-size:1.3rem;font-weight:700;margin-bottom:24px;">&#x1F3D4;&#xFE0F; Tempat Wisata</h3>
+    <div class="cards-grid" id="destinationsGrid"></div>
+  </div>
+
+  <div class="container" style="margin-bottom:48px;">
+    <h3 class="reveal" style="font-size:1.3rem;font-weight:700;margin-bottom:24px;">&#x1F372; Kuliner Khas</h3>
+    <div class="cards-grid" id="culinaryGrid"></div>
+  </div>
+
+  <div class="container">
+    <h3 class="reveal" style="font-size:1.3rem;font-weight:700;margin-bottom:24px;">&#x1F3D8;&#xFE0F; Tempat Menginap</h3>
+    <div class="cards-grid" id="accommodationGrid"></div>
+  </div>
+
+  <div class="container" style="margin-top:80px;">
+    <div class="text-center reveal">
+      <div class="section-label">UMKM</div>
+      <h2 class="section-title reveal">Produk Unggulan Desa</h2>
+      <div class="section-divider reveal"></div>
+      <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+        Aneka produk lokal dan hasil bumi dari tangan-tangan kreatif warga Desa Warung Menteng
+      </p>
+    </div>
+    <div class="umkm-grid" id="umkmGrid"></div>
+  </div>
+</section>
+
+<section class="section bg-light" id="galeri">
+  <div class="container text-center">
+    <div class="section-label reveal">Galeri</div>
+    <h2 class="section-title reveal">Keindahan dalam Bingkai</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+      Dokumentasi destinasi dan aktivitas wisata di Desa Warung Menteng
+    </p>
+  </div>
+  <div class="container">
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section class="section bg-light" id="layanan">
+  <div class="container text-center">
+    <div class="section-label reveal">Layanan Desa</div>
+    <h2 class="section-title reveal">Layanan Administrasi</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+      Informasi layanan administrasi kependudukan Desa Warung Menteng
+    </p>
+  </div>
+  <div class="container">
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="testimoni">
+  <div class="container text-center">
+    <div class="section-label reveal">Testimoni</div>
+    <h2 class="section-title reveal">Kata Pengunjung</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+      Pengalaman seru dari mereka yang sudah berkunjung ke Desa Warung Menteng
+    </p>
+  </div>
+  <div class="container">
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </div>
+</section>
+
+<section class="section bg-light" id="acara">
+  <div class="container text-center">
+    <div class="section-label reveal">Agenda</div>
+    <h2 class="section-title reveal">Acara & Kegiatan</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-desc mx-auto reveal" style="margin-bottom:48px;">
+      Festival dan acara budaya yang digelar di Desa Warung Menteng
+    </p>
+  </div>
+  <div class="container">
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<section class="section" id="kkn">
+  <div class="container">
+    <div class="kkn-box reveal">
+      <h2>&#x1F49A; Cerita Mahasiswa KKN</h2>
+      <p>Website ini adalah hasil dari program pengabdian mahasiswa KKN yang berfokus pada pengembangan desa digital. Bersama-sama, kami ingin memperkenalkan potensi Desa Warung Menteng ke seluruh Indonesia.</p>
+      <p style="margin-top:12px;">Terima kasih kepada Pemerintah Desa, masyarakat, dan semua pihak yang mendukung program ini.</p>
+      <a href="kkn.html" class="btn btn-gold">Baca Cerita Lengkap &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" id="footerContent">
+  </div>
+</footer>
+
+<div class="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <div class="lightbox-content"></div>
+</div>
+
+<div class="search-overlay" id="searchOverlay"></div>
+
+<div class="service-modal" id="serviceModal">
+  <div class="service-modal-bg"></div>
+  <div class="service-modal-content">
+    <button class="service-modal-close">&times;</button>
+    <div class="service-modal-icon" id="modalServiceIcon"></div>
+    <h3 id="modalServiceName"></h3>
+    <p id="modalServiceDesc" style="color:#8a817c;font-size:0.85rem;margin-bottom:24px;"></p>
+    <form id="serviceForm">
+      <input type="hidden" id="serviceId" />
+      <div class="form-group">
+        <label for="sName">Nama Lengkap</label>
+        <input type="text" id="sName" required placeholder="Sesuai KTP" />
+      </div>
+      <div class="form-group">
+        <label for="sNIK">NIK</label>
+        <input type="text" id="sNIK" required placeholder="16 digit" maxlength="16" pattern="[0-9]{16}" />
+      </div>
+      <div class="form-group">
+        <label for="sPhone">No. HP</label>
+        <input type="tel" id="sPhone" required placeholder="08xxxxxxxxxx" />
+      </div>
+      <div class="form-group">
+        <label for="sAddress">Alamat</label>
+        <textarea id="sAddress" required placeholder="Dusun/RT/RW"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="sNotes">Keterangan</label>
+        <textarea id="sNotes" placeholder="Tujuan pengajuan, dll."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Kirim Pengajuan</button>
+    </form>
+    <div class="service-modal-success" id="modalSuccess">
+      <div style="font-size:3rem;margin-bottom:16px;">&#x2705;</div>
+      <h3 style="margin-bottom:8px;">Pengajuan Terkirim!</h3>
+      <p style="color:#8a817c;font-size:0.85rem;">Data kamu sudah tersimpan. Kami akan segera memproses. Kamu bisa cek status pengajuan di bawah.</p>
+      <button class="btn btn-outline" id="modalSuccessClose" style="margin-top:20px;">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<div class="status-sidebar" id="statusSidebar">
+  <button class="status-sidebar-toggle" id="statusToggle">&#x1F4CB; Status</button>
+  <div class="status-sidebar-panel">
+    <div class="status-sidebar-header">
+      <h4>Status Pengajuan</h4>
+      <button id="statusClose">&times;</button>
+    </div>
+    <div class="status-sidebar-body" id="statusBody">
+      <p style="color:#8a817c;font-size:0.85rem;text-align:center;padding:40px 20px;">Belum ada pengajuan.</p>
+    </div>
+  </div>
+</div>
+
+<script src="data/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
