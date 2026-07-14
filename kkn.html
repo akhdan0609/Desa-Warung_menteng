@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cerita KKN — Desa Warung Menteng</title>
+  <title>Cerita KKN � Desa Warung Menteng</title>
   <meta name="description" content="Cerita mahasiswa KKN membangun desa digital dan website Desa Warung Menteng." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,6 +75,27 @@
       text-transform: uppercase;
     }
     .back-link:hover { gap: 16px; }
+    .kkn-theme-box { background: rgba(201,169,78,0.08); border-left: 3px solid #c9a94e; padding: 24px 28px; margin-bottom: 32px; }
+    .kkn-theme-box h3 { font-size: 1rem; font-weight: 700; color: #c9a94e; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 2px; }
+    .kkn-theme-box p { font-size: 1.2rem; font-weight: 600; color: #3d2b1f; }
+    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .vm-card { padding: 28px; border: 1px solid rgba(61,43,31,0.08); }
+    .vm-card.visi { background: rgba(45,106,79,0.04); border-left: 3px solid #2d6a4f; }
+    .vm-card.misi { background: rgba(201,169,78,0.04); border-left: 3px solid #c9a94e; }
+    .vm-card h3 { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .vm-card.visi h3 { color: #2d6a4f; }
+    .vm-card.misi h3 { color: #c9a94e; }
+    .vm-card p, .vm-card li { font-size: 0.9rem; color: #5c4033; line-height: 1.8; font-weight: 300; }
+    .vm-card ul { padding-left: 20px; }
+    .vm-card ul li { list-style: disc; margin-bottom: 6px; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+    .team-card { background: #fff; padding: 24px 20px; text-align: center; border: 1px solid rgba(61,43,31,0.06); transition: all 0.3s; cursor: default; }
+    .team-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.04); transform: translateY(-4px); }
+    .team-card .avatar { width: 56px; height: 56px; margin: 0 auto 12px; background: #2d6a4f; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.2rem; }
+    .team-card h4 { font-size: 0.9rem; font-weight: 700; color: #3d2b1f; margin-bottom: 2px; }
+    .team-card .role { font-size: 0.75rem; color: #2d6a4f; font-weight: 600; letter-spacing: 0.5px; }
+    .team-card .divisi { font-size: 0.7rem; color: #8a817c; margin-top: 4px; font-weight: 300; }
+    .team-divider { font-size: 1rem; font-weight: 700; color: #2d6a4f; margin-top: 32px; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid rgba(61,43,31,0.06); padding-bottom: 8px; }
     @media (max-width: 768px) {
       .page-hero h1 { font-size: 2rem; }
       .kkn-quote { padding: 32px 24px; }
@@ -87,7 +108,7 @@
   <div class="container">
     <nav>
       <a href="index.html" class="logo">
-        <div class="logo-icon">WM</div>
+        <img src="images/logo.jpeg" alt="Desa Warung Menteng" class="logo-img" />
         Warung Menteng
       </a>
       <button class="hamburger" aria-label="Menu">
@@ -136,6 +157,153 @@
       <li>Terbentuknya <strong>konten promosi</strong> yang dapat digunakan untuk memperkenalkan desa ke khalayak luas</li>
       <li>Semakin dikenalnya <strong>destinasi wisata</strong> Desa Warung Menteng di media sosial</li>
     </ul>
+
+    <h2>Tema KKN</h2>
+    <div class="kkn-theme-box">
+      <h3>Tema</h3>
+      <p>"Membangun Desa Digital Berbasis Pariwisata untuk Mewujudkan Warung Menteng yang Maju, Mandiri, dan Berkelanjutan"</p>
+    </div>
+
+    <h2>Visi & Misi</h2>
+    <div class="vm-grid">
+      <div class="vm-card visi">
+        <h3>Visi</h3>
+        <p>Mewujudkan Desa Warung Menteng sebagai desa wisata digital yang maju, mandiri, dan berkelanjutan melalui pemanfaatan teknologi informasi dan pemberdayaan masyarakat.</p>
+      </div>
+      <div class="vm-card misi">
+        <h3>Misi</h3>
+        <ul>
+          <li>Mengembangkan platform digital untuk mempromosikan potensi wisata dan UMKM Desa Warung Menteng</li>
+          <li>Memberdayakan masyarakat desa melalui pelatihan literasi digital dan pemasaran online</li>
+          <li>Mendokumentasikan dan mempublikasikan destinasi wisata serta budaya lokal secara profesional</li>
+          <li>Membangun sistem administrasi desa berbasis digital untuk pelayanan publik yang lebih efektif</li>
+          <li>Menumbuhkan kesadaran dan partisipasi masyarakat dalam pengembangan desa wisata</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Struktur Anggota Kelompok KKN</h2>
+
+    <div class="team-divider">Badan Pengurus Harian (BPH)</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">F</div>
+        <h4>Fajri Maulana</h4>
+        <div class="role">Ketua Umum</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Ayu Rahmadini</h4>
+        <div class="role">Wakil Ketua</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Akhdan Fadhil Santoso</h4>
+        <div class="role">Sekretaris Umum</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">S</div>
+        <h4>Safitri Naufal</h4>
+        <div class="role">Wakil Sekretaris</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Arjuna</h4>
+        <div class="role">Bendahara Umum</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">D</div>
+        <h4>Difina Agusti Rahmawati</h4>
+        <div class="role">Wakil Bendahara</div>
+      </div>
+    </div>
+
+    <div class="team-divider">Divisi Acara</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">M</div>
+        <h4>Munhamir Nadzir</h4>
+        <div class="role">Koordinator</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">R</div>
+        <h4>Risna</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">I</div>
+        <h4>Ikmal Nur Awaludin</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">D</div>
+        <h4>Devran Azzahra</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">S</div>
+        <h4>Shovia</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Achmad Pahlevi Ramadhan</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">C</div>
+        <h4>Caisar Fayth Isyadirda</h4>
+        <div class="role">Anggota</div>
+      </div>
+    </div>
+
+    <div class="team-divider">Divisi Humas</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">M</div>
+        <h4>Muhammad Ramadhan Giri Wardana</h4>
+        <div class="role">Koordinator</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Andika Febriansyah</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">S</div>
+        <h4>Siti Khoiroh</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">M</div>
+        <h4>M Arifin Fadhillah</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">N</div>
+        <h4>Nur Saqinah</h4>
+        <div class="role">Anggota</div>
+      </div>
+    </div>
+
+    <div class="team-divider">Divisi PDD (Publikasi, Dokumentasi, Dekorasi)</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">T</div>
+        <h4>Try Mauna</h4>
+        <div class="role">Koordinator</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Aisyah Al Atas</h4>
+        <div class="role">Anggota</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">Q</div>
+        <h4>Qomarudin Tokan</h4>
+        <div class="role">Anggota</div>
+      </div>
+    </div>
 
     <h2>Harapan ke Depan</h2>
     <p>Dengan adanya website ini, kami berharap Desa Warung Menteng semakin dikenal luas, kunjungan wisatawan meningkat, dan perekonomian desa semakin maju. Lebih dari itu, kami ingin program ini menjadi awal dari transformasi digital desa yang berkelanjutan.</p>

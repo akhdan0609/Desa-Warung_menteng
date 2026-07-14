@@ -2,123 +2,133 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (typeof siteData === 'undefined' || !siteData) return;
   var data = siteData;
+  var page = window.location.pathname.split('/').pop() || 'index.html';
 
   function getStore(key) { return JSON.parse(localStorage.getItem('edit_' + key) || 'null'); }
   function getData(key) { var s = getStore(key); return s !== null ? s : (data[key] || null); }
 
-  /* ==================== RENDER SECTIONS ==================== */
-
   /* NAV */
   var navList = document.getElementById('nav-links');
   if (navList && data.nav) {
-    var isKkn = window.location.pathname.indexOf('kkn.html') > -1;
-    var prefix = isKkn ? 'index.html' : '';
     navList.innerHTML = data.nav.map(function (item) {
-      return '<li><a href="' + (prefix ? prefix + item.href : item.href) + '">' + item.label + '</a></li>';
+      var href = item.href;
+      var active = href === page || (page === '' && href === 'index.html') ? ' active' : '';
+      var a = '<a href="' + href + '" class="nav-link' + active + '">' + item.label + '</a>';
+      if (item.submenu && item.submenu.length > 0) {
+        var sub = item.submenu.map(function (s) {
+          var sa = s.href === page || (page === '' && s.href === 'index.html') ? ' active' : '';
+          return '<li><a href="' + s.href + '" class="nav-link' + sa + '">' + s.label + '</a></li>';
+        }).join('');
+        return '<li class="nav-dropdown">' + a + '<ul class="submenu">' + sub + '</ul></li>';
+      }
+      return '<li>' + a + '</li>';
     }).join('');
-    if (!isKkn) {
-      navList.innerHTML += '<li><a href="kkn.html" style="color:#e07a5f;">Cerita KKN</a></li>';
-    }
   }
 
   /* HERO IMAGE OVERRIDE */
   var heroImg = document.getElementById('heroBgImg');
   var savedHeroImg = localStorage.getItem('edit_img_hero');
-  // Clear old saved image if it matches previous default
   if (savedHeroImg && savedHeroImg.indexOf('photo-1506905925346') > -1) {
     localStorage.removeItem('edit_img_hero');
     savedHeroImg = null;
   }
   if (heroImg) {
-    if (savedHeroImg && savedHeroImg.trim() !== '') {
-      heroImg.src = savedHeroImg;
-    } else {
-      heroImg.src = 'https://images.unsplash.com/photo-1759574981176-2ccab9970471?w=1200&q=80';
-    }
+    heroImg.src = savedHeroImg && savedHeroImg.trim() !== ''
+      ? savedHeroImg
+      : 'https://images.unsplash.com/photo-1759574981176-2ccab9970471?w=1200&q=80';
   }
 
-  /* HERO */
-  var heroBadge = document.getElementById('heroBadge');
-  var heroTitle = document.getElementById('heroTitle');
-  var heroDesc = document.getElementById('heroDesc');
-  var heroStats = document.getElementById('heroStats');
-  var heroData = getData('hero');
-  if (heroData) {
-    if (heroBadge) heroBadge.textContent = heroData.badge;
-    if (heroTitle) heroTitle.innerHTML = heroData.title;
-    if (heroDesc) heroDesc.textContent = heroData.description;
-    if (heroStats && heroData.stats) {
-      heroStats.innerHTML = heroData.stats.map(function (s) {
-        return '<div class="hero-stat"><div class="num">' + s.value + '</div><div class="lbl">' + s.label + '</div></div>';
-      }).join('');
-    }
+  /* ==================== PAGE-SPECIFIC RENDERING ==================== */
+
+  if (page === 'tentang.html') {
+    renderPageHeader('Profil Desa', 'Informasi lengkap Desa Warung Menteng');
+    renderAbout();
+    renderPerangkat();
+    renderStruktur();
+    renderAnggaran();
+    renderTentangContact();
+    renderTentangLokasi();
+    renderServices();
   }
 
-  /* PROFILE */
-  var profileTitle = document.getElementById('profileTitle');
-  var profileDesc1 = document.getElementById('profileDesc1');
-  var profileDesc2 = document.getElementById('profileDesc2');
-  var profileStats = document.getElementById('profileStats');
-  var profileData = getData('profile');
-  if (profileData) {
-    if (profileTitle) profileTitle.textContent = profileData.title;
-    if (profileDesc1) profileDesc1.textContent = profileData.description1;
-    if (profileDesc2) profileDesc2.textContent = profileData.description2;
-    if (profileStats && profileData.stats) {
-      profileStats.innerHTML = profileData.stats.map(function (s) {
-        return '<div class="stat-item"><div class="num">' + s.value + '</div><div class="lbl">' + s.label + '</div></div>';
-      }).join('');
-    }
+  if (page === 'pariwisata.html') {
+    renderPageHeader('Pariwisata', 'Jelajahi destinasi, kuliner, dan UMKM Desa Warung Menteng');
+    renderCards('destinationsGrid', getData('destinations'), 'destination');
+    renderCards('culinaryGrid', getData('culinary'), 'culinary');
+    renderCards('accommodationGrid', getData('accommodation'), 'accommodation');
+    renderUMKM();
   }
 
-  /* NEWS */
-  renderNews();
-
-  /* CARDS */
-  renderCards('destinationsGrid', getData('destinations'));
-  renderCards('culinaryGrid', getData('culinary'));
-  renderCards('accommodationGrid', getData('accommodation'));
-
-  /* SERVICES */
-  renderServices();
-
-  /* UMKM */
-  renderUMKM();
-
-  /* GALLERY */
-  renderGallery();
-
-  /* TESTIMONIALS */
-  renderTestimonials();
-
-  /* EVENTS */
-  renderEvents();
-
-  /* PERANGKAT DESA */
-  renderPerangkat();
-
-  /* STRUKTUR ORGANISASI */
-  renderStruktur();
-
-  /* ANGGARAN DESA */
-  renderAnggaran();
-
-  /* TENTANG MAPS */
-  var tentangAddress = document.getElementById('tentangAddress');
-  var tentangMapsLink = document.getElementById('tentangMapsLink');
-  var contactData = getData('contact');
-  if (contactData) {
-    if (tentangAddress) tentangAddress.textContent = contactData.address;
-    if (tentangMapsLink) tentangMapsLink.href = contactData.maps_url;
+  if (page === 'berita.html') {
+    renderPageHeader('Berita & Galeri', 'Informasi terbaru dan galeri foto Desa Warung Menteng');
+    renderNews();
+    renderGallery();
   }
 
-  /* TENTANG CONTACT */
-  renderTentangContact();
+  if (page === 'galeri.html') {
+    renderPageHeader('Galeri', 'Foto-foto Desa Warung Menteng');
+    renderGallery();
+  }
 
-  /* FOOTER */
+  if (page === 'layanan.html') {
+    renderPageHeader('Layanan Desa', 'Ajukan surat keterangan secara online');
+    renderServices();
+  }
+
+  if (page === 'index.html' || page === '') {
+    renderHero();
+    renderAbout();
+    renderTestimonials();
+    renderEvents();
+  }
+
   renderFooter();
+  renderStatusSidebar();
 
   /* ==================== RENDER FUNCTIONS ==================== */
+
+  function renderPageHeader(title, desc) {
+    var el = document.getElementById('pageHeaderTitle');
+    var elDesc = document.getElementById('pageHeaderDesc');
+    if (el) el.textContent = title;
+    if (elDesc) elDesc.textContent = desc;
+  }
+
+  function renderHero() {
+    var heroBadge = document.getElementById('heroBadge');
+    var heroTitle = document.getElementById('heroTitle');
+    var heroDesc = document.getElementById('heroDesc');
+    var heroStats = document.getElementById('heroStats');
+    var heroData = getData('hero');
+    if (heroData) {
+      if (heroBadge) heroBadge.textContent = heroData.badge;
+      if (heroTitle) heroTitle.innerHTML = heroData.title;
+      if (heroDesc) heroDesc.textContent = heroData.description;
+      if (heroStats && heroData.stats) {
+        heroStats.innerHTML = heroData.stats.map(function (s) {
+          return '<div class="hero-stat"><div class="num">' + s.value + '</div><div class="lbl">' + s.label + '</div></div>';
+        }).join('');
+      }
+    }
+  }
+
+  function renderAbout() {
+    var profileTitle = document.getElementById('profileTitle');
+    var profileDesc1 = document.getElementById('profileDesc1');
+    var profileDesc2 = document.getElementById('profileDesc2');
+    var profileStats = document.getElementById('profileStats');
+    var profileData = getData('profile');
+    if (profileData) {
+      if (profileTitle) profileTitle.textContent = profileData.title;
+      if (profileDesc1) profileDesc1.textContent = profileData.description1;
+      if (profileDesc2) profileDesc2.textContent = profileData.description2;
+      if (profileStats && profileData.stats) {
+        profileStats.innerHTML = profileData.stats.map(function (s) {
+          return '<div class="stat-item"><div class="num">' + s.value + '</div><div class="lbl">' + s.label + '</div></div>';
+        }).join('');
+      }
+    }
+  }
 
   function renderNews() {
     var grid = document.getElementById('newsGrid');
@@ -134,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '<span class="press-date-rest">' + rest + '</span>' +
         '</div>' +
         '<div class="press-body">' +
-          '<div class="press-category ' + item.category.toLowerCase() + '">' + item.category + '</div>' +
+          '<div class="press-category">' + item.category + '</div>' +
           '<h3>' + item.title + '</h3>' +
           '<p>' + item.excerpt + '</p>' +
           '<a href="#" class="press-link">Baca Selengkapnya &rarr;</a>' +
@@ -142,11 +152,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }).join('');
   }
 
-  function renderCards(gridId, items) {
+  function renderCards(gridId, items, type) {
     var grid = document.getElementById(gridId);
     if (!grid || !items) return;
     grid.innerHTML = items.map(function (item) {
-      return '<div class="card reveal">' +
+      return '<div class="card reveal" data-id="' + item.id + '" data-type="' + (type || gridId) + '">' +
         '<div class="card-image"><div class="placeholder">' + item.icon + '</div></div>' +
         '<div class="card-body">' +
         '<span class="card-tag">' + item.tag + '</span>' +
@@ -176,12 +186,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var umkmData = getData('umkm');
     if (!grid || !umkmData) return;
     grid.innerHTML = umkmData.map(function (item) {
-      return '<div class="umkm-card reveal">' +
+      var waUrl = item.contact ? 'https://wa.me/' + item.contact.replace(/[^0-9]/g, '') : '';
+      var waBtn = waUrl ? '<a href="' + waUrl + '" target="_blank" rel="noopener" class="umkm-wa" onclick="event.stopPropagation();">Hubungi via WhatsApp</a>' : '';
+      return '<div class="umkm-card reveal" data-id="' + item.id + '" data-type="umkm">' +
         '<div class="umkm-icon">' + item.icon + '</div>' +
         '<div class="umkm-body">' +
         '<h3>' + item.name + '</h3>' +
         '<p>' + item.description + '</p>' +
         '<div class="umkm-owner">\u2714 ' + item.owner + '</div>' +
+        waBtn +
         '</div></div>';
     }).join('');
   }
@@ -232,19 +245,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }).join('');
   }
 
-  function renderContact() {
-    var container = document.getElementById('contactInfo');
-    var contactData = getData('contact');
-    if (!container || !contactData) return;
-    var c = contactData;
-    var html = '<h3>Informasi Kontak</h3>';
-    html += '<div class="contact-info-item"><div class="icon">\uD83D\uDCCD</div><div><h4>Alamat</h4><p>' + c.address + '</p></div></div>';
-    html += '<div class="contact-info-item"><div class="icon">\u2709\uFE0F</div><div><h4>Email</h4><a href="mailto:' + c.email + '">' + c.email + '</a></div></div>';
-    html += '<div class="contact-info-item"><div class="icon">\uD83D\uDD50</div><div><h4>Jam Pelayanan</h4><p>' + c.hours + '</p></div></div>';
-    html += '<div class="contact-info-item"><div class="icon">\uD83D\uDCF7</div><div><h4>Instagram</h4><a href="' + c.instagram_url + '" target="_blank" rel="noopener" style="color:#00838f;font-weight:600;">' + c.instagram + '</a></div></div>';
-    container.innerHTML = html;
-  }
-
   function renderFooter() {
     var container = document.getElementById('footerContent');
     if (!container) return;
@@ -270,8 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var grid = document.getElementById('perangkatGrid');
     var perangkatData = getData('perangkat_desa');
     if (!grid || !perangkatData) return;
-    grid.innerHTML = perangkatData.map(function (item) {
-      return '<div class="perangkat-card reveal">' +
+    grid.innerHTML = perangkatData.map(function (item, idx) {
+      return '<div class="perangkat-card reveal" data-idx="' + idx + '" data-type="perangkat">' +
         '<div class="perangkat-icon">' + item.icon + '</div>' +
         '<h3>' + item.nama + '</h3>' +
         '<div class="perangkat-jabatan">' + item.jabatan + '</div>' +
@@ -338,42 +338,46 @@ document.addEventListener('DOMContentLoaded', function () {
     container.innerHTML = html;
   }
 
+  function renderTentangLokasi() {
+    var container = document.getElementById('tentangAddress');
+    var mapsLink = document.getElementById('tentangMapsLink');
+    var mapsLink2 = document.getElementById('tentangMapsLink2');
+    var contactData = getData('contact');
+    if (container && contactData) container.textContent = contactData.address;
+    if (mapsLink && contactData) mapsLink.href = contactData.maps_url;
+    if (mapsLink2 && contactData) mapsLink2.href = contactData.maps_url;
+  }
+
   /* ==================== EXISTING FEATURES ==================== */
 
   /* HEADER SCROLL */
   var header = document.querySelector('header');
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 80) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-    var sections = document.querySelectorAll('section[id]');
-    var navAnchors = document.querySelectorAll('.nav-links a');
-    var current = '';
-    sections.forEach(function (section) {
-      var top = section.offsetTop - 150;
-      var bottom = top + section.offsetHeight;
-      if (window.scrollY >= top && window.scrollY < bottom) {
-        current = section.getAttribute('id');
+  if (header) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
     });
-    navAnchors.forEach(function (a) {
-      a.classList.remove('active');
-      if (a.getAttribute('href') === '#' + current) {
-        a.classList.add('active');
-      }
-    });
-  });
+  }
 
   /* HAMBURGER */
   var hamburger = document.querySelector('.hamburger');
   var navLinks = document.querySelector('.nav-links');
-  if (hamburger) {
+  if (hamburger && navLinks) {
     hamburger.addEventListener('click', function () {
       navLinks.classList.toggle('open');
     });
-    document.querySelectorAll('.nav-links a').forEach(function (link) {
+    navLinks.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          this.parentNode.classList.toggle('open');
+        }
+      });
+    });
+    navLinks.querySelectorAll(':scope > li > a:not(.nav-dropdown > a), .submenu a').forEach(function (link) {
       link.addEventListener('click', function () {
         navLinks.classList.remove('open');
       });
@@ -442,39 +446,22 @@ document.addEventListener('DOMContentLoaded', function () {
       var message = document.getElementById('message').value.trim();
       var msg = {
         id: Date.now(),
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
+        name: name, email: email, subject: subject, message: message,
         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
       };
       var existing = JSON.parse(localStorage.getItem('pesanKontak') || '[]');
       existing.unshift(msg);
       localStorage.setItem('pesanKontak', JSON.stringify(existing));
       var btn = this.querySelector('button[type="submit"]');
-      var originalText = btn.textContent;
       btn.textContent = '\u2713 Pesan Terkirim!';
       btn.style.background = '#059669';
       setTimeout(function () {
-        btn.textContent = originalText;
+        btn.textContent = 'Kirim Pesan';
         btn.style.background = '';
       }, 3000);
       this.reset();
     });
   }
-
-  /* SMOOTH SCROLL */
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      var target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 
   /* ==================== SEARCH ==================== */
 
@@ -488,60 +475,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function buildSearchIndex() {
     searchData = [];
-    var newsData = getData('news');
-    if (newsData) {
-      newsData.forEach(function (item) {
-        searchData.push({ type: 'Berita', title: item.title, desc: item.excerpt, href: '#berita', tag: item.category });
-      });
-    }
     var umkmData = getData('umkm');
-    if (umkmData) {
-      umkmData.forEach(function (item) {
-        searchData.push({ type: 'UMKM', title: item.name, desc: item.description, href: '#umkm', tag: item.owner });
-      });
-    }
+    if (umkmData) umkmData.forEach(function (item) { searchData.push({ type: 'UMKM', title: item.name, desc: item.description, href: 'pariwisata.html#umkm', tag: item.owner }); });
     var destData = getData('destinations');
-    if (destData) {
-      destData.forEach(function (item) {
-        searchData.push({ type: 'Destinasi', title: item.name, desc: item.description, href: '#wisata', tag: item.tag });
-      });
-    }
+    if (destData) destData.forEach(function (item) { searchData.push({ type: 'Destinasi', title: item.name, desc: item.description, href: 'pariwisata.html#destinasi', tag: item.tag }); });
     var culinaryData = getData('culinary');
-    if (culinaryData) {
-      culinaryData.forEach(function (item) {
-        searchData.push({ type: 'Kuliner', title: item.name, desc: item.description, href: '#wisata', tag: item.tag });
-      });
-    }
+    if (culinaryData) culinaryData.forEach(function (item) { searchData.push({ type: 'Kuliner', title: item.name, desc: item.description, href: 'pariwisata.html#kuliner', tag: item.tag }); });
     var accomData = getData('accommodation');
-    if (accomData) {
-      accomData.forEach(function (item) {
-        searchData.push({ type: 'Penginapan', title: item.name, desc: item.description, href: '#wisata', tag: item.tag });
-      });
-    }
-    var servicesData = getData('services');
-    if (servicesData) {
-      servicesData.forEach(function (item) {
-        searchData.push({ type: 'Layanan', title: item.name, desc: item.description, href: '#layanan', tag: 'Layanan Desa' });
-      });
-    }
-    var eventsData = getData('events');
-    if (eventsData) {
-      eventsData.forEach(function (item) {
-        searchData.push({ type: 'Acara', title: item.title, desc: item.description, href: '#acara', tag: item.date });
-      });
-    }
-    var perangkatData = getData('perangkat_desa');
-    if (perangkatData) {
-      perangkatData.forEach(function (item) {
-        searchData.push({ type: 'Perangkat Desa', title: item.nama, desc: item.jabatan + ' - ' + item.bidang, href: '#tentang', tag: item.jabatan });
-      });
-    }
-    var anggaranData = getData('anggaran_desa');
-    if (anggaranData) {
-      anggaranData.forEach(function (item) {
-        searchData.push({ type: 'Anggaran Desa', title: item.bidang, desc: item.anggaran + ' - ' + item.keterangan, href: '#tentang', tag: item.sumber });
-      });
-    }
+    if (accomData) accomData.forEach(function (item) { searchData.push({ type: 'Penginapan', title: item.name, desc: item.description, href: 'pariwisata.html#akomodasi', tag: item.tag }); });
   }
 
   buildSearchIndex();
@@ -586,9 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (searchInput) {
-    searchInput.addEventListener('input', function () {
-      performSearch(this.value);
-    });
+    searchInput.addEventListener('input', function () { performSearch(this.value); });
     searchInput.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         searchBar.classList.remove('open');
@@ -606,15 +545,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  document.querySelectorAll('.search-result-item').forEach(function (item) {
-    item.addEventListener('click', function () {
-      searchBar.classList.remove('open');
-      searchResults.classList.remove('active');
-      if (searchOverlay) searchOverlay.classList.remove('active');
-    });
-  });
-
-  /* Re-attach search click for dynamic results */
   document.addEventListener('click', function (e) {
     if (e.target.classList.contains('search-result-item')) {
       searchBar.classList.remove('open');
@@ -639,19 +569,14 @@ document.addEventListener('DOMContentLoaded', function () {
   function openServiceModal(serviceId) {
     var service = null;
     var servicesData = getData('services');
-    if (servicesData) {
-      servicesData.forEach(function (s) {
-        if (s.id === serviceId) service = s;
-      });
-    }
+    if (servicesData) servicesData.forEach(function (s) { if (s.id === serviceId) service = s; });
     if (!service) return;
     if (modalIcon) modalIcon.textContent = service.icon;
     if (modalName) modalName.textContent = service.name;
     if (modalDesc) modalDesc.textContent = service.description;
     if (serviceIdInput) serviceIdInput.value = service.id;
-    if (modalForm) modalForm.classList.remove('hidden');
+    if (modalForm) { modalForm.classList.remove('hidden'); modalForm.reset(); }
     if (modalSuccess) modalSuccess.classList.remove('active');
-    if (modalForm) modalForm.reset();
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -666,8 +591,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener('click', function (e) {
     if (e.target.classList.contains('btn-service-apply')) {
-      var id = e.target.getAttribute('data-id');
-      openServiceModal(id);
+      openServiceModal(e.target.getAttribute('data-id'));
     }
   });
 
@@ -680,50 +604,25 @@ document.addEventListener('DOMContentLoaded', function () {
       var address = document.getElementById('sAddress').value.trim();
       var notes = document.getElementById('sNotes').value.trim();
       var serviceId = serviceIdInput.value;
-
       var serviceName = '';
       var servicesData = getData('services');
-      if (servicesData) {
-        servicesData.forEach(function (s) {
-          if (s.id === serviceId) serviceName = s.name;
-        });
-      }
-
+      if (servicesData) servicesData.forEach(function (s) { if (s.id === serviceId) serviceName = s.name; });
       var submission = {
-        id: Date.now(),
-        serviceId: serviceId,
-        serviceName: serviceName,
-        name: name,
-        nik: nik,
-        phone: phone,
-        address: address,
-        notes: notes,
+        id: Date.now(), serviceId: serviceId, serviceName: serviceName,
+        name: name, nik: nik, phone: phone, address: address, notes: notes,
         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
         status: 'menunggu'
       };
-
       var existing = JSON.parse(localStorage.getItem('layananPengajuan') || '[]');
       existing.unshift(submission);
       localStorage.setItem('layananPengajuan', JSON.stringify(existing));
-
       if (modalForm) modalForm.classList.add('hidden');
       if (modalSuccess) modalSuccess.classList.add('active');
-
       var contactData = getData('contact');
       if (contactData && contactData.whatsapp_url) {
-        var msg = 'PENGAJUAN LAYANAN DESA\n';
-        msg += 'Layanan: ' + serviceName + '\n';
-        msg += 'Nama: ' + name + '\n';
-        msg += 'NIK: ' + nik + '\n';
-        msg += 'No HP: ' + phone + '\n';
-        msg += 'Alamat: ' + address + '\n';
-        msg += 'Keterangan: ' + (notes || '-') + '\n';
-        msg += 'ID: ' + submission.id;
-        setTimeout(function () {
-          window.open(contactData.whatsapp_url + '?text=' + encodeURIComponent(msg), '_blank');
-        }, 1000);
+        var msg = 'PENGAJUAN LAYANAN DESA\nLayanan: ' + serviceName + '\nNama: ' + name + '\nNIK: ' + nik + '\nNo HP: ' + phone + '\nAlamat: ' + address + '\nKeterangan: ' + (notes || '-') + '\nID: ' + submission.id;
+        setTimeout(function () { window.open(contactData.whatsapp_url + '?text=' + encodeURIComponent(msg), '_blank'); }, 1000);
       }
-
       renderStatusSidebar();
     });
   }
@@ -731,6 +630,95 @@ document.addEventListener('DOMContentLoaded', function () {
   if (modalSuccessClose) {
     modalSuccessClose.addEventListener('click', closeServiceModal);
   }
+
+  /* ==================== DETAIL MODAL ==================== */
+
+  var detailModal = document.getElementById('detailModal');
+  var detailModalBg = document.getElementById('detailModalBg');
+  var detailModalClose = document.getElementById('detailModalClose');
+  var detailBtnClose = document.getElementById('detailBtnClose');
+  var detailIcon = document.getElementById('detailIcon');
+  var detailTitle = document.getElementById('detailTitle');
+  var detailTag = document.getElementById('detailTag');
+  var detailDesc = document.getElementById('detailDesc');
+  var detailFields = document.getElementById('detailFields');
+
+  function openDetailModal(data) {
+    if (!detailModal) return;
+    if (detailIcon) detailIcon.textContent = data.icon || '';
+    if (detailTitle) detailTitle.textContent = data.name || data.title || '';
+    if (detailTag) detailTag.textContent = data.tag || data.jabatan || data.type || '';
+    if (detailDesc) detailDesc.textContent = data.description || data.desc || '';
+    if (detailFields) {
+      var fields = data.fields || [];
+      detailFields.innerHTML = fields.map(function (f) {
+        return '<div class="detail-field">' +
+          '<div class="field-icon">' + (f.icon || '') + '</div>' +
+          '<div><div class="field-label">' + f.label + '</div>' +
+          '<div class="field-value">' + f.value + '</div></div></div>';
+      }).join('');
+    }
+    detailModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDetailModal() {
+    if (detailModal) detailModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (detailModalBg) detailModalBg.addEventListener('click', closeDetailModal);
+  if (detailModalClose) detailModalClose.addEventListener('click', closeDetailModal);
+  if (detailBtnClose) detailBtnClose.addEventListener('click', closeDetailModal);
+
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest('.card, .umkm-card, .perangkat-card');
+    if (!card) return;
+    var type = card.getAttribute('data-type');
+    var id = card.getAttribute('data-id');
+    var idx = card.getAttribute('data-idx');
+    var item = null;
+
+    if (type === 'destination') {
+      var dests = getData('destinations');
+      if (dests) dests.forEach(function (d) { if (String(d.id) === id) item = d; });
+    } else if (type === 'culinary') {
+      var culs = getData('culinary');
+      if (culs) culs.forEach(function (d) { if (String(d.id) === id) item = d; });
+    } else if (type === 'accommodation') {
+      var accs = getData('accommodation');
+      if (accs) accs.forEach(function (d) { if (String(d.id) === id) item = d; });
+    } else if (type === 'umkm') {
+      var umkms = getData('umkm');
+      if (umkms) umkms.forEach(function (d) { if (String(d.id) === id) item = d; });
+    } else if (type === 'perangkat') {
+      var perangkat = getData('perangkat_desa');
+      if (perangkat && perangkat[idx]) item = perangkat[idx];
+    }
+
+    if (!item) return;
+
+    var detailData = {
+      icon: item.icon || '',
+      name: item.name || item.nama || '',
+      tag: item.tag || item.jabatan || '',
+      description: item.description || '',
+      fields: []
+    };
+
+    if (type === 'umkm') {
+      detailData.fields.push({ icon: '\uD83D\uDC64', label: 'Pemilik', value: item.owner || '-' });
+      if (item.contact) detailData.fields.push({ icon: '\uD83D\uDCDE', label: 'Kontak', value: item.contact });
+    } else if (type === 'perangkat') {
+      detailData.fields.push({ icon: '\uD83D\uDC64', label: 'Nama', value: item.nama || '-' });
+      detailData.fields.push({ icon: '\uD83D\uDCBC', label: 'Jabatan', value: item.jabatan || '-' });
+      detailData.fields.push({ icon: '\uD83D\uDCCB', label: 'Bidang', value: item.bidang || '-' });
+    } else {
+      detailData.fields.push({ icon: '\uD83C\uDFD4\uFE0F', label: 'Kategori', value: item.tag || '-' });
+    }
+
+    openDetailModal(detailData);
+  });
 
   /* ==================== STATUS SIDEBAR ==================== */
 
@@ -771,18 +759,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (statusClose) {
-    statusClose.addEventListener('click', function () {
-      if (statusPanel) statusPanel.classList.remove('open');
-    });
+    statusClose.addEventListener('click', function () { if (statusPanel) statusPanel.classList.remove('open'); });
   }
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       if (modal && modal.classList.contains('active')) closeServiceModal();
+      if (detailModal && detailModal.classList.contains('active')) closeDetailModal();
       if (statusPanel && statusPanel.classList.contains('open')) statusPanel.classList.remove('open');
     }
   });
-
-  renderStatusSidebar();
 
 });

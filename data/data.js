@@ -6,10 +6,26 @@ var siteData = {
     "footer": "Dibangun oleh Mahasiswa KKN."
   },
   "nav": [
-    { "label": "Tentang", "href": "#tentang" },
-    { "label": "Berita", "href": "#berita" },
-    { "label": "Wisata", "href": "#wisata" },
-    { "label": "Galeri", "href": "#galeri" }
+    { "label": "Beranda", "href": "index.html" },
+    { "label": "Tentang", "href": "tentang.html", "submenu": [
+      { "label": "Profil Desa", "href": "tentang.html#profil" },
+      { "label": "Perangkat Desa", "href": "tentang.html#perangkat" },
+      { "label": "Struktur Organisasi", "href": "tentang.html#struktur" },
+      { "label": "Anggaran Desa", "href": "tentang.html#anggaran" },
+      { "label": "Layanan Desa", "href": "tentang.html#layanan" },
+      { "label": "Lokasi & Kontak", "href": "tentang.html#lokasi" }
+    ]},
+    { "label": "Pariwisata", "href": "pariwisata.html", "submenu": [
+      { "label": "Destinasi", "href": "pariwisata.html#destinasi" },
+      { "label": "Kuliner", "href": "pariwisata.html#kuliner" },
+      { "label": "Akomodasi", "href": "pariwisata.html#akomodasi" },
+      { "label": "UMKM", "href": "pariwisata.html#umkm" }
+    ]},
+    { "label": "Berita", "href": "berita.html", "submenu": [
+      { "label": "Berita", "href": "berita.html" },
+      { "label": "Galeri", "href": "berita.html#galeri" }
+    ]},
+    { "label": "KKN", "href": "kkn.html" }
   ],
   "hero": {
     "badge": "Desa Wisata Bogor",
@@ -183,7 +199,7 @@ var siteData = {
       "name": "Madu Hutan Gunung Salak",
       "description": "Madu murni dari hutan sekitar Gunung Salak. Dipanen langsung oleh petani madu lokal. Kaya manfaat untuk kesehatan.",
       "owner": "Bapak Asep",
-      "contact": "08xxx",
+      "contact": "628123456701",
       "icon": "\uD83C\uDF6F"
     },
     {
@@ -191,7 +207,7 @@ var siteData = {
       "name": "Kerajinan Anyaman Bambu",
       "description": "Bakul, tampah, dan berbagai kerajinan anyaman bambu buatan tangan warga desa. Ramah lingkungan dan bernilai seni tinggi.",
       "owner": "Ibu Siti",
-      "contact": "08xxx",
+      "contact": "628123456702",
       "icon": "\uD83E\uDDFA"
     },
     {
@@ -199,7 +215,7 @@ var siteData = {
       "name": "Kopi Arabika Cijeruk",
       "description": "Kopi arabika khas Cijeruk dengan cita rasa kuat dan aroma khas. Ditanam di lereng Gunung Salak pada ketinggian 800+ mdpl.",
       "owner": "Kelompok Tani Mekar Sari",
-      "contact": "08xxx",
+      "contact": "628123456703",
       "icon": "\u2615"
     },
     {
@@ -207,7 +223,7 @@ var siteData = {
       "name": "Keripik Singkong Pedas",
       "description": "Keripik singkong renyah dengan bumbu pedas khas. Oleh-oleh wajib dari Desa Warung Menteng.",
       "owner": "Ibu Dedeh",
-      "contact": "08xxx",
+      "contact": "628123456704",
       "icon": "\uD83C\uDF60"
     },
     {
@@ -215,7 +231,7 @@ var siteData = {
       "name": "Tanaman Hias & Bibit Buah",
       "description": "Berbagai tanaman hias dan bibit buah-buahan berkualitas. Melayani pengiriman ke berbagai kota.",
       "owner": "Bapak Usep",
-      "contact": "08xxx",
+      "contact": "628123456705",
       "icon": "\uD83C\uDF3F"
     },
     {
@@ -223,7 +239,7 @@ var siteData = {
       "name": "Gula Aren Murni",
       "description": "Gula aren cetak dan cair dari nira pohon aren pilihan. Manis alami tanpa bahan pengawet.",
       "owner": "Bapak Dedi",
-      "contact": "08xxx",
+      "contact": "628123456706",
       "icon": "\uD83C\uDF6C"
     }
   ],
@@ -284,17 +300,20 @@ var siteData = {
   },
   "footer_links": [
     { "title": "Navigasi", "links": [
-      { "label": "Tentang", "href": "#tentang" },
-      { "label": "Wisata", "href": "#wisata" },
-      { "label": "Galeri", "href": "#galeri" }
+      { "label": "Beranda", "href": "index.html" },
+      { "label": "Tentang", "href": "tentang.html" },
+      { "label": "Pariwisata", "href": "pariwisata.html" },
+      { "label": "Galeri", "href": "galeri.html" },
+      { "label": "KKN", "href": "kkn.html" }
     ]},
     { "title": "Informasi", "links": [
-      { "label": "Berita", "href": "#berita" },
-      { "label": "Layanan", "href": "#layanan" }
+      { "label": "Berita", "href": "berita.html" },
+      { "label": "Layanan", "href": "tentang.html#layanan" },
+      { "label": "Struktur Desa", "href": "tentang.html#struktur" },
+      { "label": "Anggaran", "href": "tentang.html#anggaran" }
     ]},
     { "title": "Lainnya", "links": [
-      { "label": "KKN", "href": "kkn.html" },
-      { "label": "Struktur Desa", "href": "#tentang" },
+      { "label": "Perangkat Desa", "href": "tentang.html#perangkat" },
       { "label": "Admin", "href": "admin.html" }
     ]}
   ]
