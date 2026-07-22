@@ -8,22 +8,22 @@ var siteData = {
   "nav": [
     { "label": "Beranda", "href": "index.html" },
     { "label": "Tentang", "href": "tentang.html", "submenu": [
-      { "label": "Profil Desa", "href": "tentang.html#profil" },
-      { "label": "Perangkat Desa", "href": "tentang.html#perangkat" },
-      { "label": "Struktur Organisasi", "href": "tentang.html#struktur" },
-      { "label": "Anggaran Desa", "href": "tentang.html#anggaran" },
-      { "label": "Layanan Desa", "href": "tentang.html#layanan" },
-      { "label": "Lokasi & Kontak", "href": "tentang.html#lokasi" }
+      { "label": "Profil Desa", "href": "profil.html" },
+      { "label": "Perangkat Desa", "href": "perangkat.html" },
+      { "label": "Struktur Organisasi", "href": "struktur.html" },
+      { "label": "Anggaran Desa", "href": "anggaran.html" },
+      { "label": "Layanan Desa", "href": "layanan.html" },
+      { "label": "Lokasi & Kontak", "href": "lokasi.html" }
     ]},
     { "label": "Pariwisata", "href": "pariwisata.html", "submenu": [
-      { "label": "Destinasi", "href": "pariwisata.html#destinasi" },
-      { "label": "Kuliner", "href": "pariwisata.html#kuliner" },
-      { "label": "Akomodasi", "href": "pariwisata.html#akomodasi" },
-      { "label": "UMKM", "href": "pariwisata.html#umkm" }
+      { "label": "Destinasi", "href": "destinasi.html" },
+      { "label": "Kuliner", "href": "kuliner.html" },
+      { "label": "Akomodasi", "href": "akomodasi.html" },
+      { "label": "UMKM", "href": "umkm.html" }
     ]},
     { "label": "Berita", "href": "berita.html", "submenu": [
-      { "label": "Berita", "href": "berita.html" },
-      { "label": "Galeri", "href": "berita.html#galeri" }
+      { "label": "Artikel", "href": "berita.html" },
+      { "label": "Galeri", "href": "galeri.html" }
     ]},
     { "label": "KKN", "href": "kkn.html" }
   ],
@@ -139,33 +139,43 @@ var siteData = {
       "date": "15 Juni 2026",
       "title": "Festival Durian Warung Menteng 2026",
       "excerpt": "Festival durian tahunan akan digelar pada akhir Juni. Cicipi durian lokal langsung dari kebun, lomba makan durian, dan bazar UMKM desa.",
-      "category": "Kegiatan"
+      "category": "Kegiatan",
+      "content": "<p>Desa Warung Menteng kembali menggelar festival durian tahunan yang telah dinanti-nantikan. Acara ini akan berlangsung pada akhir Juni 2026 di area Wisata Warso Farm.</p><p>Berbagai kegiatan menarik telah disiapkan untuk para pengunjung, mulai dari lomba makan durian, bazar UMKM desa, hingga wisata petik durian langsung dari kebun. Tidak hanya durian, pengunjung juga bisa menikmati berbagai kuliner khas desa dan hasil bumi lainnya.</p><h3>Rangkaian Acara</h3><ul><li>Lomba Makan Durian</li><li>Bazar UMKM Desa</li><li>Petik Durian Langsung dari Kebun</li><li>Pertunjukan Seni Budaya Sunda</li><li>Workshop Olahan Durian</li></ul><p>Acara ini terbuka untuk umum dan gratis. Jangan lewatkan kesempatan untuk mencicipi durian khas Cijeruk yang terkenal dengan daging buah tebal dan rasa manis legit.</p>"
     },
     {
       "id": 2,
       "date": "1 Juni 2026",
       "title": "Pembukaan Jalur Tracking Baru",
       "excerpt": "Desa Warung Menteng meresmikan jalur tracking baru menyusuri perbukitan dengan pemandangan Gunung Salak yang spektakuler.",
-      "category": "Wisata"
+      "category": "Wisata",
+      "content": "<p>Desa Warung Menteng resmi membuka jalur tracking baru yang menyusuri perbukitan di kawasan Cibalung. Jalur ini menawarkan pemandangan Gunung Salak yang spektakuler serta hamparan perkebunan warga yang asri.</p><p>Jalur tracking ini memiliki panjang sekitar 3 kilometer dengan tingkat kesulitan sedang, cocok untuk pemula maupun pendaki berpengalaman. Sepanjang perjalanan, pengunjung akan disuguhi pemandangan alam yang masih sangat alami.</p><h3>Fasilitas yang Tersedia</h3><ul><li>Pemandu wisata lokal</li><li>Area istirahat dengan gazebo</li><li>Spot foto dengan pemandangan Gunung Salak</li><li>Area camping di beberapa titik</li></ul><p>Bagi Anda yang ingin menikmati keindahan alam sambil berolahraga, jalur tracking ini adalah pilihan yang tepat. Udara sejuk dan pemandangan hijau akan menemani setiap langkah Anda.</p>"
     },
     {
       "id": 3,
       "date": "20 Mei 2026",
       "title": "Pelatihan Digital Marketing untuk UMKM",
       "excerpt": "Mahasiswa KKN mengadakan pelatihan digital marketing bagi pelaku UMKM desa. Materi meliputi foto produk, media sosial, dan marketplace.",
-      "category": "Pengumuman"
+      "category": "Pengumuman",
+      "content": "<p>Mahasiswa KKN Desa Warung Menteng mengadakan pelatihan digital marketing bagi para pelaku UMKM desa. Kegiatan ini bertujuan untuk meningkatkan kemampuan pemasaran digital para pelaku usaha lokal.</p><p>Pelatihan yang diadakan di Balai Desa ini diikuti oleh puluhan pelaku UMKM dari berbagai bidang, mulai dari kuliner, kerajinan, hingga produk pertanian. Materi pelatihan dirancang secara praktis agar langsung dapat diterapkan.</p><h3>Materi Pelatihan</h3><ul><li>Fotografi produk menggunakan smartphone</li><li>Strategi pemasaran di media sosial (Instagram, Facebook, TikTok)</li><li>Cara berjualan di marketplace (Shopee, Tokopedia)</li><li>Branding dan kemasan produk</li><li>Manajemen pelanggan dan komunitas</li></ul><p>Dengan adanya pelatihan ini, diharapkan para pelaku UMKM Desa Warung Menteng dapat memperluas jangkauan pasar dan meningkatkan penjualan produk mereka.</p>"
     },
     {
       "id": 4,
       "date": "10 Mei 2026",
       "title": "Warung Menteng Masuk 10 Besar Desa Wisata",
       "excerpt": "Desa Warung Menteng berhasil masuk nominasi 10 besar desa wisata terbaik tingkat Kabupaten Bogor.",
-      "category": "Prestasi"
+      "category": "Prestasi",
+      "content": "<p>Prestasi membanggakan diraih oleh Desa Warung Menteng. Desa ini berhasil masuk dalam nominasi 10 besar desa wisata terbaik tingkat Kabupaten Bogor. Penghargaan ini merupakan hasil kerja keras seluruh elemen masyarakat desa.</p><p>Penilaian dilakukan oleh Dinas Pariwisata Kabupaten Bogor berdasarkan beberapa kriteria, antara lain potensi wisata, pengelolaan destinasi, partisipasi masyarakat, dan inovasi promosi. Desa Warung Menteng dinilai unggul dalam pengembangan agrowisata dan pelestarian budaya lokal.</p><h3>Faktor Penilaian</h3><ul><li>Keindahan dan keunikan destinasi wisata</li><li>Pengelolaan dan pelayanan wisata</li><li>Partisipasi dan pemberdayaan masyarakat</li><li>Inovasi promosi dan pemasaran digital</li><li>Kebersihan dan kelestarian lingkungan</li></ul><p>Keberhasilan ini menjadi motivasi bagi seluruh warga Desa Warung Menteng untuk terus mengembangkan potensi desa dan memberikan pelayanan terbaik bagi wisatawan.</p>"
     }
+  ],
+  "serviceCategories": [
+    { "id": "suket", "name": "Surat Keterangan" },
+    { "id": "izin", "name": "Perizinan" },
+    { "id": "lainnya", "name": "Layanan Lainnya" }
   ],
   "services": [
     {
       "id": "sktm",
+      "category": "suket",
       "name": "Surat Keterangan Tidak Mampu (SKTM)",
       "description": "Surat keterangan untuk warga kurang mampu guna keperluan pendidikan, kesehatan, atau bantuan sosial.",
       "requirements": "KTP, KK, surat pengantar RT/RW",
@@ -173,6 +183,7 @@ var siteData = {
     },
     {
       "id": "sku",
+      "category": "suket",
       "name": "Surat Keterangan Usaha (SKU)",
       "description": "Surat keterangan bagi warga yang memiliki usaha mikro/kecil untuk keperluan perizinan atau pengajuan modal.",
       "requirements": "KTP, KK, foto usaha",
@@ -180,6 +191,7 @@ var siteData = {
     },
     {
       "id": "skd",
+      "category": "suket",
       "name": "Surat Keterangan Domisili",
       "description": "Surat keterangan tempat tinggal untuk warga yang berdomisili di desa namun berbeda dengan KTP.",
       "requirements": "KTP, KK, surat pengantar RT/RW",
@@ -187,10 +199,67 @@ var siteData = {
     },
     {
       "id": "skb",
+      "category": "suket",
       "name": "Surat Keterangan Belum Menikah",
       "description": "Surat keterangan status belum menikah untuk keperluan administrasi atau pernikahan.",
       "requirements": "KTP, KK, surat pengantar RT/RW",
       "icon": "\uD83D\uDCC4"
+    },
+    {
+      "id": "skl",
+      "category": "suket",
+      "name": "Surat Keterangan Kelahiran",
+      "description": "Surat keterangan kelahiran untuk keperluan administrasi kependudukan, pembuatan akta kelahiran, atau pendaftaran sekolah.",
+      "requirements": "KTP orang tua, KK, surat pengantar RT/RW, surat dari bidan/rumah sakit",
+      "icon": "\uD83D\uDC76"
+    },
+    {
+      "id": "skk",
+      "category": "suket",
+      "name": "Surat Keterangan Kematian",
+      "description": "Surat keterangan kematian untuk keperluan administrasi kependudukan, pencatatan sipil, atau pengurusan hak waris.",
+      "requirements": "KTP pelapor, KK almarhum, surat pengantar RT/RW, surat keterangan dokter/rumah sakit",
+      "icon": "\uD83D\uDE4F"
+    },
+    {
+      "id": "skt",
+      "category": "suket",
+      "name": "Surat Keterangan Tanah",
+      "description": "Surat keterangan riwayat tanah untuk keperluan jual beli, sertifikasi, atau penyelesaian sengketa lahan.",
+      "requirements": "KTP, KK, surat pengantar RT/RW, girik/letter C",
+      "icon": "\uD83C\uDF33"
+    },
+    {
+      "id": "izinkeramaian",
+      "category": "izin",
+      "name": "Surat Izin Keramaian",
+      "description": "Izin penyelenggaraan acara atau kegiatan keramaian di lingkungan desa seperti hajatan, hiburan, atau kegiatan masyarakat.",
+      "requirements": "KTP, KK, surat pengantar RT/RW, proposal kegiatan",
+      "icon": "\uD83C\uDF89"
+    },
+    {
+      "id": "imb",
+      "category": "izin",
+      "name": "Rekomendasi IMB",
+      "description": "Rekomendasi Izin Mendirikan Bangunan untuk warga yang akan membangun atau merenovasi rumah dan bangunan lainnya.",
+      "requirements": "KTP, KK, surat pengantar RT/RW, sertifikat tanah, gambar bangunan",
+      "icon": "\uD83C\uDFD7\uFE0F"
+    },
+    {
+      "id": "skck",
+      "category": "lainnya",
+      "name": "SKCK Desa",
+      "description": "Surat pengantar untuk pembuatan SKCK (Surat Keterangan Catatan Kepolisian) di tingkat desa.",
+      "requirements": "KTP, KK, pas foto 4x6",
+      "icon": "\uD83D\uDC6E"
+    },
+    {
+      "id": "pengantarktp",
+      "category": "lainnya",
+      "name": "Surat Pengantar KTP",
+      "description": "Surat pengantar untuk pembuatan atau perpanjangan KTP di Dinas Kependudukan dan Catatan Sipil.",
+      "requirements": "KK, surat pengantar RT/RW",
+      "icon": "\uD83D\uDC64"
     }
   ],
   "umkm": [
@@ -303,17 +372,21 @@ var siteData = {
       { "label": "Beranda", "href": "index.html" },
       { "label": "Tentang", "href": "tentang.html" },
       { "label": "Pariwisata", "href": "pariwisata.html" },
+      { "label": "Berita", "href": "berita.html" },
       { "label": "Galeri", "href": "galeri.html" },
-      { "label": "KKN", "href": "kkn.html" }
+      { "label": "Akomodasi", "href": "akomodasi.html" }
     ]},
     { "title": "Informasi", "links": [
       { "label": "Berita", "href": "berita.html" },
-      { "label": "Layanan", "href": "tentang.html#layanan" },
-      { "label": "Struktur Desa", "href": "tentang.html#struktur" },
-      { "label": "Anggaran", "href": "tentang.html#anggaran" }
+      { "label": "Galeri", "href": "galeri.html" },
+      { "label": "Layanan", "href": "layanan.html" },
+      { "label": "Struktur Desa", "href": "struktur.html" },
+      { "label": "Anggaran", "href": "anggaran.html" }
     ]},
     { "title": "Lainnya", "links": [
-      { "label": "Perangkat Desa", "href": "tentang.html#perangkat" },
+      { "label": "Profil Desa", "href": "profil.html" },
+      { "label": "Perangkat Desa", "href": "perangkat.html" },
+      { "label": "Lokasi", "href": "lokasi.html" },
       { "label": "Admin", "href": "admin.html" }
     ]}
   ]

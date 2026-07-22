@@ -27,27 +27,27 @@
       right: -20%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(201,169,78,0.08) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(45,106,79,0.08) 0%, transparent 60%);
       border-radius: 50%;
     }
     .page-hero h1 { font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 12px; letter-spacing: -1px; font-family: 'Playfair Display', serif; }
     .page-hero p { color: rgba(255,255,255,0.55); font-size: 1.1rem; max-width: 540px; font-weight: 300; }
     .page-hero .container { position: relative; z-index: 1; }
     .kkn-story { padding: 80px 0; }
-    .kkn-story h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; margin-top: 48px; color: #3d2b1f; }
+    .kkn-story h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; margin-top: 48px; color: var(--text-dark); }
     .kkn-story h2:first-child { margin-top: 0; }
-    .kkn-story p { color: #5c4033; line-height: 1.8; margin-bottom: 16px; max-width: 720px; font-weight: 300; }
+    .kkn-story p { color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; max-width: 720px; font-weight: 300; }
     .kkn-story ul { margin-bottom: 24px; padding-left: 20px; max-width: 720px; }
-    .kkn-story ul li { list-style: disc; color: #5c4033; margin-bottom: 10px; line-height: 1.7; font-weight: 300; }
+    .kkn-story ul li { list-style: disc; color: var(--text-muted); margin-bottom: 10px; line-height: 1.7; font-weight: 300; }
     .kkn-story ul li strong { color: #2d6a4f; }
     .kkn-quote {
       background: #fff;
       padding: 48px;
-      color: #3d2b1f;
+      color: var(--text-dark);
       margin-top: 48px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(61,43,31,0.08);
+      border: 1px solid var(--border);
       box-shadow: 0 4px 16px rgba(0,0,0,0.05);
     }
     .kkn-quote::before {
@@ -60,7 +60,7 @@
       background: radial-gradient(circle, rgba(45,106,79,0.04) 0%, transparent 60%);
       border-radius: 50%;
     }
-    .kkn-quote p { color: #5c4033; max-width: 100%; position: relative; font-weight: 300; }
+    .kkn-quote p { color: var(--text-muted); max-width: 100%; position: relative; font-weight: 300; }
     .kkn-quote .author { margin-top: 24px; font-weight: 700; color: #2d6a4f; position: relative; letter-spacing: 1px; }
     .back-link {
       display: inline-flex;
@@ -75,27 +75,27 @@
       text-transform: uppercase;
     }
     .back-link:hover { gap: 16px; }
-    .kkn-theme-box { background: rgba(201,169,78,0.08); border-left: 3px solid #c9a94e; padding: 24px 28px; margin-bottom: 32px; }
-    .kkn-theme-box h3 { font-size: 1rem; font-weight: 700; color: #c9a94e; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 2px; }
-    .kkn-theme-box p { font-size: 1.2rem; font-weight: 600; color: #3d2b1f; }
+    .kkn-theme-box { background: rgba(45,106,79,0.08); border-left: 3px solid var(--green); padding: 24px 28px; margin-bottom: 32px; }
+    .kkn-theme-box h3 { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 2px; }
+    .kkn-theme-box p { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); }
     .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
-    .vm-card { padding: 28px; border: 1px solid rgba(61,43,31,0.08); }
-    .vm-card.visi { background: rgba(45,106,79,0.04); border-left: 3px solid #2d6a4f; }
-    .vm-card.misi { background: rgba(201,169,78,0.04); border-left: 3px solid #c9a94e; }
+    .vm-card { padding: 28px; border: 1px solid var(--border); }
+    .vm-card.visi { background: rgba(45,106,79,0.04); border-left: 3px solid var(--green); }
+    .vm-card.misi { background: rgba(45,106,79,0.04); border-left: 3px solid var(--green-light); }
     .vm-card h3 { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-    .vm-card.visi h3 { color: #2d6a4f; }
-    .vm-card.misi h3 { color: #c9a94e; }
-    .vm-card p, .vm-card li { font-size: 0.9rem; color: #5c4033; line-height: 1.8; font-weight: 300; }
+    .vm-card.visi h3 { color: var(--green); }
+    .vm-card.misi h3 { color: var(--green-light); }
+    .vm-card p, .vm-card li { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
     .vm-card ul { padding-left: 20px; }
     .vm-card ul li { list-style: disc; margin-bottom: 6px; }
     .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
-    .team-card { background: #fff; padding: 24px 20px; text-align: center; border: 1px solid rgba(61,43,31,0.06); transition: all 0.3s; cursor: default; }
+    .team-card { background: #fff; padding: 24px 20px; text-align: center; border: 1px solid var(--border); transition: all 0.3s; cursor: default; }
     .team-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.04); transform: translateY(-4px); }
     .team-card .avatar { width: 56px; height: 56px; margin: 0 auto 12px; background: #2d6a4f; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.2rem; }
-    .team-card h4 { font-size: 0.9rem; font-weight: 700; color: #3d2b1f; margin-bottom: 2px; }
-    .team-card .role { font-size: 0.75rem; color: #2d6a4f; font-weight: 600; letter-spacing: 0.5px; }
-    .team-card .divisi { font-size: 0.7rem; color: #8a817c; margin-top: 4px; font-weight: 300; }
-    .team-divider { font-size: 1rem; font-weight: 700; color: #2d6a4f; margin-top: 32px; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid rgba(61,43,31,0.06); padding-bottom: 8px; }
+    .team-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+    .team-card .role { font-size: 0.75rem; color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .team-card .divisi { font-size: 0.7rem; color: var(--text-light); margin-top: 4px; font-weight: 300; }
+    .team-divider { font-size: 1rem; font-weight: 700; color: var(--green); margin-top: 32px; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     @media (max-width: 768px) {
       .page-hero h1 { font-size: 2rem; }
       .kkn-quote { padding: 32px 24px; }
@@ -108,7 +108,7 @@
   <div class="container">
     <nav>
       <a href="index.html" class="logo">
-        <img src="images/logo.jpeg" alt="Desa Warung Menteng" class="logo-img" />
+        <img src="images/logo.png" alt="Desa Warung Menteng" class="logo-img" />
         Warung Menteng
       </a>
       <button class="hamburger" aria-label="Menu">
@@ -161,7 +161,7 @@
     <h2>Tema KKN</h2>
     <div class="kkn-theme-box">
       <h3>Tema</h3>
-      <p>"Membangun Desa Digital Berbasis Pariwisata untuk Mewujudkan Warung Menteng yang Maju, Mandiri, dan Berkelanjutan"</p>
+      <p>"Smart Village Warung Menteng: Inovasi untuk Desa yang Berdaya"</p>
     </div>
 
     <h2>Visi & Misi</h2>
@@ -331,3 +331,4 @@
 <script src="js/script.js"></script>
 </body>
 </html>
+

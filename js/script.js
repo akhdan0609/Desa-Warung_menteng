@@ -40,40 +40,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ==================== PAGE-SPECIFIC RENDERING ==================== */
 
-  if (page === 'tentang.html') {
-    renderPageHeader('Profil Desa', 'Informasi lengkap Desa Warung Menteng');
-    renderAbout();
-    renderPerangkat();
-    renderStruktur();
-    renderAnggaran();
-    renderTentangContact();
-    renderTentangLokasi();
-    renderServices();
-  }
+  var pageHandlers = {
+    'tentang.html': function () {
+      renderPageHeader('Profil Desa', 'Informasi lengkap Desa Warung Menteng');
+      renderAbout(); renderPerangkat(); renderStruktur(); renderAnggaran();
+      renderTentangContact(); renderTentangLokasi(); renderServices();
+    },
+    'pariwisata.html': function () {
+      renderPageHeader('Pariwisata', 'Jelajahi destinasi, kuliner, dan UMKM Desa Warung Menteng');
+      renderCards('destinationsGrid', getData('destinations'), 'destination');
+      renderCards('culinaryGrid', getData('culinary'), 'culinary');
+      renderCards('accommodationGrid', getData('accommodation'), 'accommodation');
+      renderUMKM();
+    },
+    'profil.html': function () { renderPageHeader('Profil Desa', 'Profil dan sejarah Desa Warung Menteng'); renderAbout(); },
+    'perangkat.html': function () { renderPageHeader('Perangkat Desa', 'Aparatur Desa Warung Menteng'); renderPerangkat(); },
+    'struktur.html': function () { renderPageHeader('Struktur Organisasi', 'Struktur pemerintahan Desa Warung Menteng'); renderStruktur(); },
+    'anggaran.html': function () { renderPageHeader('Anggaran Desa', 'APBDes Desa Warung Menteng'); renderAnggaran(); },
+    'lokasi.html': function () { renderPageHeader('Lokasi & Kontak', 'Alamat dan kontak Desa Warung Menteng'); renderTentangContact(); renderTentangLokasi(); },
+    'berita.html': function () { renderPageHeader('Berita', 'Informasi terbaru dari Desa Warung Menteng'); renderNews(); },
+    'destinasi.html': function () { renderPageHeader('Destinasi', 'Destinasi wisata Desa Warung Menteng'); renderCards('destinationsGrid', getData('destinations'), 'destination'); },
+    'kuliner.html': function () { renderPageHeader('Kuliner', 'Kuliner khas Desa Warung Menteng'); renderCards('culinaryGrid', getData('culinary'), 'culinary'); },
+    'akomodasi.html': function () { renderPageHeader('Akomodasi', 'Tempat menginap di Desa Warung Menteng'); renderCards('accommodationGrid', getData('accommodation'), 'accommodation'); },
+    'umkm.html': function () { renderPageHeader('UMKM', 'Produk UMKM Desa Warung Menteng'); renderUMKM(); },
+    'galeri.html': function () { renderPageHeader('Galeri', 'Foto-foto Desa Warung Menteng'); renderGallery(); },
+    'layanan.html': function () { renderPageHeader('Layanan Desa', 'Ajukan surat keterangan secara online'); renderServices(); },
+    'artikel.html': function () { renderArtikel(); }
+  };
 
-  if (page === 'pariwisata.html') {
-    renderPageHeader('Pariwisata', 'Jelajahi destinasi, kuliner, dan UMKM Desa Warung Menteng');
-    renderCards('destinationsGrid', getData('destinations'), 'destination');
-    renderCards('culinaryGrid', getData('culinary'), 'culinary');
-    renderCards('accommodationGrid', getData('accommodation'), 'accommodation');
-    renderUMKM();
-  }
-
-  if (page === 'berita.html') {
-    renderPageHeader('Berita & Galeri', 'Informasi terbaru dan galeri foto Desa Warung Menteng');
-    renderNews();
-    renderGallery();
-  }
-
-  if (page === 'galeri.html') {
-    renderPageHeader('Galeri', 'Foto-foto Desa Warung Menteng');
-    renderGallery();
-  }
-
-  if (page === 'layanan.html') {
-    renderPageHeader('Layanan Desa', 'Ajukan surat keterangan secara online');
-    renderServices();
-  }
+  if (pageHandlers[page]) pageHandlers[page]();
 
   if (page === 'index.html' || page === '') {
     renderHero();
@@ -147,9 +142,33 @@ document.addEventListener('DOMContentLoaded', function () {
           '<div class="press-category">' + item.category + '</div>' +
           '<h3>' + item.title + '</h3>' +
           '<p>' + item.excerpt + '</p>' +
-          '<a href="#" class="press-link">Baca Selengkapnya &rarr;</a>' +
+          '<a href="artikel.html?id=' + item.id + '" class="press-link">Baca Selengkapnya &rarr;</a>' +
         '</div></div>';
     }).join('');
+  }
+
+  function renderArtikel() {
+    var params = new URLSearchParams(window.location.search);
+    var id = parseInt(params.get('id'), 10);
+    var newsData = getData('news');
+    var artikel = null;
+    if (newsData) newsData.forEach(function (item) { if (item.id === id) artikel = item; });
+    var titleEl = document.getElementById('artikelTitle');
+    var dateEl = document.getElementById('artikelDate');
+    var catEl = document.getElementById('artikelCategory');
+    var bodyEl = document.getElementById('artikelBody');
+    var contentEl = document.getElementById('artikelContent');
+    var notFoundEl = document.getElementById('artikelNotFound');
+    if (!artikel) {
+      if (contentEl) contentEl.style.display = 'none';
+      if (notFoundEl) notFoundEl.style.display = 'block';
+      return;
+    }
+    if (titleEl) titleEl.textContent = artikel.title;
+    if (dateEl) dateEl.textContent = artikel.date;
+    if (catEl) catEl.textContent = artikel.category;
+    if (bodyEl) bodyEl.innerHTML = artikel.content || '<p>' + artikel.excerpt + '</p>';
+    document.title = artikel.title + ' — Desa Warung Menteng';
   }
 
   function renderCards(gridId, items, type) {
@@ -169,17 +188,79 @@ document.addEventListener('DOMContentLoaded', function () {
   function renderServices() {
     var grid = document.getElementById('servicesGrid');
     var servicesData = getData('services');
+    var categories = getData('serviceCategories');
     if (!grid || !servicesData) return;
-    grid.innerHTML = servicesData.map(function (item) {
-      return '<div class="service-card reveal">' +
-        '<div class="service-icon">' + item.icon + '</div>' +
-        '<h3>' + item.name + '</h3>' +
-        '<p>' + item.description + '</p>' +
-        '<div class="service-req"><strong>Persyaratan:</strong> ' + item.requirements + '</div>' +
-        '<button class="btn btn-primary btn-service-apply" data-id="' + item.id + '" style="margin-top:20px;width:100%;justify-content:center;padding:12px 20px;font-size:0.7rem;">Ajukan Online</button>' +
-        '</div>';
-    }).join('');
+    var html = '';
+    if (categories) {
+      categories.forEach(function (cat) {
+        var catServices = servicesData.filter(function (s) { return s.category === cat.id; });
+        if (catServices.length === 0) return;
+        html += '<div class="service-category reveal"><h3 class="service-category-title">' + cat.name + '</h3><div class="service-category-grid">';
+        html += catServices.map(function (item) {
+          return '<div class="service-card">' +
+            '<div class="service-icon">' + item.icon + '</div>' +
+            '<h3>' + item.name + '</h3>' +
+            '<p>' + item.description + '</p>' +
+            '<div class="service-req"><strong>Persyaratan:</strong> ' + item.requirements + '</div>' +
+            '<div class="service-actions">' +
+            '<button class="btn btn-primary btn-service-apply" data-id="' + item.id + '">Ajukan Online</button>' +
+            '<button class="btn btn-outline btn-service-print" data-id="' + item.id + '">Cetak</button>' +
+            '</div></div>';
+        }).join('');
+        html += '</div></div>';
+      });
+    } else {
+      html = servicesData.map(function (item) {
+        return '<div class="service-card">' +
+          '<div class="service-icon">' + item.icon + '</div>' +
+          '<h3>' + item.name + '</h3>' +
+          '<p>' + item.description + '</p>' +
+          '<div class="service-req"><strong>Persyaratan:</strong> ' + item.requirements + '</div>' +
+          '<div class="service-actions">' +
+          '<button class="btn btn-primary btn-service-apply" data-id="' + item.id + '">Ajukan Online</button>' +
+          '<button class="btn btn-outline btn-service-print" data-id="' + item.id + '">Cetak</button>' +
+          '</div></div>';
+      }).join('');
+    }
+    grid.innerHTML = html;
   }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-service-print')) {
+      var serviceId = e.target.getAttribute('data-id');
+      var servicesData = getData('services');
+      var service = null;
+      if (servicesData) servicesData.forEach(function (s) { if (s.id === serviceId) service = s; });
+      if (!service) return;
+      var printWin = window.open('', '_blank');
+      printWin.document.write('<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>Cetak - ' + service.name + '</title>' +
+        '<style>' +
+        'body { font-family: "Outfit", Arial, sans-serif; padding: 48px; max-width: 700px; margin: 0 auto; color: #1a1a1a; }' +
+        '.header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; }' +
+        '.header h1 { font-size: 1.6rem; margin-bottom: 4px; }' +
+        '.header p { font-size: 0.85rem; color: #555; }' +
+        '.info-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }' +
+        '.info-table td { padding: 12px 16px; border: 1px solid #ddd; vertical-align: top; font-size: 0.9rem; }' +
+        '.info-table td:first-child { font-weight: 700; width: 160px; background: #f5f5f5; }' +
+        '.footer { text-align: center; font-size: 0.8rem; color: #888; margin-top: 48px; padding-top: 16px; border-top: 1px solid #ddd; }' +
+        '.stamp { margin-top: 48px; text-align: right; }' +
+        '.stamp .line { margin-top: 60px; width: 200px; border-top: 1px solid #000; display: inline-block; }' +
+        '@media print { body { padding: 24px; } }' +
+        '</style></head><body>' +
+        '<div class="header"><h1>' + service.name + '</h1><p>Desa Warung Menteng, Kecamatan Cijeruk, Kabupaten Bogor</p></div>' +
+        '<table class="info-table">' +
+        '<tr><td>Nama Layanan</td><td>' + service.name + '</td></tr>' +
+        '<tr><td>Deskripsi</td><td>' + service.description + '</td></tr>' +
+        '<tr><td>Persyaratan</td><td>' + service.requirements + '</td></tr>' +
+        '</table>' +
+        '<div class="footer">Dokumen ini dicetak dari Sistem Layanan Desa Warung Menteng &bull; ' + new Date().toLocaleDateString('id-ID') + '</div>' +
+        '<div class="stamp"><div>Kepala Desa Warung Menteng</div><div class="line"></div></div>' +
+        '</body></html>');
+      printWin.document.close();
+      printWin.focus();
+      setTimeout(function () { printWin.print(); }, 500);
+    }
+  });
 
   function renderUMKM() {
     var grid = document.getElementById('umkmGrid');
@@ -476,13 +557,13 @@ document.addEventListener('DOMContentLoaded', function () {
   function buildSearchIndex() {
     searchData = [];
     var umkmData = getData('umkm');
-    if (umkmData) umkmData.forEach(function (item) { searchData.push({ type: 'UMKM', title: item.name, desc: item.description, href: 'pariwisata.html#umkm', tag: item.owner }); });
+    if (umkmData) umkmData.forEach(function (item) { searchData.push({ type: 'UMKM', title: item.name, desc: item.description, href: 'umkm.html', tag: item.owner }); });
     var destData = getData('destinations');
-    if (destData) destData.forEach(function (item) { searchData.push({ type: 'Destinasi', title: item.name, desc: item.description, href: 'pariwisata.html#destinasi', tag: item.tag }); });
+    if (destData) destData.forEach(function (item) { searchData.push({ type: 'Destinasi', title: item.name, desc: item.description, href: 'destinasi.html', tag: item.tag }); });
     var culinaryData = getData('culinary');
-    if (culinaryData) culinaryData.forEach(function (item) { searchData.push({ type: 'Kuliner', title: item.name, desc: item.description, href: 'pariwisata.html#kuliner', tag: item.tag }); });
+    if (culinaryData) culinaryData.forEach(function (item) { searchData.push({ type: 'Kuliner', title: item.name, desc: item.description, href: 'kuliner.html', tag: item.tag }); });
     var accomData = getData('accommodation');
-    if (accomData) accomData.forEach(function (item) { searchData.push({ type: 'Penginapan', title: item.name, desc: item.description, href: 'pariwisata.html#akomodasi', tag: item.tag }); });
+    if (accomData) accomData.forEach(function (item) { searchData.push({ type: 'Penginapan', title: item.name, desc: item.description, href: 'akomodasi.html', tag: item.tag }); });
   }
 
   buildSearchIndex();
@@ -566,6 +647,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var modalSuccessClose = document.getElementById('modalSuccessClose');
   var serviceIdInput = document.getElementById('serviceId');
 
+  var lastSubmission = null;
+
   function openServiceModal(serviceId) {
     var service = null;
     var servicesData = getData('services');
@@ -577,8 +660,103 @@ document.addEventListener('DOMContentLoaded', function () {
     if (serviceIdInput) serviceIdInput.value = service.id;
     if (modalForm) { modalForm.classList.remove('hidden'); modalForm.reset(); }
     if (modalSuccess) modalSuccess.classList.remove('active');
+    var existingPrintBtn = document.getElementById('modalPrintInfo');
+    if (!existingPrintBtn && modalDesc && modalDesc.parentNode) {
+      var printBtn = document.createElement('button');
+      printBtn.id = 'modalPrintInfo';
+      printBtn.className = 'btn btn-outline';
+      printBtn.textContent = 'Cetak Info Layanan';
+      printBtn.style.cssText = 'width:100%;justify-content:center;margin-bottom:20px;padding:12px;font-size:0.7rem;';
+      printBtn.addEventListener('click', function () {
+        printServiceInfo(service);
+      });
+      modalDesc.parentNode.insertBefore(printBtn, modalDesc.nextSibling);
+    } else if (existingPrintBtn) {
+      existingPrintBtn.style.display = '';
+      existingPrintBtn.onclick = function () { printServiceInfo(service); };
+    }
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+  }
+
+  function printServiceInfo(service) {
+    if (!service) return;
+    var catName = '';
+    var categories = getData('serviceCategories');
+    if (categories) categories.forEach(function (c) { if (c.id === service.category) catName = c.name; });
+    var now = new Date();
+    var dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    var timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    var win = window.open('', '_blank');
+    win.document.write('<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>Cetak - ' + service.name + '</title>' +
+      '<style>' +
+      'body { font-family: "Outfit", Arial, sans-serif; padding: 48px; max-width: 700px; margin: 0 auto; color: #1a1a1a; }' +
+      '.header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; }' +
+      '.header .logo-text { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }' +
+      '.header .sub { font-size: 0.8rem; color: #555; margin-top: 4px; }' +
+      '.header h1 { font-size: 1.4rem; margin-top: 16px; margin-bottom: 4px; }' +
+      '.info-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }' +
+      '.info-table td { padding: 12px 16px; border: 1px solid #ddd; vertical-align: top; font-size: 0.9rem; }' +
+      '.info-table td:first-child { font-weight: 700; width: 160px; background: #f5f5f5; }' +
+      '.footer { text-align: center; font-size: 0.75rem; color: #888; margin-top: 48px; padding-top: 16px; border-top: 1px solid #ddd; }' +
+      '.meta { font-size: 0.75rem; color: #888; text-align: right; margin-bottom: 24px; }' +
+      '@media print { body { padding: 24px; } }' +
+      '</style></head><body>' +
+      '<div class="meta">Dicetak: ' + dateStr + ' pukul ' + timeStr + '</div>' +
+      '<div class="header"><div class="logo-text">Desa Warung Menteng</div><div class="sub">Kecamatan Cijeruk, Kabupaten Bogor</div><h1>' + service.name + '</h1></div>' +
+      '<table class="info-table">' +
+      '<tr><td>Nama Layanan</td><td>' + service.name + '</td></tr>' +
+      (catName ? '<tr><td>Kategori</td><td>' + catName + '</td></tr>' : '') +
+      '<tr><td>Deskripsi</td><td>' + service.description + '</td></tr>' +
+      '<tr><td>Persyaratan</td><td>' + service.requirements + '</td></tr>' +
+      '</table>' +
+      '<p style="font-size:0.85rem;line-height:1.7;">Ajukan layanan ini secara online melalui website resmi Desa Warung Menteng atau datang langsung ke Kantor Desa dengan membawa persyaratan yang diperlukan.</p>' +
+      '<div class="footer">Dokumen ini dicetak dari Sistem Layanan Desa Warung Menteng &mdash; ' + dateStr + '</div>' +
+      '</body></html>');
+    win.document.close();
+    win.focus();
+    setTimeout(function () { win.print(); }, 500);
+  }
+
+  function printSubmissionReceipt(submission) {
+    if (!submission) return;
+    var now = new Date();
+    var dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    var timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    var win = window.open('', '_blank');
+    win.document.write('<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>Bukti Pengajuan - ' + submission.serviceName + '</title>' +
+      '<style>' +
+      'body { font-family: "Outfit", Arial, sans-serif; padding: 48px; max-width: 700px; margin: 0 auto; color: #1a1a1a; }' +
+      '.header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; }' +
+      '.header .logo-text { font-size: 1.2rem; font-weight: 800; }' +
+      '.header .sub { font-size: 0.8rem; color: #555; }' +
+      '.header h2 { font-size: 1.1rem; margin-top: 16px; margin-bottom: 4px; }' +
+      '.badge { display: inline-block; padding: 4px 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: #f0f0f0; margin-top: 8px; }' +
+      '.info-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }' +
+      '.info-table td { padding: 10px 14px; border: 1px solid #ddd; vertical-align: top; font-size: 0.85rem; }' +
+      '.info-table td:first-child { font-weight: 700; width: 140px; background: #f5f5f5; }' +
+      '.footer { text-align: center; font-size: 0.75rem; color: #888; margin-top: 48px; padding-top: 16px; border-top: 1px solid #ddd; }' +
+      '.meta { font-size: 0.75rem; color: #888; text-align: right; margin-bottom: 24px; }' +
+      '@media print { body { padding: 24px; } }' +
+      '</style></head><body>' +
+      '<div class="meta">Dicetak: ' + dateStr + ' pukul ' + timeStr + '</div>' +
+      '<div class="header"><div class="logo-text">Desa Warung Menteng</div><div class="sub">Kecamatan Cijeruk, Kabupaten Bogor</div><h2>BUKTI PENGAJUAN LAYANAN</h2><div class="badge">' + (submission.status === 'menunggu' ? 'Menunggu' : submission.status === 'diproses' ? 'Diproses' : 'Selesai') + '</div></div>' +
+      '<table class="info-table">' +
+      '<tr><td>ID Pengajuan</td><td>' + submission.id + '</td></tr>' +
+      '<tr><td>Layanan</td><td>' + submission.serviceName + '</td></tr>' +
+      '<tr><td>Nama Lengkap</td><td>' + submission.name + '</td></tr>' +
+      '<tr><td>NIK</td><td>' + submission.nik + '</td></tr>' +
+      '<tr><td>No. HP</td><td>' + submission.phone + '</td></tr>' +
+      '<tr><td>Alamat</td><td>' + submission.address + '</td></tr>' +
+      (submission.notes ? '<tr><td>Keterangan</td><td>' + submission.notes + '</td></tr>' : '') +
+      '<tr><td>Tanggal Pengajuan</td><td>' + submission.date + '</td></tr>' +
+      '</table>' +
+      '<p style="font-size:0.85rem;color:#555;text-align:center;">Simpan bukti ini sebagai referensi untuk mengecek status pengajuan Anda.</p>' +
+      '<div class="footer">Dokumen ini dicetak dari Sistem Layanan Desa Warung Menteng &mdash; ' + dateStr + '</div>' +
+      '</body></html>');
+    win.document.close();
+    win.focus();
+    setTimeout(function () { win.print(); }, 500);
   }
 
   function closeServiceModal() {
@@ -613,11 +791,42 @@ document.addEventListener('DOMContentLoaded', function () {
         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
         status: 'menunggu'
       };
+      lastSubmission = submission;
       var existing = JSON.parse(localStorage.getItem('layananPengajuan') || '[]');
       existing.unshift(submission);
       localStorage.setItem('layananPengajuan', JSON.stringify(existing));
       if (modalForm) modalForm.classList.add('hidden');
-      if (modalSuccess) modalSuccess.classList.add('active');
+      if (modalSuccess) {
+        var detailHtml = '<div style="text-align:left;background:#f9faf9;padding:16px;border-radius:8px;margin:16px 0;font-size:0.8rem;line-height:1.8;">' +
+          '<div><strong>Layanan:</strong> ' + submission.serviceName + '</div>' +
+          '<div><strong>Nama:</strong> ' + submission.name + '</div>' +
+          '<div><strong>ID:</strong> ' + submission.id + '</div>' +
+          '<div><strong>Tanggal:</strong> ' + submission.date + '</div></div>';
+        var existingDetail = modalSuccess.querySelector('.submission-detail');
+        if (existingDetail) existingDetail.outerHTML = detailHtml;
+        else {
+          var descP = modalSuccess.querySelector('p');
+          if (descP) descP.insertAdjacentHTML('afterend', detailHtml);
+        }
+        modalSuccess.classList.add('active');
+      }
+      var receiptBtn = document.getElementById('modalPrintReceipt');
+      if (!receiptBtn) {
+        receiptBtn = document.createElement('button');
+        receiptBtn.id = 'modalPrintReceipt';
+        receiptBtn.className = 'btn btn-outline';
+        receiptBtn.textContent = 'Cetak Bukti Pengajuan';
+        receiptBtn.style.cssText = 'width:100%;justify-content:center;margin-top:12px;padding:12px;font-size:0.7rem;';
+        receiptBtn.addEventListener('click', function () {
+          printSubmissionReceipt(lastSubmission);
+        });
+        var successClose = document.getElementById('modalSuccessClose');
+        if (successClose && successClose.parentNode) {
+          successClose.parentNode.insertBefore(receiptBtn, successClose.nextSibling);
+        }
+      } else {
+        receiptBtn.style.display = '';
+      }
       var contactData = getData('contact');
       if (contactData && contactData.whatsapp_url) {
         var msg = 'PENGAJUAN LAYANAN DESA\nLayanan: ' + serviceName + '\nNama: ' + name + '\nNIK: ' + nik + '\nNo HP: ' + phone + '\nAlamat: ' + address + '\nKeterangan: ' + (notes || '-') + '\nID: ' + submission.id;

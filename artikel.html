@@ -3,13 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desa Warung Menteng — Desa Wisata Bogor</title>
-  <meta name="description" content="Website resmi Desa Warung Menteng, Kecamatan Cijeruk, Kabupaten Bogor. Informasi wisata, UMKM, layanan desa, dan potensi desa." />
+  <title>Artikel — Desa Warung Menteng</title>
+  <meta name="description" content="Baca artikel Desa Warung Menteng." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="images/logo.png" type="image/x-icon"/>
+  <style>
+    .artikel-header { margin-bottom: 32px; }
+    .artikel-header .category { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); border-bottom: 1px solid var(--green); padding-bottom: 3px; margin-bottom: 12px; }
+    .artikel-header h1 { font-size: 2rem; font-weight: 800; color: var(--brown); line-height: 1.2; margin-bottom: 12px; }
+    .artikel-header .date { font-size: 0.8rem; color: var(--muted); }
+    .artikel-body { max-width: 720px; }
+    .artikel-body p { font-size: 1rem; color: var(--brown-light); line-height: 1.9; margin-bottom: 20px; font-weight: 300; }
+    .artikel-body h3 { font-size: 1.3rem; font-weight: 700; color: var(--brown); margin-top: 36px; margin-bottom: 12px; }
+    .artikel-body ul { padding-left: 20px; margin-bottom: 20px; }
+    .artikel-body ul li { list-style: disc; color: var(--brown-light); margin-bottom: 8px; line-height: 1.8; font-weight: 300; }
+    .artikel-back { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; margin-bottom: 32px; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: gap 0.3s; }
+    .artikel-back:hover { gap: 16px; }
+    @media (max-width: 768px) {
+      .artikel-header h1 { font-size: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -27,7 +43,7 @@
       <button class="search-toggle" aria-label="Cari" id="searchToggle">&#x1F50D;</button>
     </nav>
     <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Cari destinasi, kuliner, UMKM..." />
+      <input type="text" id="searchInput" placeholder="Cari..." />
       <div class="search-results" id="searchResults"></div>
     </div>
   </div>
@@ -35,65 +51,23 @@
 
 <div class="search-overlay" id="searchOverlay"></div>
 
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="hero-bg-overlay"></div>
-  </div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge" id="heroBadge"></div>
-      <h1 id="heroTitle"></h1>
-      <p id="heroDesc"></p>
-      <div class="hero-buttons">
-        <a href="pariwisata.html" class="btn btn-primary">Jelajahi Wisata</a>
-        <a href="tentang.html" class="btn btn-dark">Profil Desa</a>
+<section class="section">
+  <div class="container" style="max-width:800px;">
+    <a href="berita.html" class="artikel-back">&larr; Kembali ke Berita</a>
+    <div id="artikelContent">
+      <div class="artikel-header">
+        <div class="category" id="artikelCategory"></div>
+        <h1 id="artikelTitle"></h1>
+        <div class="date" id="artikelDate"></div>
       </div>
-      <div class="hero-stats" id="heroStats"></div>
+      <div class="artikel-body" id="artikelBody"></div>
     </div>
-  </div>
-</section>
-
-<section class="section bg-light" id="tentang">
-  <div class="container">
-    <div class="about-grid">
-      <div class="reveal">
-        <div class="about-text-box">
-          <div class="section-label">Sekilas Desa</div>
-          <h2 class="section-title" id="profileTitle"></h2>
-          <div class="section-divider left"></div>
-          <p class="section-desc" style="margin-bottom:24px;" id="profileDesc1"></p>
-          <p style="line-height:1.8;" id="profileDesc2"></p>
-          <a href="tentang.html" class="btn btn-outline" style="margin-top:24px;">Selengkapnya &rarr;</a>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="stats-row" id="profileStats"></div>
-      </div>
+    <div id="artikelNotFound" style="display:none;text-align:center;padding:60px 20px;">
+      <div style="font-size:3rem;margin-bottom:16px;">&#x1F50D;</div>
+      <h2 style="color:var(--brown);">Artikel tidak ditemukan</h2>
+      <p style="color:var(--muted);margin-top:8px;">Artikel yang Anda cari tidak tersedia.</p>
+      <a href="berita.html" class="btn btn-outline" style="margin-top:20px;">Kembali ke Berita</a>
     </div>
-  </div>
-</section>
-
-<section class="section" id="testimoni">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">Testimoni</div>
-      <h2 class="section-title">Apa Kata Mereka</h2>
-      <div class="section-divider"></div>
-      <p class="section-desc mx-auto" style="margin-bottom:48px;">Pengalaman wisatawan yang telah berkunjung ke Desa Warung Menteng</p>
-    </div>
-    <div class="testimonials-grid" id="testimonialsGrid"></div>
-  </div>
-</section>
-
-<section class="section bg-light" id="acara">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">Acara</div>
-      <h2 class="section-title">Kegiatan Desa</h2>
-      <div class="section-divider"></div>
-      <p class="section-desc mx-auto" style="margin-bottom:48px;">Berbagai acara dan kegiatan yang diadakan di Desa Warung Menteng</p>
-    </div>
-    <div class="timeline" id="timeline"></div>
   </div>
 </section>
 

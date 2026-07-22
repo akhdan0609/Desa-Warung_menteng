@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desa Warung Menteng â€” Desa Wisata Bogor</title>
-  <meta name="description" content="Website resmi Desa Warung Menteng, Kecamatan Cijeruk, Kabupaten Bogor. Informasi wisata, UMKM, layanan desa, dan potensi desa." />
+  <title>UMKM — Desa Warung Menteng</title>
+  <meta name="description" content="Produk UMKM Desa Warung Menteng" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
@@ -27,7 +27,7 @@
       <button class="search-toggle" aria-label="Cari" id="searchToggle">&#x1F50D;</button>
     </nav>
     <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Cari destinasi, kuliner, UMKM..." />
+      <input type="text" id="searchInput" placeholder="Cari..." />
       <div class="search-results" id="searchResults"></div>
     </div>
   </div>
@@ -35,65 +35,16 @@
 
 <div class="search-overlay" id="searchOverlay"></div>
 
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="hero-bg-overlay"></div>
-  </div>
+<div class="page-header">
   <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge" id="heroBadge"></div>
-      <h1 id="heroTitle"></h1>
-      <p id="heroDesc"></p>
-      <div class="hero-buttons">
-        <a href="pariwisata.html" class="btn btn-primary">Jelajahi Wisata</a>
-        <a href="tentang.html" class="btn btn-dark">Profil Desa</a>
-      </div>
-      <div class="hero-stats" id="heroStats"></div>
-    </div>
+    <h1 id="pageHeaderTitle"></h1>
+    <p id="pageHeaderDesc"></p>
   </div>
-</section>
+</div>
 
-<section class="section bg-light" id="tentang">
+<section class="section">
   <div class="container">
-    <div class="about-grid">
-      <div class="reveal">
-        <div class="about-text-box">
-          <div class="section-label">Sekilas Desa</div>
-          <h2 class="section-title" id="profileTitle"></h2>
-          <div class="section-divider left"></div>
-          <p class="section-desc" style="margin-bottom:24px;" id="profileDesc1"></p>
-          <p style="line-height:1.8;" id="profileDesc2"></p>
-          <a href="tentang.html" class="btn btn-outline" style="margin-top:24px;">Selengkapnya &rarr;</a>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="stats-row" id="profileStats"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="testimoni">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">Testimoni</div>
-      <h2 class="section-title">Apa Kata Mereka</h2>
-      <div class="section-divider"></div>
-      <p class="section-desc mx-auto" style="margin-bottom:48px;">Pengalaman wisatawan yang telah berkunjung ke Desa Warung Menteng</p>
-    </div>
-    <div class="testimonials-grid" id="testimonialsGrid"></div>
-  </div>
-</section>
-
-<section class="section bg-light" id="acara">
-  <div class="container">
-    <div class="text-center reveal">
-      <div class="section-label">Acara</div>
-      <h2 class="section-title">Kegiatan Desa</h2>
-      <div class="section-divider"></div>
-      <p class="section-desc mx-auto" style="margin-bottom:48px;">Berbagai acara dan kegiatan yang diadakan di Desa Warung Menteng</p>
-    </div>
-    <div class="timeline" id="timeline"></div>
+    <div class="text-center reveal"><div class="section-label">UMKM</div><h2 class="section-title">Produk Unggulan Desa</h2><div class="section-divider"></div><p class="section-desc mx-auto" style="margin-bottom:48px;">Produk UMKM khas desa</p></div><div class="umkm-grid" id="umkmGrid"></div>
   </div>
 </section>
 
@@ -128,6 +79,23 @@
       <div class="form-group"><label>Keterangan</label><textarea id="sNotes" placeholder="Opsional"></textarea></div>
       <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Kirim Pengajuan</button>
     </form>
+  </div>
+</div>
+
+<div class="detail-modal" id="detailModal">
+  <div class="detail-modal-bg" id="detailModalBg"></div>
+  <div class="detail-modal-content">
+    <button class="detail-modal-close" id="detailModalClose">&times;</button>
+    <div class="detail-modal-head">
+      <div class="icon" id="detailIcon"></div>
+      <h3 id="detailTitle"></h3>
+      <div class="tag" id="detailTag"></div>
+    </div>
+    <div class="detail-modal-body">
+      <p id="detailDesc"></p>
+      <div id="detailFields"></div>
+      <button class="btn btn-outline btn-close-detail" id="detailBtnClose">Tutup</button>
+    </div>
   </div>
 </div>
 
