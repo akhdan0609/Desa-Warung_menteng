@@ -450,18 +450,21 @@ document.addEventListener('DOMContentLoaded', function () {
     hamburger.addEventListener('click', function () {
       navLinks.classList.toggle('open');
     });
-    navLinks.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          this.parentNode.classList.toggle('open');
-        }
-      });
-    });
-    navLinks.querySelectorAll(':scope > li > a:not(.nav-dropdown > a), .submenu a').forEach(function (link) {
-      link.addEventListener('click', function () {
+    navLinks.addEventListener('click', function (e) {
+      var parentLink = e.target.closest('.nav-dropdown > a');
+      if (parentLink && window.innerWidth <= 768) {
+        e.preventDefault();
+        var dropdown = parentLink.parentNode;
+        var isOpen = dropdown.classList.contains('open');
+        navLinks.querySelectorAll('.nav-dropdown.open').forEach(function (d) {
+          d.classList.remove('open');
+        });
+        if (!isOpen) dropdown.classList.add('open');
+        return;
+      }
+      if (e.target.closest('a')) {
         navLinks.classList.remove('open');
-      });
+      }
     });
   }
 

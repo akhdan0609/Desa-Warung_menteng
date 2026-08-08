@@ -829,6 +829,8 @@ footer .copyright {
   .hamburger { display: flex; }
   .submenu { position: static; transform: none; box-shadow: none; border: none; padding: 0 0 4px 16px; background: transparent; display: none; }
   .submenu a { padding: 12px 16px; font-size: 0.82rem; }
+  .nav-dropdown:hover .submenu { display: none; }
+  .nav-dropdown:hover > a { background: transparent; }
   .nav-dropdown.open .submenu { display: block; }
   .nav-dropdown > a::after { float: right; }
   .hero { min-height: 70vh; }
