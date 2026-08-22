@@ -34,7 +34,7 @@ var siteData = {
     "stats": [
       { "value": "587 m", "label": "Ketinggian" },
       { "value": "9+", "label": "Destinasi" },
-      { "value": "30 menit", "label": "Dari Bogor" }
+      { "value": "7.000+", "label": "Penduduk" }
     ]
   },
   "profile": {
