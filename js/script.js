@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', function () {
   var data = siteData;
   var page = window.location.pathname.split('/').pop() || 'index.html';
 
+  /* AUTO-PURGE STALE CONTENT OVERRIDES: bump DATA_VERSION setiap kali data.js berubah */
+  var DATA_VERSION = '2026-08-23-1';
+  try {
+    if (localStorage.getItem('siteDataVersion') !== DATA_VERSION) {
+      Object.keys(localStorage).forEach(function (k) {
+        if (k.indexOf('edit_') === 0) localStorage.removeItem(k);
+      });
+      localStorage.setItem('siteDataVersion', DATA_VERSION);
+    }
+  } catch (e) {}
+
   function getStore(key) { return JSON.parse(localStorage.getItem('edit_' + key) || 'null'); }
   function getData(key) { var s = getStore(key); return s !== null ? s : (data[key] || null); }
 
