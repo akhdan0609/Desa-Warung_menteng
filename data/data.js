@@ -34,7 +34,8 @@ var siteData = {
     "stats": [
       { "value": "587 m", "label": "Ketinggian" },
       { "value": "9+", "label": "Destinasi" },
-      { "value": "7.000+", "label": "Penduduk" }
+      { "value": "7.000+", "label": "Penduduk" },
+      { "value": "2,86 km\u00B2", "label": "Luas Wilayah" }
     ]
   },
   "profile": {
