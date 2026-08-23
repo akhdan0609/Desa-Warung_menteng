@@ -147,10 +147,25 @@ var siteData = {
   ],
   "serviceCategories": [
     { "id": "suket", "name": "Surat Keterangan" },
-    { "id": "izin", "name": "Perizinan" },
-    { "id": "lainnya", "name": "Layanan Lainnya" }
+    { "id": "pengantar", "name": "Surat Pengantar" }
   ],
   "services": [
+    {
+      "id": "skd",
+      "category": "suket",
+      "name": "Surat Keterangan Domisili Warga",
+      "description": "Surat keterangan tempat tinggal untuk warga yang berdomisili di desa namun berbeda dengan KTP.",
+      "requirements": "KTP, KK, surat pengantar RT/RW",
+      "icon": "\uD83C\uDFE0"
+    },
+    {
+      "id": "sku",
+      "category": "suket",
+      "name": "Surat Keterangan Usaha",
+      "description": "Surat keterangan bagi warga yang memiliki usaha mikro/kecil untuk keperluan perizinan atau pengajuan modal.",
+      "requirements": "KTP, KK, foto usaha",
+      "icon": "\uD83C\uDFEA"
+    },
     {
       "id": "sktm",
       "category": "suket",
@@ -160,84 +175,28 @@ var siteData = {
       "icon": "\uD83D\uDCCB"
     },
     {
-      "id": "sku",
-      "category": "suket",
-      "name": "Surat Keterangan Usaha (SKU)",
-      "description": "Surat keterangan bagi warga yang memiliki usaha mikro/kecil untuk keperluan perizinan atau pengajuan modal.",
-      "requirements": "KTP, KK, foto usaha",
-      "icon": "\uD83C\uDFEA"
-    },
-    {
-      "id": "skd",
-      "category": "suket",
-      "name": "Surat Keterangan Domisili",
-      "description": "Surat keterangan tempat tinggal untuk warga yang berdomisili di desa namun berbeda dengan KTP.",
-      "requirements": "KTP, KK, surat pengantar RT/RW",
-      "icon": "\uD83C\uDFE0"
-    },
-    {
-      "id": "skb",
-      "category": "suket",
-      "name": "Surat Keterangan Belum Menikah",
-      "description": "Surat keterangan status belum menikah untuk keperluan administrasi atau pernikahan.",
-      "requirements": "KTP, KK, surat pengantar RT/RW",
-      "icon": "\uD83D\uDCC4"
-    },
-    {
-      "id": "skl",
-      "category": "suket",
-      "name": "Surat Keterangan Kelahiran",
-      "description": "Surat keterangan kelahiran untuk keperluan administrasi kependudukan, pembuatan akta kelahiran, atau pendaftaran sekolah.",
-      "requirements": "KTP orang tua, KK, surat pengantar RT/RW, surat dari bidan/rumah sakit",
-      "icon": "\uD83D\uDC76"
-    },
-    {
-      "id": "skk",
-      "category": "suket",
-      "name": "Surat Keterangan Kematian",
-      "description": "Surat keterangan kematian untuk keperluan administrasi kependudukan, pencatatan sipil, atau pengurusan hak waris.",
-      "requirements": "KTP pelapor, KK almarhum, surat pengantar RT/RW, surat keterangan dokter/rumah sakit",
-      "icon": "\uD83D\uDE4F"
-    },
-    {
-      "id": "skt",
-      "category": "suket",
-      "name": "Surat Keterangan Tanah",
-      "description": "Surat keterangan riwayat tanah untuk keperluan jual beli, sertifikasi, atau penyelesaian sengketa lahan.",
-      "requirements": "KTP, KK, surat pengantar RT/RW, girik/letter C",
-      "icon": "\uD83C\uDF33"
-    },
-    {
-      "id": "izinkeramaian",
-      "category": "izin",
-      "name": "Surat Izin Keramaian",
-      "description": "Izin penyelenggaraan acara atau kegiatan keramaian di lingkungan desa seperti hajatan, hiburan, atau kegiatan masyarakat.",
-      "requirements": "KTP, KK, surat pengantar RT/RW, proposal kegiatan",
-      "icon": "\uD83C\uDF89"
-    },
-    {
-      "id": "imb",
-      "category": "izin",
-      "name": "Rekomendasi IMB",
-      "description": "Rekomendasi Izin Mendirikan Bangunan untuk warga yang akan membangun atau merenovasi rumah dan bangunan lainnya.",
-      "requirements": "KTP, KK, surat pengantar RT/RW, sertifikat tanah, gambar bangunan",
-      "icon": "\uD83C\uDFD7\uFE0F"
-    },
-    {
-      "id": "skck",
-      "category": "lainnya",
-      "name": "SKCK Desa",
-      "description": "Surat pengantar untuk pembuatan SKCK (Surat Keterangan Catatan Kepolisian) di tingkat desa.",
-      "requirements": "KTP, KK, pas foto 4x6",
-      "icon": "\uD83D\uDC6E"
-    },
-    {
       "id": "pengantarktp",
-      "category": "lainnya",
+      "category": "pengantar",
       "name": "Surat Pengantar KTP",
       "description": "Surat pengantar untuk pembuatan atau perpanjangan KTP di Dinas Kependudukan dan Catatan Sipil.",
       "requirements": "KK, surat pengantar RT/RW",
       "icon": "\uD83D\uDC64"
+    },
+    {
+      "id": "pengantarnikah",
+      "category": "pengantar",
+      "name": "Surat Pengantar Nikah",
+      "description": "Surat pengantar untuk keperluan pencatatan pernikahan di KUA atau Dinas Kependudukan dan Catatan Sipil.",
+      "requirements": "KTP calon mempelai, KK, akta kelahiran, surat pengantar RT/RW",
+      "icon": "\uD83D\uDC8D"
+    },
+    {
+      "id": "n1n4",
+      "category": "pengantar",
+      "name": "Formulir N1 \u2013 N4",
+      "description": "Pengisian formulir biodata perkawinan: N1 (belum menikah), N2 (pernah menikah), N3 (duda), dan N4 (janda).",
+      "requirements": "KTP, KK, akta kelahiran, surat kematian pasangan (untuk N3/N4 bila ada)",
+      "icon": "\uD83D\uDCC4"
     }
   ],
   "umkm": [
