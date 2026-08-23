@@ -161,7 +161,7 @@ var siteData = {
     {
       "id": "sku",
       "category": "suket",
-      "name": "Surat Keterangan Usaha",
+      "name": "Surat Keterangan Domisili Usaha",
       "description": "Surat keterangan bagi warga yang memiliki usaha mikro/kecil untuk keperluan perizinan atau pengajuan modal.",
       "requirements": "KTP, KK, foto usaha",
       "icon": "\uD83C\uDFEA"
