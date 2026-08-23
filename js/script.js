@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderAbout();
     renderTentangContact();
     renderTentangLokasi();
+    renderEmergency();
   }
 
   renderFooter();
@@ -415,6 +416,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (container && contactData) container.textContent = contactData.address;
     if (mapsLink && contactData) mapsLink.href = contactData.maps_url;
     if (mapsLink2 && contactData) mapsLink2.href = contactData.maps_url;
+  }
+
+  function renderEmergency() {
+    var list = document.getElementById('emergencyList');
+    var box = document.getElementById('emergencyBox');
+    if (!list || !box) return;
+    var items = getData('emergency_contacts');
+    if (!items || items.length === 0) { box.style.display = 'none'; return; }
+    list.innerHTML = items.map(function (item) {
+      return '<a class="emergency-item" href="https://wa.me/' + item.contact + '" target="_blank" rel="noopener">' +
+        '<span class="emergency-icon">' + item.icon + '</span><span>' + item.label + '</span></a>';
+    }).join('');
   }
 
   /* ==================== EXISTING FEATURES ==================== */

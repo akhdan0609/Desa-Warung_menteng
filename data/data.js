@@ -340,6 +340,12 @@ var siteData = {
     "whatsapp": "08123456789",
     "whatsapp_url": "https://wa.me/628123456789"
   },
+  "emergency_contacts": [
+    { "label": "WhatsApp Damkar", "icon": "\uD83D\uDE92", "contact": "628123456001" },
+    { "label": "Mobil Ambulance", "icon": "\uD83D\uDE91", "contact": "628123456002" },
+    { "label": "BabinkamTibmas", "icon": "\uD83D\uDC6E", "contact": "628123456003" },
+    { "label": "BPBD", "icon": "\uD83D\uDEA8", "contact": "628123456004" }
+  ],
   "admin": {
     "username": "admin",
     "password": "warungmenteng",
