@@ -11,8 +11,7 @@ var siteData = {
       { "label": "Profil Desa", "href": "profil.html" },
       { "label": "Perangkat Desa", "href": "perangkat.html" },
       { "label": "Anggaran Desa", "href": "anggaran.html" },
-      { "label": "Layanan Desa", "href": "layanan.html" },
-      { "label": "Lokasi & Kontak", "href": "lokasi.html" }
+      { "label": "Layanan Desa", "href": "layanan.html" }
     ]},
     { "label": "Pariwisata", "href": "pariwisata.html", "submenu": [
       { "label": "Destinasi", "href": "destinasi.html" },
@@ -364,7 +363,7 @@ var siteData = {
     { "title": "Lainnya", "links": [
       { "label": "Profil Desa", "href": "profil.html" },
       { "label": "Perangkat Desa", "href": "perangkat.html" },
-      { "label": "Lokasi", "href": "lokasi.html" },
+      { "label": "Lokasi", "href": "index.html#lokasi" },
       { "label": "Admin", "href": "admin.html" }
     ]}
   ]

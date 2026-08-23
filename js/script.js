@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
     'profil.html': function () { renderPageHeader('Profil Desa', 'Profil dan sejarah Desa Warung Menteng'); renderAbout(); },
     'perangkat.html': function () { renderPageHeader('Perangkat Desa', 'Aparatur Desa Warung Menteng'); renderPerangkat(); },
     'anggaran.html': function () { renderPageHeader('Anggaran Desa', 'APBDes Desa Warung Menteng'); renderAnggaran(); },
-    'lokasi.html': function () { renderPageHeader('Lokasi & Kontak', 'Alamat dan kontak Desa Warung Menteng'); renderTentangContact(); renderTentangLokasi(); },
     'berita.html': function () { renderPageHeader('Berita', 'Informasi terbaru dari Desa Warung Menteng'); renderNews(); },
     'destinasi.html': function () { renderPageHeader('Destinasi', 'Destinasi wisata Desa Warung Menteng'); renderCards('destinationsGrid', getData('destinations'), 'destination'); },
     'kuliner.html': function () { renderPageHeader('Kuliner', 'Kuliner khas Desa Warung Menteng'); renderCards('culinaryGrid', getData('culinary'), 'culinary'); },
@@ -83,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (page === 'index.html' || page === '') {
     renderHero();
     renderAbout();
+    renderTentangContact();
+    renderTentangLokasi();
   }
 
   renderFooter();
