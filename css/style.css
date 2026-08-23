@@ -284,6 +284,7 @@ nav {
 #tentang .section-desc { color: var(--text-muted); }
 #tentang p { color: var(--text-muted); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-grid.single { grid-template-columns: 1fr; }
 .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .stat-item {
   text-align: center; padding: 32px 20px;

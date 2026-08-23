@@ -128,10 +128,17 @@ document.addEventListener('DOMContentLoaded', function () {
       if (profileTitle) profileTitle.textContent = profileData.title;
       if (profileDesc1) profileDesc1.textContent = profileData.description1;
       if (profileDesc2) profileDesc2.textContent = profileData.description2;
-      if (profileStats && profileData.stats) {
-        profileStats.innerHTML = profileData.stats.map(function (s) {
-          return '<div class="stat-item"><div class="num">' + s.value + '</div><div class="lbl">' + s.label + '</div></div>';
-        }).join('');
+      if (profileStats) {
+        if (profileData.stats && profileData.stats.length > 0) {
+          profileStats.innerHTML = profileData.stats.map(function (s) {
+            return '<div class="stat-item"><div class="num">' + s.value + '</div><div class="lbl">' + s.label + '</div></div>';
+          }).join('');
+        } else {
+          var statsCol = profileStats.closest('.reveal') || profileStats;
+          statsCol.style.display = 'none';
+          var aboutGrid = profileStats.closest('.about-grid');
+          if (aboutGrid) aboutGrid.classList.add('single');
+        }
       }
     }
   }

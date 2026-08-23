@@ -41,13 +41,7 @@ var siteData = {
   "profile": {
     "title": "Selamat Datang di Desa Warung Menteng",
     "description1": "Terletak di Kecamatan Cijeruk, Kabupaten Bogor, Desa Warung Menteng adalah permata tersembunyi di kaki Gunung Salak. Dengan udara sejuk, pemandangan hijau, dan masyarakat yang ramah, desa ini menawarkan pengalaman wisata alam yang autentik.",
-    "description2": "Dari agrowisata Warso Farm, camping di Bukit Alesano, hingga situs sejarah Tugu Maseng \u2014 setiap sudut desa ini menyimpan cerita dan keindahan yang menunggu untuk dijelajahi.",
-    "stats": [
-      { "value": "2,28", "label": "Km\u00B2 Luas" },
-      { "value": "8.872", "label": "Jiwa" },
-      { "value": "587", "label": "Mdpl" },
-      { "value": "9", "label": "Destinasi" }
-    ]
+    "description2": "Dari agrowisata Warso Farm, camping di Bukit Alesano, hingga situs sejarah Tugu Maseng \u2014 setiap sudut desa ini menyimpan cerita dan keindahan yang menunggu untuk dijelajahi."
   },
   "perangkat_desa": [
     {
