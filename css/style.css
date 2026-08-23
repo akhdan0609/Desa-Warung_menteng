@@ -322,6 +322,20 @@ nav {
 .emergency-item:hover { background: var(--green); color: #fff; }
 .emergency-icon { font-size: 1rem; line-height: 1; }
 
+/* ─── CUSTOMER SERVICE LINE (HERO) ─── */
+.customer-service { margin-top: 22px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.cs-q { color: #fff; font-size: 0.92rem; opacity: 0.85; font-weight: 300; }
+.cs-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #25d366; color: #fff;
+  font-size: 0.82rem; font-weight: 600;
+  padding: 9px 18px; border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(37,211,102,0.35);
+  transition: background 0.2s, transform 0.2s;
+}
+.cs-btn:hover { background: #1fb857; transform: translateY(-2px); }
+
 /* ─── ABOUT ─── */
 #tentang { background: var(--bg-light); }
 #tentang .section-desc { color: var(--text-muted); }

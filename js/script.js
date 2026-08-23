@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderTentangContact();
     renderTentangLokasi();
     renderEmergency();
+    renderCustomerService();
   }
 
   renderFooter();
@@ -438,6 +439,18 @@ document.addEventListener('DOMContentLoaded', function () {
         waFloat.classList.remove('open');
       }
     });
+  }
+
+  function renderCustomerService() {
+    var el = document.getElementById('customerService');
+    if (!el) return;
+    var c = getData('contact');
+    var wa = c && c.whatsapp_url ? c.whatsapp_url : '#';
+    el.innerHTML =
+      '<span class="cs-q">Mau tanya apa?</span>' +
+      '<a class="cs-btn" href="' + wa + '" target="_blank" rel="noopener">' +
+      '<svg viewBox="0 0 32 32" width="16" height="16" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M16 .8C7.6.8.8 7.6.8 16c0 2.7.7 5.3 2 7.6L.9 31l7.6-1.9c2.2 1.2 4.8 1.9 7.5 1.9 8.4 0 15.2-6.8 15.2-15.2S24.4.8 16 .8zm0 27.7c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.5 1.1 1.2-4.4-.3-.5c-1.3-2-2-4.4-2-6.8C3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.5 16 28.5zm7-9.4c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.8-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.5 1.4-1.5 3.5s1.5 4 1.7 4.3c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.1-.4-.2-.8-.4z"/></svg>' +
+      'Chat Customer Service</a>';
   }
 
   /* ==================== EXISTING FEATURES ==================== */
