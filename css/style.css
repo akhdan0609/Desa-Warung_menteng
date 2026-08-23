@@ -279,40 +279,47 @@ nav {
 .hero-stat .num { font-size: 1.6rem; font-weight: 800; color: #fff; font-family: 'Playfair Display', serif; }
 .hero-stat .lbl { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
 
-/* ─── EMERGENCY BOX ─── */
-.emergency-box {
-  position: absolute;
-  top: 110px;
-  right: 32px;
-  z-index: 5;
-  background: var(--green);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 14px;
-  padding: 16px 14px;
-  min-width: 200px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+/* ─── WHATSAPP FLOAT KONTAK DARURAT ─── */
+.wa-float { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 96; }
+.wa-toggle {
+  width: 54px; height: 54px;
+  border: none; cursor: pointer;
+  border-radius: 14px 0 0 14px;
+  background: #25d366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: -6px 8px 22px rgba(0,0,0,0.3);
+  transition: width 0.2s, background 0.2s;
 }
-.emergency-title {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #fff;
-  opacity: 0.8;
-  margin-bottom: 10px;
-  padding-left: 4px;
+.wa-toggle:hover { width: 62px; background: #1fb857; }
+.wa-panel {
+  position: absolute;
+  right: 66px; top: 50%;
+  transform: translateY(-50%) translateX(14px);
+  min-width: 230px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 14px 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.wa-float.open .wa-panel { opacity: 1; transform: translateY(-50%) translateX(0); pointer-events: auto; }
+.wa-panel-title {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 10px; padding-left: 4px;
 }
 .emergency-list { display: flex; flex-direction: column; gap: 6px; }
 .emergency-item {
   display: flex; align-items: center; gap: 10px;
-  color: #fff; text-decoration: none;
+  color: var(--text-dark); text-decoration: none;
   font-size: 0.85rem; font-weight: 500;
-  padding: 9px 12px;
-  border-radius: 9px;
-  background: rgba(255,255,255,0.12);
-  transition: background 0.2s, transform 0.2s;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--green-pale);
+  transition: background 0.2s, color 0.2s;
 }
-.emergency-item:hover { background: rgba(255,255,255,0.25); transform: translateX(-3px); }
+.emergency-item:hover { background: var(--green); color: #fff; }
 .emergency-icon { font-size: 1rem; line-height: 1; }
 
 /* ─── ABOUT ─── */
@@ -904,8 +911,7 @@ footer .copyright {
   .page-header p { font-size: 0.85rem; }
   .page-header { padding-bottom: 40px; }
   .hero-stats { grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
-  .hero { flex-direction: column; }
-  .emergency-box { position: static; order: 2; width: calc(100% - 48px); max-width: 320px; margin: 32px auto 44px; }
+  .wa-panel { right: 60px; }
   .vm-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .detail-modal-content { max-width: 100%; margin: 16px; }

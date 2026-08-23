@@ -420,14 +420,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function renderEmergency() {
     var list = document.getElementById('emergencyList');
-    var box = document.getElementById('emergencyBox');
-    if (!list || !box) return;
+    var waFloat = document.getElementById('waFloat');
+    if (!list || !waFloat) return;
     var items = getData('emergency_contacts');
-    if (!items || items.length === 0) { box.style.display = 'none'; return; }
+    if (!items || items.length === 0) { waFloat.style.display = 'none'; return; }
     list.innerHTML = items.map(function (item) {
       return '<a class="emergency-item" href="https://wa.me/' + item.contact + '" target="_blank" rel="noopener">' +
         '<span class="emergency-icon">' + item.icon + '</span><span>' + item.label + '</span></a>';
     }).join('');
+    var waToggle = document.getElementById('waToggle');
+    waToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      waFloat.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+      if (waFloat.classList.contains('open') && !e.target.closest('.wa-float')) {
+        waFloat.classList.remove('open');
+      }
+    });
   }
 
   /* ==================== EXISTING FEATURES ==================== */
