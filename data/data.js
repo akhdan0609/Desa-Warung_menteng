@@ -28,7 +28,7 @@ var siteData = {
     { "label": "KKN", "href": "kkn.html" }
   ],
   "hero": {
-    "badge": "Desa Wisata Bogor",
+    "badge": "Smart Village",
     "title": "Jelajahi <span>Desa Warung Menteng</span>",
     "description": "Nikmati keindahan alam pegunungan, kebun buah segar, dan keramahan budaya Sunda di kaki Gunung Salak.",
     "stats": [
