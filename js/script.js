@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'akomodasi.html': function () { renderPageHeader('Akomodasi', 'Tempat menginap di Desa Warung Menteng'); renderCards('accommodationGrid', getData('accommodation'), 'accommodation'); },
     'umkm.html': function () { renderPageHeader('UMKM', 'Produk UMKM Desa Warung Menteng'); renderUMKM(); },
     'galeri.html': function () { renderPageHeader('Galeri', 'Foto-foto Desa Warung Menteng'); renderGallery(); },
-    'layanan.html': function () { renderPageHeader('Layanan Desa', 'Ajukan surat keterangan secara online'); renderServices(); },
+    'layanan.html': function () { renderPageHeader('Administrasi Desa', 'Ajukan surat keterangan secara online'); renderServices(); },
     'artikel.html': function () { renderArtikel(); renderTestimonials(); renderEvents(); }
   };
 
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<tr><td>Deskripsi</td><td>' + service.description + '</td></tr>' +
         '<tr><td>Persyaratan</td><td>' + service.requirements + '</td></tr>' +
         '</table>' +
-        '<div class="footer">Dokumen ini dicetak dari Sistem Layanan Desa Warung Menteng &bull; ' + new Date().toLocaleDateString('id-ID') + '</div>' +
+        '<div class="footer">Dokumen ini dicetak dari Sistem Administrasi Desa Warung Menteng &bull; ' + new Date().toLocaleDateString('id-ID') + '</div>' +
         '<div class="stamp"><div>Kepala Desa Warung Menteng</div><div class="line"></div></div>' +
         '</body></html>');
       printWin.document.close();
@@ -702,7 +702,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<tr><td>Persyaratan</td><td>' + service.requirements + '</td></tr>' +
       '</table>' +
       '<p style="font-size:0.85rem;line-height:1.7;">Ajukan layanan ini secara online melalui website resmi Desa Warung Menteng atau datang langsung ke Kantor Desa dengan membawa persyaratan yang diperlukan.</p>' +
-      '<div class="footer">Dokumen ini dicetak dari Sistem Layanan Desa Warung Menteng &mdash; ' + dateStr + '</div>' +
+      '<div class="footer">Dokumen ini dicetak dari Sistem Administrasi Desa Warung Menteng &mdash; ' + dateStr + '</div>' +
       '</body></html>');
     win.document.close();
     win.focus();
@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<tr><td>Tanggal Pengajuan</td><td>' + submission.date + '</td></tr>' +
       '</table>' +
       '<p style="font-size:0.85rem;color:#555;text-align:center;">Simpan bukti ini sebagai referensi untuk mengecek status pengajuan Anda.</p>' +
-      '<div class="footer">Dokumen ini dicetak dari Sistem Layanan Desa Warung Menteng &mdash; ' + dateStr + '</div>' +
+      '<div class="footer">Dokumen ini dicetak dari Sistem Administrasi Desa Warung Menteng &mdash; ' + dateStr + '</div>' +
       '</body></html>');
     win.document.close();
     win.focus();
@@ -820,7 +820,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       var contactData = getData('contact');
       if (contactData && contactData.whatsapp_url) {
-        var msg = 'PENGAJUAN LAYANAN DESA\nLayanan: ' + serviceName + '\nNama: ' + name + '\nNIK: ' + nik + '\nNo HP: ' + phone + '\nAlamat: ' + address + '\nKeterangan: ' + (notes || '-') + '\nID: ' + submission.id;
+        var msg = 'PENGAJUAN ADMINISTRASI DESA\nLayanan: ' + serviceName + '\nNama: ' + name + '\nNIK: ' + nik + '\nNo HP: ' + phone + '\nAlamat: ' + address + '\nKeterangan: ' + (notes || '-') + '\nID: ' + submission.id;
         setTimeout(function () { window.open(contactData.whatsapp_url + '?text=' + encodeURIComponent(msg), '_blank'); }, 1000);
       }
       renderStatusSidebar();
