@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'umkm.html': function () { renderPageHeader('UMKM', 'Produk UMKM Desa Warung Menteng'); renderUMKM(); },
     'galeri.html': function () { renderPageHeader('Galeri', 'Foto-foto Desa Warung Menteng'); renderGallery(); },
     'layanan.html': function () { renderPageHeader('Layanan Desa', 'Ajukan surat keterangan secara online'); renderServices(); },
-    'artikel.html': function () { renderArtikel(); }
+    'artikel.html': function () { renderArtikel(); renderTestimonials(); renderEvents(); }
   };
 
   if (pageHandlers[page]) pageHandlers[page]();
@@ -84,8 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (page === 'index.html' || page === '') {
     renderHero();
     renderAbout();
-    renderTestimonials();
-    renderEvents();
   }
 
   renderFooter();
