@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var pageHandlers = {
     'tentang.html': function () {
       renderPageHeader('Profil Desa', 'Informasi lengkap Desa Warung Menteng');
-      renderAbout(); renderPerangkat(); renderStruktur(); renderAnggaran();
+      renderAbout(); renderPerangkat(); renderAnggaran();
       renderTentangContact(); renderTentangLokasi(); renderServices();
     },
     'pariwisata.html': function () {
@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     'profil.html': function () { renderPageHeader('Profil Desa', 'Profil dan sejarah Desa Warung Menteng'); renderAbout(); },
     'perangkat.html': function () { renderPageHeader('Perangkat Desa', 'Aparatur Desa Warung Menteng'); renderPerangkat(); },
-    'struktur.html': function () { renderPageHeader('Struktur Organisasi', 'Struktur pemerintahan Desa Warung Menteng'); renderStruktur(); },
     'anggaran.html': function () { renderPageHeader('Anggaran Desa', 'APBDes Desa Warung Menteng'); renderAnggaran(); },
     'lokasi.html': function () { renderPageHeader('Lokasi & Kontak', 'Alamat dan kontak Desa Warung Menteng'); renderTentangContact(); renderTentangLokasi(); },
     'berita.html': function () { renderPageHeader('Berita', 'Informasi terbaru dari Desa Warung Menteng'); renderNews(); },
@@ -375,34 +374,6 @@ document.addEventListener('DOMContentLoaded', function () {
         '<div class="perangkat-bidang">' + item.bidang + '</div>' +
         '</div>';
     }).join('');
-  }
-
-  function renderStruktur() {
-    var container = document.getElementById('strukturChart');
-    var strukturData = getData('struktur_organisasi');
-    if (!container || !strukturData) return;
-    var levels = [[], [], []];
-    strukturData.forEach(function (item) {
-      var idx = item.level - 1;
-      if (idx >= 0 && idx < 3) levels[idx].push(item);
-    });
-    var html = '<div class="struktur-chart">';
-    levels.forEach(function (level, li) {
-      if (level.length === 0) return;
-      if (li > 0) {
-        html += '<div class="struktur-connector"></div>';
-      }
-      html += '<div class="struktur-level">';
-      level.forEach(function (item) {
-        html += '<div class="struktur-item level-' + item.level + '">' +
-          '<div class="struktur-jabatan">' + item.jabatan + '</div>' +
-          '<div class="struktur-nama">' + item.nama + '</div>' +
-          '</div>';
-      });
-      html += '</div>';
-    });
-    html += '</div>';
-    container.innerHTML = html;
   }
 
   function renderAnggaran() {

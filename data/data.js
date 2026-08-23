@@ -10,7 +10,6 @@ var siteData = {
     { "label": "Tentang", "href": "tentang.html", "submenu": [
       { "label": "Profil Desa", "href": "profil.html" },
       { "label": "Perangkat Desa", "href": "perangkat.html" },
-      { "label": "Struktur Organisasi", "href": "struktur.html" },
       { "label": "Anggaran Desa", "href": "anggaran.html" },
       { "label": "Layanan Desa", "href": "layanan.html" },
       { "label": "Lokasi & Kontak", "href": "lokasi.html" }
@@ -104,21 +103,6 @@ var siteData = {
       "bidang": "Wilayah Dusun Warung Menteng",
       "icon": "\uD83C\uDFE1"
     }
-  ],
-  "struktur_organisasi": [
-    { "jabatan": "Badan Permusyawaratan Desa (BPD)", "nama": "Drs. H. Ahmad Suherman, M.M.", "level": 1 },
-    { "jabatan": "Kepala Desa", "nama": "H. Asep Saepudin, S.Pd.", "level": 1 },
-    { "jabatan": "Lembaga Pemberdayaan Masyarakat (LPM)", "nama": "Drs. Maman Suryaman", "level": 1 },
-    { "jabatan": "Sekretaris Desa", "nama": "Dedi Mulyadi, S.Sos.", "level": 2 },
-    { "jabatan": "Staf Sekretariat", "nama": "Petugas Administrasi", "level": 3 },
-    { "jabatan": "Kasi Pemerintahan", "nama": "Ai Siti Patimah, S.E.", "level": 2 },
-    { "jabatan": "Kasi Kesejahteraan", "nama": "Ade Komarudin", "level": 2 },
-    { "jabatan": "Kasi Pelayanan", "nama": "Rina Marlina, A.Md.", "level": 2 },
-    { "jabatan": "Kaur Keuangan", "nama": "Usep Saepuloh", "level": 2 },
-    { "jabatan": "Kaur Perencanaan", "nama": "Wawan Setiawan", "level": 2 },
-    { "jabatan": "Kaur Umum", "nama": "Euis Khoeriyah", "level": 2 },
-    { "jabatan": "Kadus Cibalung", "nama": "Kepala Dusun I", "level": 3 },
-    { "jabatan": "Kadus Warung Menteng", "nama": "Kepala Dusun II", "level": 3 }
   ],
   "anggaran_desa": [
     { "tahun": "2026", "bidang": "Penyelenggaraan Pemerintahan", "anggaran": "Rp 450.000.000", "sumber": "ADD", "keterangan": "Belanja operasional perangkat desa, ATK, rapat" },
@@ -375,7 +359,6 @@ var siteData = {
       { "label": "Berita", "href": "berita.html" },
       { "label": "Galeri", "href": "galeri.html" },
       { "label": "Layanan", "href": "layanan.html" },
-      { "label": "Struktur Desa", "href": "struktur.html" },
       { "label": "Anggaran", "href": "anggaran.html" }
     ]},
     { "title": "Lainnya", "links": [
