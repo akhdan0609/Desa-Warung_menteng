@@ -1,98 +1,438 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Administrasi Desa — Desa Warung Menteng</title>
-  <meta name="description" content="Layanan administrasi online Desa Warung Menteng. Ajukan SKTM, SKU, SK Domisili, dan lainnya." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="images/logo.png" type="image/x-icon"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Layanan Administrasi - Desa Warung Menteng</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link rel="icon" href="images/logo.png" type="image/x-icon" />
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#002d1a",
+        "primary-container": "#1a432f",
+        "secondary": "#785a00",
+        "secondary-container": "#fdc425",
+        "surface": "#f8f9fa",
+        "surface-container": "#edeeef",
+        "surface-container-lowest": "#ffffff",
+        "on-surface": "#191c1d",
+        "on-surface-variant": "#414943",
+        "on-primary": "#ffffff",
+        "on-secondary-container": "#6d5200",
+        "on-secondary-fixed": "#251a00",
+        "outline-variant": "#c1c8c1",
+        "outline": "#717973",
+        "emergency-red": "#EF4444",
+        "gold-light": "#FEF9C3",
+        "success-green": "#22C55E",
+        "background": "#f8f9fa"
+      },
+      borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+      spacing: {
+        "gutter": "24px", "margin-md": "32px", "margin-sm": "16px",
+        "section-gap": "120px", "margin-lg": "60px", "container-max": "1280px"
+      },
+      fontFamily: { "display-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "headline-lg": ["Playfair Display"], "body-md": ["Outfit"], "body-lg": ["Outfit"], "label-md": ["Outfit"], "button-text": ["Outfit"] },
+      fontSize: {
+        "display-lg": ["44px", { "lineHeight": "1.1", "fontWeight": "700" }],
+        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+        "headline-lg": ["36px", { "lineHeight": "1.3", "fontWeight": "600" }],
+        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+        "body-lg": ["18px", { "lineHeight": "1.7", "fontWeight": "400" }],
+        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+        "button-text": ["16px", { "lineHeight": "1.0", "fontWeight": "600" }]
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background-color: #f8f9fa; }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(225, 227, 228, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  /* Modal overlay */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100;
+    display: none; align-items: center; justify-content: center; padding: 16px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-card {
+    background: #fff; border-radius: 0.75rem; width: 100%; max-width: 460px;
+    max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    padding: 24px;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--c, #1a432f); color: #fff; border-radius: 99px;
+    padding: 7px 14px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .chip:hover { transform: translateY(-2px); }
+</style>
 </head>
-<body>
+<body class="font-body-md text-on-surface antialiased bg-background selection:bg-secondary-container selection:text-primary">
 
-<header>
-  <div class="container">
-    <nav>
-      <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="Desa Warung Menteng" class="logo-img" />
-        Warung Menteng
-      </a>
-      <button class="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="nav-links"></ul>
-      <button class="search-toggle" aria-label="Cari" id="searchToggle">&#x1F50D;</button>
-    </nav>
-    <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Cari layanan..." />
-      <div class="search-results" id="searchResults"></div>
+<!-- ============ NAVBAR ============ -->
+<nav class="bg-primary top-0 sticky z-50 shadow-md w-full">
+  <div class="flex justify-between items-center w-full px-6 md:px-margin-lg max-w-container-max mx-auto h-20">
+    <a class="font-headline-md text-headline-lg md:text-headline-md font-bold text-on-primary flex items-center gap-2" href="index.html">
+      <img src="images/logo.png" alt="logo" class="w-9 h-9 rounded-full object-cover" />
+      Desa Warung Menteng
+    </a>
+    <div class="hidden md:flex space-x-8 items-center">
+      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="index.html">Beranda</a>
+      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="tentang.html">Tentang</a>
+      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="pariwisata.html">Pariwisata</a>
+      <a aria-current="page" class="text-secondary-container font-bold border-b-2 border-secondary-container pb-1 font-button-text" href="layanan.html">Administrasi Desa</a>
+      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="berita.html">Berita</a>
     </div>
+    <a href="#" id="emergencyLink" class="hidden md:flex items-center gap-2 bg-emergency-red text-on-primary px-4 py-2 rounded-lg font-button-text transition-opacity hover:opacity-90">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+      Darurat
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="relative w-full min-h-[340px] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="bg-cover bg-center w-full h-full" style="background-image:url('images/kkn.jpg');"></div>
+    <div class="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+  </div>
+  <div class="relative z-10 text-center px-6 md:px-margin-lg max-w-container-max mx-auto flex flex-col items-center py-16">
+    <span class="bg-surface-container-lowest/20 backdrop-blur-md text-on-primary px-4 py-1.5 rounded-full font-label-md border border-on-primary/30 mb-6 tracking-widest uppercase">
+      Smart Village Heritage
+    </span>
+    <h1 class="font-display-lg text-4xl md:text-display-lg text-on-primary mb-4">Layanan Administrasi Digital</h1>
+    <p class="font-body-lg text-body-lg text-on-primary/90 max-w-2xl mx-auto">
+      Akses berbagai layanan surat menyurat dan administrasi kependudukan Desa Warung Menteng secara mudah, cepat, dan transparan.
+    </p>
   </div>
 </header>
 
-<div class="search-overlay" id="searchOverlay"></div>
+<!-- ============ MAIN ============ -->
+<main class="max-w-container-max mx-auto px-6 md:px-margin-lg py-14 md:py-section-gap">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter relative items-start">
 
-<div class="page-header">
-  <div class="container">
-    <h1 id="pageHeaderTitle"></h1>
-    <p id="pageHeaderDesc"></p>
+    <!-- LEFT: katalog + form -->
+    <div class="md:col-span-8 flex flex-col gap-12">
+
+      <!-- Katalog Layanan (kartu kategori) -->
+      <section>
+        <div class="flex items-end justify-between mb-8 border-b border-surface-container pb-4">
+          <div>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Katalog Layanan</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-2">Pilih jenis layanan administrasi yang Anda butuhkan.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="serviceGrid"></div>
+      </section>
+
+      <!-- Formulir Pengajuan (Glassmorphism) -->
+      <section class="glass-card rounded-xl p-8 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-3xl z-0"></div>
+        <div class="relative z-10">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Formulir Pengajuan Online</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-8">Isi data di bawah ini untuk memulai proses administrasi. Pastikan data sesuai dengan KTP.</p>
+          <form id="quickForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block font-label-md text-on-surface mb-2">Nama Lengkap</label>
+                <input id="qfName" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" placeholder="Masukkan nama lengkap" type="text" required />
+              </div>
+              <div>
+                <label class="block font-label-md text-on-surface mb-2">Nomor Induk Kependudukan (NIK)</label>
+                <input id="qfNIK" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" placeholder="16 Digit NIK" type="text" required />
+              </div>
+            </div>
+            <div>
+              <label class="block font-label-md text-on-surface mb-2">Jenis Layanan</label>
+              <select id="qfService" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors appearance-none">
+                <option disabled selected value="">Pilih layanan yang dibutuhkan...</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-label-md text-on-surface mb-2">No. HP / WhatsApp</label>
+              <input id="qfPhone" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" placeholder="08xxxxxxxxxx" type="tel" required />
+            </div>
+            <div class="pt-4">
+              <button class="w-full md:w-auto bg-secondary-container text-on-secondary-container hover:bg-secondary font-button-text py-3 px-8 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2" type="submit">
+                Kirim Pengajuan
+                <span class="material-symbols-outlined text-sm">send</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- RIGHT: sticky widgets -->
+    <div class="md:col-span-4 md:sticky md:top-28 flex flex-col gap-6">
+      <!-- Cek Status -->
+      <div class="bg-primary rounded-xl p-8 text-on-primary shadow-lg relative overflow-hidden">
+        <div class="absolute -bottom-10 -right-10 opacity-10">
+          <span class="material-symbols-outlined text-[150px]" style="font-variation-settings: 'FILL' 1;">manage_search</span>
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-secondary-container">search_check</span>
+            <h3 class="font-headline-md text-[22px]">Cek Status</h3>
+          </div>
+          <p class="font-body-md opacity-90 mb-6">Pantau proses pengajuan Anda menggunakan Nomor Resi.</p>
+          <form id="traceForm" class="space-y-4">
+            <div>
+              <input id="traceResi" class="w-full bg-primary-container border border-on-primary/20 rounded-lg px-4 py-3 text-on-primary placeholder:text-on-primary/50 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container focus:outline-none transition-colors" placeholder="Masukkan Nomor Resi" type="text" required />
+            </div>
+            <button class="w-full bg-transparent border-2 border-secondary-container text-secondary-container hover:bg-secondary-container hover:text-primary font-button-text py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+              Lacak Berkas
+            </button>
+          </form>
+          <div id="traceResult" class="mt-5 text-sm"></div>
+        </div>
+      </div>
+
+      <!-- Informasi Bantuan -->
+      <div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-6 shadow-sm">
+        <h3 class="font-headline-md text-on-surface text-[20px] mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">info</span>
+          Informasi Layanan
+        </h3>
+        <ul class="space-y-4 font-body-md text-on-surface-variant">
+          <li class="flex gap-3">
+            <span class="material-symbols-outlined text-outline text-xl">schedule</span>
+            <div>
+              <strong class="block text-on-surface">Jam Operasional Balai Desa</strong>
+              Senin - Jumat: 08.00 - 15.00 WIB<br />
+              Sabtu - Minggu: Tutup
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="material-symbols-outlined text-outline text-xl">support_agent</span>
+            <div>
+              <strong class="block text-on-surface">Bantuan Teknis</strong>
+              Jika mengalami kendala teknis saat mengisi form, hubungi Admin Desa via tombol WhatsApp di bawah.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
+</main>
 
-<section class="section">
-  <div class="container">
-    <div class="services-grid" id="servicesGrid"></div>
+<!-- ============ FOOTER ============ -->
+<footer class="bg-primary w-full mt-14 md:mt-section-gap">
+  <div class="w-full py-10 md:py-margin-lg px-6 md:px-margin-lg flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-6 md:gap-0 border-t border-on-primary/10">
+    <div class="flex flex-col items-center md:items-start text-center md:text-left">
+      <span class="font-headline-md text-[20px] font-bold text-secondary-container mb-2">Desa Warung Menteng</span>
+      <p class="font-body-md text-on-primary opacity-80">
+        © 2024 Desa Warung Menteng - Smart Village Heritage. Hak Cipta Dilindungi.
+      </p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a class="font-body-md text-on-primary opacity-80 hover:text-secondary-container underline transition-all" href="tentang.html">Tentang</a>
+      <a class="font-body-md text-on-primary opacity-80 hover:text-secondary-container underline transition-all" href="berita.html">Berita</a>
+      <a class="font-body-md text-on-primary opacity-80 hover:text-secondary-container underline transition-all" href="index.html#lokasi">Kontak</a>
+      <a class="font-body-md text-on-primary opacity-80 hover:text-secondary-container underline transition-all" href="kkn.html">KKN</a>
+    </div>
   </div>
-</section>
-
-<footer>
-  <div class="container" id="footerContent"></div>
 </footer>
 
-<div class="lightbox">
-  <div class="lightbox-content"></div>
-  <button class="lightbox-close">&times;</button>
+<!-- ============ MODAL DAFTAR LAYANAN ============ -->
+<div class="modal-overlay" id="listOverlay">
+  <div class="modal-card">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-headline-md text-[22px] text-on-surface" id="listTitle"></h3>
+      <button class="text-outline hover:text-on-surface" onclick="closeModal('listOverlay')">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="flex flex-col gap-3" id="listBody"></div>
+  </div>
 </div>
 
-<div class="service-modal" id="serviceModal">
-  <div class="service-modal-bg"></div>
-  <div class="service-modal-content">
-    <button class="service-modal-close">&times;</button>
-    <div class="service-modal-icon" id="modalServiceIcon"></div>
-    <h3 id="modalServiceName"></h3>
-    <p id="modalServiceDesc" style="color:var(--text-muted);font-size:0.9rem;margin:12px 0 24px;font-weight:300;"></p>
-    <div id="modalSuccess" class="service-modal-success">
-      <div style="font-size:3rem;margin-bottom:12px;">&#x2705;</div>
-      <h3>Pengajuan Terkirim!</h3>
-      <p style="color:var(--muted);font-size:0.85rem;margin-top:8px;">Data Anda telah disimpan. Kami akan memproses pengajuan Anda segera.</p>
-      <button class="btn btn-primary" id="modalSuccessClose" style="margin-top:20px;">Tutup</button>
+<!-- ============ MODAL PENGISIAN ============ -->
+<div class="modal-overlay" id="formOverlay">
+  <div class="modal-card">
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="font-headline-md text-[20px] text-on-surface" id="formTitle"></h3>
+      <button class="text-outline hover:text-on-surface" onclick="closeModal('formOverlay')">
+        <span class="material-symbols-outlined">close</span>
+      </button>
     </div>
-    <form id="serviceForm">
-      <input type="hidden" id="serviceId" />
-      <div class="form-group"><label>Nama Lengkap</label><input type="text" id="sName" required /></div>
-      <div class="form-group"><label>NIK</label><input type="text" id="sNIK" required /></div>
-      <div class="form-group"><label>No. HP</label><input type="tel" id="sPhone" required /></div>
-      <div class="form-group"><label>Alamat</label><textarea id="sAddress" required></textarea></div>
-      <div class="form-group"><label>Keterangan</label><textarea id="sNotes" placeholder="Opsional"></textarea></div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Kirim Pengajuan</button>
+    <p class="font-body-md text-on-surface-variant text-sm mb-5" id="formDesc"></p>
+    <form id="serviceForm" class="space-y-4">
+      <input type="hidden" id="mfServiceName" />
+      <div>
+        <label class="block font-label-md text-on-surface mb-1">Nama Lengkap</label>
+        <input id="mfName" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" type="text" required />
+      </div>
+      <div>
+        <label class="block font-label-md text-on-surface mb-1">NIK</label>
+        <input id="mfNIK" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" type="text" required />
+      </div>
+      <div>
+        <label class="block font-label-md text-on-surface mb-1">No. HP / WhatsApp</label>
+        <input id="mfPhone" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" type="tel" required />
+      </div>
+      <div>
+        <label class="block font-label-md text-on-surface mb-1">Alamat</label>
+        <textarea id="mfAddress" rows="2" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" required></textarea>
+      </div>
+      <div>
+        <label class="block font-label-md text-on-surface mb-1">Keterangan (opsional)</label>
+        <textarea id="mfNotes" rows="2" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors"></textarea>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button class="flex-1 bg-secondary-container text-on-secondary-container hover:bg-secondary font-button-text py-3 px-6 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2" type="submit">
+          Kirim Pengajuan
+          <span class="material-symbols-outlined text-sm">send</span>
+        </button>
+        <button class="flex-1 bg-surface-container text-on-surface hover:bg-surface-variant font-button-text py-3 px-6 rounded-lg transition-colors" type="button" onclick="closeModal('formOverlay')">Batal</button>
+      </div>
     </form>
   </div>
 </div>
 
-<div class="status-sidebar-toggle" id="statusToggle">Cek Status</div>
-<div class="status-sidebar-panel">
-  <div class="status-sidebar-header">
-    <h4>Status Pengajuan</h4>
-    <button id="statusClose">&times;</button>
-  </div>
-  <div class="status-sidebar-body" id="statusBody"></div>
-</div>
-
 <script src="data/data.js"></script>
-<script src="js/script.js"></script>
+<script>
+  var DATA = (typeof siteData !== 'undefined') ? siteData : {};
+  function getStore(key){ try { return JSON.parse(localStorage.getItem('edit_' + key) || 'null'); } catch(e){ return null; } }
+  function getData(key){ var s = getStore(key); return s !== null ? s : (DATA[key] || null); }
+  var WA_ADMIN = '';
+  (function(){ var c = getData('contact'); if (c && c.whatsapp_url) WA_ADMIN = c.whatsapp_url; })();
+  var EMERGENCY;
+  (function(){ EMERGENCY = getData('emergency_contacts') || []; if (EMERGENCY.length && EMERGENCY[0].contact) { document.getElementById('emergencyLink').href = 'https://wa.me/' + EMERGENCY[0].contact; } })();
+
+  var SERVICES = getData('services') || [];
+
+  // kategori ala contoh (id => {icon,title,desc,layanan[]})
+  var CATEGORIES = [
+    { id: 'suket', icon: 'description', title: 'Surat Keterangan', desc: 'Pembuatan surat keterangan domisili, usaha (SKU), dan keterangan tidak mampu (SKTM).', filter: function(s){ return s.category === 'suket'; } },
+    { id: 'kependudukan', icon: 'badge', title: 'Kependudukan', desc: 'Pengantar pembuatan KTP dan perbaikan dokumen kependudukan.', filter: function(s){ return s.id === 'pengantarktp'; } },
+    { id: 'perpindahan', icon: 'move_location', title: 'Pindah Datang', desc: 'Laporan kepindahan warga keluar atau kedatangan warga baru di desa.', filter: function(){ return false; } },
+    { id: 'pernikahan', icon: 'diversity_3', title: 'Layanan Pernikahan', desc: 'Pengantar surat nikah (N1-N4) dan pencatatan dokumen perkawinan tingkat desa.', filter: function(s){ return s.id === 'pengantarnikah' || s.id === 'n1n4'; } }
+  ];
+
+  function cardMarkup(cat) {
+    var services = SERVICES.filter(cat.filter);
+    var disabled = services.length === 0;
+    return '<div ' + (disabled ? '' : 'data-cat="' + cat.id + '" onclick="openList(\'' + cat.id + '\')"') + ' class="cursor-pointer bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden flex flex-col h-full"' + (disabled ? ' style="opacity:.75;"' : '') + '>' +
+      '<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-110"></div>' +
+      '<div class="w-12 h-12 bg-primary text-secondary-container rounded-lg flex items-center justify-center mb-4 relative z-10">' +
+      '<span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 1;">' + cat.icon + '</span></div>' +
+      '<h3 class="font-headline-md text-on-surface mb-2 relative z-10 text-[22px]">' + cat.title + '</h3>' +
+      '<p class="font-body-md text-on-surface-variant flex-grow relative z-10 mb-4">' + cat.desc + '</p>' +
+      (disabled
+        ? '<span class="text-outline font-button-text flex items-center gap-1 mt-auto">Segera hadir</span>'
+        : '<span class="text-primary font-button-text group-hover:text-secondary-container transition-colors flex items-center gap-1 mt-auto">Ajukan Sekarang <span class="material-symbols-outlined text-sm">arrow_forward</span></span>') +
+      '</div>';
+  }
+
+  document.getElementById('serviceGrid').innerHTML = CATEGORIES.map(cardMarkup).join('');
+
+  function servicesOf(catId) {
+    var cat = CATEGORIES.filter(function(c){ return c.id === catId; })[0];
+    return cat ? SERVICES.filter(cat.filter) : [];
+  }
+
+  function openList(catId) {
+    var cat = CATEGORIES.filter(function(c){ return c.id === catId; })[0];
+    var list = servicesOf(catId);
+    document.getElementById('listTitle').textContent = cat.title;
+    document.getElementById('listBody').innerHTML = list.map(function(s){
+      return '<button type="button" onclick="openForm(\'' + s.id + '\')" class="text-left flex items-center gap-3 border border-surface-variant rounded-lg p-4 hover:border-primary hover:bg-surface-container transition-colors">' +
+        '<span class="text-2xl">' + (s.icon || '📄') + '</span>' +
+        '<span><strong class="block text-on-surface">' + s.name + '</strong>' +
+        '<span class="text-sm text-on-surface-variant">' + s.description + '</span></span></button>';
+    }).join('');
+    openModal('listOverlay');
+  }
+
+  function openForm(serviceId) {
+    var s = SERVICES.filter(function(x){ return x.id === serviceId; })[0];
+    if (!s) return;
+    document.getElementById('formTitle').textContent = s.name;
+    document.getElementById('formDesc').textContent = 'Persyaratan: ' + s.requirements;
+    document.getElementById('mfServiceName').value = s.name;
+    document.getElementById('serviceForm').reset();
+    closeModal('listOverlay');
+    openModal('formOverlay');
+  }
+
+  // isi dropdown layanan quick form
+  (function(){
+    var sel = document.getElementById('qfService');
+    SERVICES.forEach(function(s){ var o = document.createElement('option'); o.value = s.name; o.textContent = s.name; sel.appendChild(o); });
+  })();
+
+  function makeResi(){ return 'DWM-' + Date.now().toString(36).toUpperCase(); }
+
+  function submit(ev, data) {
+    ev.preventDefault();
+    var resi = makeResi();
+    var rec = { resi: resi, nama: data.nama, nik: data.nik, hp: data.hp, alamat: data.alamat || '', ket: data.ket || '', layanan: data.layanan, tgl: new Date().toISOString(), status: 'Menunggu Verifikasi' };
+    var all = [];
+    try { all = JSON.parse(localStorage.getItem('aplikasi_layanan') || '[]'); } catch(e){ all = []; }
+    all.unshift(rec);
+    localStorage.setItem('aplikasi_layanan', JSON.stringify(all));
+    if (WA_ADMIN) {
+      var msg = 'Halo Admin Desa Warung Menteng%0APengajuan layanan:*%0A' + encodeURIComponent(data.layanan) +
+        '%0ANama: ' + encodeURIComponent(data.nama) + '%0ANIK: ' + encodeURIComponent(data.nik) +
+        '%0AHP: ' + encodeURIComponent(data.hp) + '%0AAlamat: ' + encodeURIComponent(data.alamat || '-') +
+        '%0AKeterangan: ' + encodeURIComponent(data.ket || '-') +
+        '%0ANomor Resi: ' + encodeURIComponent(resi);
+      window.open(WA_ADMIN + '?text=' + msg, '_blank');
+    }
+    document.getElementById('traceResult').innerHTML = '<p class="text-secondary-container font-medium">Terima kasih! Nomor Resi Anda: <strong>' + resi + '</strong></p>';
+  }
+
+  document.getElementById('quickForm').addEventListener('submit', function(e){
+    submit(e, { nama: document.getElementById('qfName').value, nik: document.getElementById('qfNIK').value, hp: document.getElementById('qfPhone').value, layanan: document.getElementById('qfService').value });
+    this.reset();
+  });
+
+  document.getElementById('serviceForm').addEventListener('submit', function(e){
+    submit(e, { nama: document.getElementById('mfName').value, nik: document.getElementById('mfNIK').value, hp: document.getElementById('mfPhone').value, alamat: document.getElementById('mfAddress').value, ket: document.getElementById('mfNotes').value, layanan: document.getElementById('mfServiceName').value });
+    closeModal('formOverlay');
+    this.reset();
+  });
+
+  document.getElementById('traceForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var resi = document.getElementById('traceResi').value.trim().toUpperCase();
+    var all = [];
+    try { all = JSON.parse(localStorage.getItem('aplikasi_layanan') || '[]'); } catch(err){ all = []; }
+    var rec = null;
+    all.forEach(function(r){ if (r.resi.toUpperCase() === resi) rec = r; });
+    var box = document.getElementById('traceResult');
+    if (rec) {
+      box.innerHTML = '<div class="bg-primary-container rounded-lg p-4"><p class="text-on-primary font-medium">' + rec.layanan + '</p>' +
+        '<p class="text-on-primary/80 text-xs mt-1">Atas nama: ' + rec.nama + '</p>' +
+        '<span class="inline-block mt-3 bg-secondary-container text-primary text-xs font-semibold px-3 py-1 rounded-full">' + rec.status + '</span></div>';
+    } else {
+      box.innerHTML = '<p class="text-emergency-red">Nomor resi tidak ditemukan.</p>';
+    }
+  });
+
+  function openModal(id){ document.getElementById(id).classList.add('open'); }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+  ['.modal-overlay'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(m){
+      m.addEventListener('click', function(e){ if (e.target === m) m.classList.remove('open'); });
+    });
+  });
+</script>
 </body>
 </html>
-
