@@ -524,7 +524,7 @@ footer .copyright {
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ---------- Contact service navbar (merged: emergency + CS) ---------- */
-.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 96; }
+.wa-float { position: fixed; left: 20px; bottom: 20px; z-index: 96; }
 .wa-toggle {
   width: 56px; height: 56px; border: none; cursor: pointer; border-radius: 50%;
   background: #25d366; display: flex; align-items: center; justify-content: center;
@@ -532,7 +532,7 @@ footer .copyright {
 }
 .wa-toggle:hover { background: #1fb857; transform: translateY(-2px); }
 .wa-panel {
-  position: absolute; right: 0; bottom: 68px;
+  position: absolute; left: 0; bottom: 68px;
   width: 290px; max-width: calc(100vw - 40px);
   background: #fff; border-radius: var(--radius); padding: 16px 14px 14px;
   box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none;
