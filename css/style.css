@@ -213,8 +213,14 @@ header nav { display: flex; align-items: center; gap: 28px; width: 100%; }
 .hero {
   min-height: 82vh; display: flex; align-items: center; justify-content: center;
   text-align: center; position: relative; overflow: hidden;
-  background: linear-gradient(160deg, var(--primary-container) 0%, var(--primary) 120%);
   padding: 120px 24px 180px;
+}
+.hero-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+}
+.hero-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(24,58,47,0.78) 0%, rgba(0,45,26,0.85) 100%);
 }
 .hero-content { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; position: relative; z-index: 2; }
 .hero-badge {
