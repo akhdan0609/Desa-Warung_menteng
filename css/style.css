@@ -523,30 +523,22 @@ footer .copyright {
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* ---------- Customer service floating (bottom-left) ---------- */
-.customer-service { position: fixed; left: 20px; bottom: 20px; z-index: 96; display: flex; align-items: center; gap: 12px; }
-.cs-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: #25d366; color: #fff; font-family: var(--font-body);
-  font-size: 0.85rem; font-weight: 600; padding: 11px 20px; border-radius: 99px;
-  box-shadow: var(--shadow-md); transition: all 0.2s;
-}
-.cs-btn:hover { background: #1fb857; transform: translateY(-2px); }
-
-/* ---------- WhatsApp float (emergency, right-center) ---------- */
-.wa-float { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 96; }
+/* ---------- Contact service navbar (merged: emergency + CS) ---------- */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 96; }
 .wa-toggle {
-  width: 54px; height: 54px; border: none; cursor: pointer; border-radius: 14px 0 0 14px;
+  width: 56px; height: 56px; border: none; cursor: pointer; border-radius: 50%;
   background: #25d366; display: flex; align-items: center; justify-content: center;
-  box-shadow: -6px 8px 22px rgba(0,0,0,0.3); transition: width 0.2s, background 0.2s;
+  box-shadow: -6px 8px 22px rgba(0,0,0,0.3); transition: background 0.2s, transform 0.2s;
 }
-.wa-toggle:hover { width: 62px; background: #1fb857; }
+.wa-toggle:hover { background: #1fb857; transform: translateY(-2px); }
 .wa-panel {
-  position: absolute; right: 66px; top: 50%; transform: translateY(-50%) translateX(14px);
-  min-width: 240px; background: #fff; border-radius: var(--radius); padding: 16px 14px 12px;
-  box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s;
+  position: absolute; right: 0; bottom: 68px;
+  width: 290px; max-width: calc(100vw - 40px);
+  background: #fff; border-radius: var(--radius); padding: 16px 14px 14px;
+  box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none;
+  transform: translateY(14px); transition: opacity 0.25s, transform 0.25s;
 }
-.wa-float.open .wa-panel { opacity: 1; transform: translateY(-50%) translateX(0); pointer-events: auto; }
+.wa-float.open .wa-panel { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .wa-panel-title {
   font-family: var(--font-body); font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; color: var(--primary-container); margin-bottom: 10px; padding-left: 4px;
@@ -560,6 +552,16 @@ footer .copyright {
 }
 .emergency-item:hover { background: var(--primary-container); color: #fff; }
 .emergency-icon { font-size: 1rem; line-height: 1; }
+.wa-divider { height: 1px; background: var(--surface-variant); margin: 12px 4px; }
+.wa-cs { display: flex; flex-direction: column; gap: 8px; }
+.customer-service { display: block; }
+.cs-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #25d366; color: #fff; font-family: var(--font-body);
+  font-size: 0.85rem; font-weight: 600; padding: 11px 20px; border-radius: 99px;
+  box-shadow: var(--shadow-md); transition: all 0.2s; width: 100%;
+}
+.cs-btn:hover { background: #1fb857; transform: translateY(-2px); }
 
 /* ---------- KKN page helpers ---------- */
 .kkn-box { background: #fff; border: 1px solid var(--outline-variant); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow-sm); }
@@ -624,7 +626,6 @@ footer .copyright {
   .about-text-box { padding: 40px 28px; }
   footer .container { grid-template-columns: 1fr; }
   #footerContent { grid-template-columns: 1fr; }
-  .wa-panel { right: 60px; }
   .search-bar { right: 16px; }
 }
 
