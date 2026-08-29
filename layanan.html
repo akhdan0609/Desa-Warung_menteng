@@ -149,6 +149,7 @@ tailwind.config = {
   .status-item-date { font-size: 0.7rem; color: #717973; margin-top: 4px; }
   .status-empty { text-align: center; color: #717973; padding: 40px 20px; font-size: 0.85rem; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="font-body-md text-on-surface antialiased bg-background selection:bg-secondary-container selection:text-primary">
 
@@ -508,7 +509,96 @@ tailwind.config = {
         '%0ANomor Resi: ' + encodeURIComponent(resi);
       window.open(WA_ADMIN + '?text=' + msg, '_blank');
     }
-    document.getElementById('traceResult').innerHTML = '<p class="text-secondary-container font-medium">Terima kasih! Nomor Resi Anda: <strong>' + resi + '</strong></p>';
+    showSubmitted(resi);
+  }
+
+  function showSubmitted(resi) {
+    var all = [];
+    try { all = JSON.parse(localStorage.getItem('aplikasi_layanan') || '[]'); } catch(e){ all = []; }
+    var rec = null;
+    all.forEach(function(r){ if (r.resi === resi) rec = r; });
+    if (!rec) return;
+    var box = document.getElementById('traceResult');
+    box.innerHTML =
+      '<div class="bg-primary-container rounded-lg p-5 text-on-primary">' +
+        '<div class="flex items-center gap-2 mb-2">' +
+          '<span class="material-symbols-outlined text-secondary-container">check_circle</span>' +
+          '<strong>Pengajuan Terkirim!</strong>' +
+        '</div>' +
+        '<p class="text-sm opacity-90 mb-1">' + rec.layanan + '</p>' +
+        '<p class="text-xs opacity-70 mb-3">Atas nama ' + rec.nama + '</p>' +
+        '<p class="text-xs text-secondary-container font-semibold mb-3">Nomor Resi: <span id="lastResi">' + resi + '</span></p>' +
+        '<button onclick="downloadPDF(\'' + resi + '\')" class="w-full bg-secondary-container text-primary hover:opacity-90 font-semibold text-sm py-2.5 px-4 rounded-lg transition-opacity flex items-center justify-center gap-2">' +
+          '<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span> Unduh PDF Bukti' +
+        '</button>' +
+      '</div>';
+  }
+
+  function downloadPDF(resi) {
+    if (typeof window.jspdf === 'undefined') { alert('Library PDF belum termuat. Periksa koneksi internet.'); return; }
+    var all = [];
+    try { all = JSON.parse(localStorage.getItem('aplikasi_layanan') || '[]'); } catch(e){ all = []; }
+    var rec = null;
+    all.forEach(function(r){ if (r.resi === resi) rec = r; });
+    if (!rec) { alert('Data tidak ditemukan.'); return; }
+    var d = new Date(rec.tgl);
+    var ds = isNaN(d) ? rec.tgl : d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    var doc = new window.jspdf.jsPDF();
+    var W = doc.internal.pageSize.getWidth();
+    var X = 14;
+    // Header
+    doc.setFillColor(0, 45, 26); doc.rect(0, 0, W, 40, 'F');
+    doc.setTextColor(253, 196, 37);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+    doc.text('Desa Warung Menteng', W / 2, 17, { align: 'center' });
+    doc.setTextColor(255, 255, 255); doc.setFontSize(10); doc.setFont('helvetica', 'normal');
+    doc.text('Kecamatan Cijeruk, Kabupaten Bogor - Smart Village Heritage', W / 2, 26, { align: 'center' });
+    doc.setFontSize(11); doc.setFont('helvetica', 'bold');
+    doc.text('BUKTI PENGAJUAN LAYANAN', W / 2, 34, { align: 'center' });
+
+    // Meta
+    doc.setTextColor(0, 0, 0);
+    var y = 56;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Nomor Resi', X, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(': ' + rec.resi, X + 40, y);
+
+    y += 7; doc.setFont('helvetica', 'bold'); doc.text('Tanggal Pengajuan', X, y); doc.setFont('helvetica', 'normal'); doc.text(': ' + ds, X + 40, y);
+    y += 7; doc.setFont('helvetica', 'bold'); doc.text('Status', X, y); doc.setFont('helvetica', 'normal'); doc.text(': ' + rec.status, X + 40, y);
+    y += 16;
+
+    // Data pemohon box
+    doc.setFillColor(237, 238, 239); doc.roundedRect(X, y, W - 2 * X, 52, 3, 3, 'F');
+    doc.setTextColor(0, 45, 26); doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.text('Data Pemohon', X + 6, y + 9);
+    doc.setTextColor(0, 0, 0); doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold'); doc.text('Nama', X + 6, y + 21); doc.setFont('helvetica', 'normal'); doc.text(': ' + rec.nama, X + 42, y + 21);
+    doc.setFont('helvetica', 'bold'); doc.text('NIK', X + 6, y + 29); doc.setFont('helvetica', 'normal'); doc.text(': ' + rec.nik, X + 42, y + 29);
+    doc.setFont('helvetica', 'bold'); doc.text('No. HP', X + 6, y + 37); doc.setFont('helvetica', 'normal'); doc.text(': ' + rec.hp, X + 42, y + 37);
+    doc.setFont('helvetica', 'bold'); doc.text('Alamat', X + 6, y + 45); doc.setFont('helvetica', 'normal'); doc.text(': ' + (rec.alamat || '-'), X + 42, y + 45);
+
+    y += 62;
+    doc.setTextColor(0, 0, 0); doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.text('Detail Pengajuan', X, y);
+    y += 6;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold'); doc.text('Jenis Layanan', X, y); doc.setFont('helvetica', 'normal'); doc.text(': ' + rec.layanan, X + 42, y);
+    y += 7; doc.setFont('helvetica', 'bold'); doc.text('Keterangan', X, y); doc.setFont('helvetica', 'normal');
+    var ket = rec.ket || '-';
+    var lines = doc.splitTextToSize(ket, W - 2 * X - 42);
+    doc.text(': ' + (lines[0] || ''), X + 42, y);
+    if (lines.length > 1) { doc.text(lines.slice(1), X + 42, y + 7); }
+
+    y += 30;
+    doc.setDrawColor(120, 120, 120); doc.line(X, y, W - X, y);
+    doc.setFontSize(9); doc.setFont('helvetica', 'italic'); doc.setTextColor(113, 121, 115);
+    doc.text('Dokumen ini dibuat otomatis dari Sistem Administrasi Desa Warung Menteng.', X, y + 8);
+    doc.text('Silakan simpan nomor resi untuk memantau status pengajuan Anda.', X, y + 15);
+
+    doc.save('Bukti_Pengajuan_' + rec.resi + '.pdf');
   }
 
   document.getElementById('quickForm').addEventListener('submit', function(e){
@@ -533,7 +623,10 @@ tailwind.config = {
     if (rec) {
       box.innerHTML = '<div class="bg-primary-container rounded-lg p-4"><p class="text-on-primary font-medium">' + rec.layanan + '</p>' +
         '<p class="text-on-primary/80 text-xs mt-1">Atas nama: ' + rec.nama + '</p>' +
-        '<span class="inline-block mt-3 bg-secondary-container text-primary text-xs font-semibold px-3 py-1 rounded-full">' + rec.status + '</span></div>';
+        '<p class="text-on-primary/80 text-xs mt-1">Nomor Resi: ' + rec.resi + '</p>' +
+        '<span class="inline-block mt-3 bg-secondary-container text-primary text-xs font-semibold px-3 py-1 rounded-full">' + rec.status + '</span>' +
+        '<button onclick="downloadPDF(\'' + rec.resi + '\')" class="w-full mt-3 bg-secondary-container text-primary hover:opacity-90 font-semibold text-sm py-2 rounded-lg transition-opacity flex items-center justify-center gap-2">' +
+        '<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span> Unduh PDF Bukti</button></div>';
     } else {
       box.innerHTML = '<p class="text-emergency-red">Nomor resi tidak ditemukan.</p>';
     }
