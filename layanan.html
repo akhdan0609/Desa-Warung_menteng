@@ -155,9 +155,9 @@ tailwind.config = {
 <!-- ============ NAVBAR ============ -->
 <nav class="bg-primary top-0 sticky z-50 shadow-md w-full">
   <div class="flex justify-between items-center w-full px-6 md:px-margin-lg max-w-container-max mx-auto h-20">
-    <a class="font-headline-md text-headline-lg md:text-headline-md font-bold text-on-primary flex items-center gap-2" href="index.html">
+    <a class="font-headline-md text-lg md:text-headline-md font-bold text-on-primary flex items-center gap-2" href="index.html">
       <img src="images/logo.png" alt="logo" class="w-9 h-9 rounded-full object-cover" />
-      Desa Warung Menteng
+      <span class="hidden sm:inline">Desa Warung Menteng</span>
     </a>
     <div class="hidden md:flex space-x-8 items-center">
       <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="index.html">Beranda</a>
@@ -166,8 +166,31 @@ tailwind.config = {
       <a aria-current="page" class="text-secondary-container font-bold border-b-2 border-secondary-container pb-1 font-button-text" href="layanan.html">Administrasi Desa</a>
       <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="berita.html">Berita</a>
     </div>
+    <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center w-11 h-11 rounded-lg text-on-primary" aria-label="Menu">
+      <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">menu</span>
+    </button>
   </div>
 </nav>
+
+<!-- ============ MOBILE MENU PANEL ============ -->
+<div id="mobileMenuPanel" class="fixed inset-0 z-[90] hidden">
+  <div class="absolute inset-0 bg-black/50" data-close-menu></div>
+  <div class="absolute right-0 top-0 bottom-0 w-[78%] max-w-[320px] bg-surface-container-lowest shadow-2xl flex flex-col">
+    <div class="flex items-center justify-between px-6 py-6 border-b border-surface-variant">
+      <span class="font-headline-md text-on-surface">Menu</span>
+      <button id="mobileMenuClose" class="text-outline hover:text-on-surface" aria-label="Tutup">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto py-4 px-2 flex flex-col">
+      <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="index.html">Beranda</a>
+      <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="tentang.html">Tentang</a>
+      <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="pariwisata.html">Pariwisata</a>
+      <a class="px-4 py-3.5 border-b border-surface-container bg-secondary-container/20 text-primary font-bold rounded-lg transition-colors font-button-text" href="layanan.html">Administrasi Desa</a>
+      <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="berita.html">Berita</a>
+    </nav>
+  </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <header class="relative w-full min-h-[340px] flex items-center justify-center overflow-hidden">
@@ -583,6 +606,20 @@ tailwind.config = {
         panel.classList.remove('open');
       }
     });
+  })();
+
+  /* ===== MOBILE MENU ===== */
+  (function(){
+    var btn = document.getElementById('mobileMenuBtn');
+    var panel = document.getElementById('mobileMenuPanel');
+    var closeBtn = document.getElementById('mobileMenuClose');
+    if (!btn || !panel) return;
+    function open(){ panel.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function close(){ panel.classList.add('hidden'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    panel.addEventListener('click', function(e){ if (e.target.getAttribute('data-close-menu') !== null) close(); });
+    panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
   })();
 </script>
 </body>
