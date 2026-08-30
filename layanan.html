@@ -227,43 +227,6 @@ tailwind.config = {
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="serviceGrid"></div>
       </section>
-
-      <!-- Formulir Pengajuan (Glassmorphism) -->
-      <section class="glass-card rounded-xl p-8 relative overflow-hidden">
-        <div class="absolute -top-20 -right-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-3xl z-0"></div>
-        <div class="relative z-10">
-          <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Formulir Pengajuan Online</h2>
-          <p class="font-body-md text-body-md text-on-surface-variant mb-8">Isi data di bawah ini untuk memulai proses administrasi. Pastikan data sesuai dengan KTP.</p>
-          <form id="quickForm" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label class="block font-label-md text-on-surface mb-2">Nama Lengkap</label>
-                <input id="qfName" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" placeholder="Masukkan nama lengkap" type="text" required />
-              </div>
-              <div>
-                <label class="block font-label-md text-on-surface mb-2">Nomor Induk Kependudukan (NIK)</label>
-                <input id="qfNIK" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" placeholder="16 Digit NIK" type="text" required />
-              </div>
-            </div>
-            <div>
-              <label class="block font-label-md text-on-surface mb-2">Jenis Layanan</label>
-              <select id="qfService" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors appearance-none">
-                <option disabled selected value="">Pilih layanan yang dibutuhkan...</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-label-md text-on-surface mb-2">No. HP / WhatsApp</label>
-              <input id="qfPhone" class="w-full bg-background border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" placeholder="08xxxxxxxxxx" type="tel" required />
-            </div>
-            <div class="pt-4">
-              <button class="w-full md:w-auto bg-secondary-container text-on-secondary-container hover:bg-secondary font-button-text py-3 px-8 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2" type="submit">
-                Kirim Pengajuan
-                <span class="material-symbols-outlined text-sm">send</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
     </div>
 
     <!-- RIGHT: sticky widgets -->
@@ -485,12 +448,6 @@ tailwind.config = {
     openModal('formOverlay');
   }
 
-  // isi dropdown layanan quick form
-  (function(){
-    var sel = document.getElementById('qfService');
-    SERVICES.forEach(function(s){ var o = document.createElement('option'); o.value = s.name; o.textContent = s.name; sel.appendChild(o); });
-  })();
-
   function makeResi(){ return 'DWM-' + Date.now().toString(36).toUpperCase(); }
 
   function submit(ev, data) {
@@ -600,11 +557,6 @@ tailwind.config = {
 
     doc.save('Bukti_Pengajuan_' + rec.resi + '.pdf');
   }
-
-  document.getElementById('quickForm').addEventListener('submit', function(e){
-    submit(e, { nama: document.getElementById('qfName').value, nik: document.getElementById('qfNIK').value, hp: document.getElementById('qfPhone').value, layanan: document.getElementById('qfService').value });
-    this.reset();
-  });
 
   document.getElementById('serviceForm').addEventListener('submit', function(e){
     submit(e, { nama: document.getElementById('mfName').value, nik: document.getElementById('mfNIK').value, hp: document.getElementById('mfPhone').value, alamat: document.getElementById('mfAddress').value, ket: document.getElementById('mfNotes').value, layanan: document.getElementById('mfServiceName').value });
