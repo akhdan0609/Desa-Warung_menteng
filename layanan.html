@@ -154,21 +154,23 @@ tailwind.config = {
 <body class="font-body-md text-on-surface antialiased bg-background selection:bg-secondary-container selection:text-primary">
 
 <!-- ============ NAVBAR ============ -->
-<nav class="bg-primary top-0 sticky z-50 shadow-md w-full">
+<nav class="bg-white/90 backdrop-blur-md border-b border-outline-variant top-0 sticky z-50 w-full transition-shadow">
   <div class="flex justify-between items-center w-full pl-6 pr-2 md:px-margin-lg max-w-container-max mx-auto h-20">
-    <a class="font-headline-md text-lg md:text-headline-md font-bold text-on-primary flex items-center gap-2" href="index.html">
-      <img src="images/logo.png" alt="logo" class="w-9 h-9 rounded-full object-cover" />
-      <span>Desa Warung Menteng</span>
+    <a class="font-headline-md text-lg md:text-headline-md font-bold text-primary flex items-center gap-2" href="index.html">
+      <img src="images/logo.png" alt="logo" class="w-10 h-10 object-contain" />
+      <span>Warung Menteng</span>
     </a>
     <div class="hidden md:flex space-x-8 items-center">
-      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="index.html">Beranda</a>
-      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="tentang.html">Tentang</a>
-      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="pariwisata.html">Pariwisata</a>
-      <a aria-current="page" class="text-secondary-container font-bold border-b-2 border-secondary-container pb-1 font-button-text" href="layanan.html">Administrasi Desa</a>
-      <a class="text-on-primary pb-1 hover:text-secondary-container transition-colors duration-200 font-button-text" href="berita.html">Berita</a>
+      <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="index.html">Beranda</a>
+      <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="tentang.html">Tentang</a>
+      <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="pariwisata.html">Pariwisata</a>
+      <a aria-current="page" class="text-secondary font-bold border-b-2 border-secondary pb-1 font-button-text" href="layanan.html">Administrasi Desa</a>
+      <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="berita.html">Berita</a>
     </div>
-    <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center w-11 h-11 rounded-lg text-on-primary" aria-label="Menu">
-      <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">menu</span>
+    <button id="mobileMenuBtn" class="md:hidden flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-lg" aria-label="Menu">
+      <span class="block w-6 h-[2px] bg-primary rounded"></span>
+      <span class="block w-6 h-[2px] bg-primary rounded"></span>
+      <span class="block w-6 h-[2px] bg-primary rounded"></span>
     </button>
   </div>
 </nav>

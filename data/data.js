@@ -10,9 +10,9 @@ var siteData = {
     { "label": "Tentang", "href": "tentang.html", "submenu": [
       { "label": "Profil Desa", "href": "profil.html" },
       { "label": "Perangkat Desa", "href": "perangkat.html" },
-      { "label": "Anggaran Desa", "href": "anggaran.html" }
+      { "label": "Anggaran Desa", "href": "anggaran.html" },
+      { "label": "Administrasi Desa", "href": "layanan.html" }
     ]},
-    { "label": "Administrasi", "href": "layanan.html" },
     { "label": "Pariwisata", "href": "pariwisata.html", "submenu": [
       { "label": "Destinasi", "href": "destinasi.html" },
       { "label": "Kuliner", "href": "kuliner.html" },

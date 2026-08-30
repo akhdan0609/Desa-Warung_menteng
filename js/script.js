@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var page = window.location.pathname.split('/').pop() || 'index.html';
 
   /* AUTO-PURGE STALE CONTENT OVERRIDES: bump DATA_VERSION setiap kali data.js berubah */
-  var DATA_VERSION = '2026-08-30-3';
+  var DATA_VERSION = '2026-08-30-4';
   try {
     if (localStorage.getItem('siteDataVersion') !== DATA_VERSION) {
       Object.keys(localStorage).forEach(function (k) {
