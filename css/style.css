@@ -630,9 +630,9 @@ footer .copyright {
   .form-row { grid-template-columns: 1fr; }
   .press-item { flex-direction: column; gap: 8px; }
   .about-text-box { padding: 32px 24px; }
-  .about-text-box.has-media { flex-direction: row; gap: 16px; }
-  .about-media-col { flex: 0 0 48%; min-height: 200px; }
-  .about-text-col { gap: 10px; }
+  .about-text-box.has-media { flex-direction: row; align-items: flex-start; gap: 16px; }
+  .about-media-col { flex: 0 0 46%; width: 46%; aspect-ratio: 4 / 3; min-height: 0; }
+  .about-text-col { flex: 1; min-width: 0; gap: 10px; }
   footer .container { grid-template-columns: 1fr; }
   #footerContent { grid-template-columns: 1fr; }
   .search-bar { right: 16px; }
