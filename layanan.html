@@ -148,6 +148,20 @@ tailwind.config = {
   .status-item-service { font-size: 0.78rem; color: #717973; }
   .status-item-date { font-size: 0.7rem; color: #717973; margin-top: 4px; }
   .status-empty { text-align: center; color: #717973; padding: 40px 20px; font-size: 0.85rem; }
+
+  /* ---- navbar dropdown (konsisten dengan situs lain) ---- */
+  .nav-item { position: relative; }
+  .nav-item > a { display: inline-flex; align-items: center; gap: 4px; }
+  .nav-item > a::after { content: "\25BE"; font-size: 0.7rem; }
+  .nav-item:hover .nav-drop { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-drop {
+    position: absolute; top: 100%; left: 0; min-width: 210px;
+    background: #fff; border: 1px solid #c1c8c1; border-radius: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12); padding: 8px; z-index: 50;
+    opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 0.2s ease;
+  }
+  .nav-drop a { display: block; padding: 9px 12px; border-radius: 0.375rem; color: #414943; font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+  .nav-drop a:hover { background: #edeeef; color: #785a00; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -162,8 +176,24 @@ tailwind.config = {
     </a>
     <div class="hidden md:flex space-x-8 items-center">
       <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="index.html">Beranda</a>
-      <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="tentang.html">Tentang</a>
-      <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="pariwisata.html">Pariwisata</a>
+      <div class="nav-item">
+        <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="tentang.html">Tentang</a>
+        <div class="nav-drop">
+          <a href="profil.html">Profil Desa</a>
+          <a href="perangkat.html">Perangkat Desa</a>
+          <a href="anggaran.html">Anggaran Desa</a>
+          <a href="layanan.html">Administrasi Desa</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="pariwisata.html">Pariwisata</a>
+        <div class="nav-drop">
+          <a href="destinasi.html">Destinasi</a>
+          <a href="kuliner.html">Kuliner</a>
+          <a href="akomodasi.html">Akomodasi</a>
+          <a href="umkm.html">UMKM</a>
+        </div>
+      </div>
       <a aria-current="page" class="text-secondary font-bold border-b-2 border-secondary pb-1 font-button-text" href="layanan.html">Administrasi Desa</a>
       <a class="text-on-surface-variant pb-1 hover:text-secondary transition-colors duration-200 font-button-text" href="berita.html">Berita</a>
     </div>
@@ -188,7 +218,14 @@ tailwind.config = {
     <nav class="flex-1 overflow-y-auto py-4 px-2 flex flex-col">
       <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="index.html">Beranda</a>
       <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="tentang.html">Tentang</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="profil.html">Profil Desa</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="perangkat.html">Perangkat Desa</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="anggaran.html">Anggaran Desa</a>
       <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="pariwisata.html">Pariwisata</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="destinasi.html">Destinasi</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="kuliner.html">Kuliner</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="akomodasi.html">Akomodasi</a>
+      <a class="pl-8 pr-4 py-2.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors text-sm" href="umkm.html">UMKM</a>
       <a class="px-4 py-3.5 border-b border-surface-container bg-secondary-container/20 text-primary font-bold rounded-lg transition-colors font-button-text" href="layanan.html">Administrasi Desa</a>
       <a class="px-4 py-3.5 border-b border-surface-container text-on-surface hover:bg-surface-container rounded-lg transition-colors font-button-text" href="berita.html">Berita</a>
     </nav>
