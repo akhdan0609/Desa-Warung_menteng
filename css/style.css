@@ -594,6 +594,25 @@ footer .copyright {
   .vm-grid { grid-template-columns: 1fr; }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  header .container { height: auto; min-height: 64px; padding: 14px 24px; gap: 12px; flex-wrap: wrap; }
+  .hamburger { display: flex; order: 3; margin-right: -4px; }
+  .search-toggle { margin-left: auto; order: 2; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px; height: 100vh;
+    background: #fff; flex-direction: column; align-items: flex-start; gap: 0;
+    padding: 90px 28px 40px; box-shadow: var(--shadow-lg); z-index: 99;
+    transition: right 0.3s ease; overflow-y: auto; margin-left: 0;
+  }
+  .nav-links.open { right: 0; }
+  .nav-links > li { width: 100%; }
+  .nav-links a { display: block; padding: 14px 0; border-bottom: 1px solid var(--surface-container); font-size: 1rem; }
+  .nav-dropdown > a::after { float: right; }
+  .nav-dropdown.open .submenu, .submenu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding-left: 14px; }
+  .submenu { display: none; }
+  .nav-dropdown.open .submenu { display: block; }
+}
+
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
   .section { padding: 60px 0; }
@@ -648,8 +667,31 @@ footer .copyright {
   .hero h1 { font-size: 1.9rem; }
   .section-title { font-size: 1.6rem; }
   .hero-stats { gap: 10px; }
+  .hero-stat { border-right: none; }
+  .stats-row, .hero-stats { gap: 10px; }
   .hero-stat .num { font-size: 1.5rem; }
   .gallery-grid { gap: 8px; }
   .perangkat-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
+  .hero { padding: 100px 16px 90px; }
+  .section { padding: 48px 0; }
+  .page-header { padding: 48px 16px 34px; }
+  .page-hero { padding: 80px 16px 48px; }
+  .service-modal-content { padding: 24px 20px; }
+  .press-item { padding: 22px 0; gap: 14px; }
+  .press-date { min-width: 0; }
+  .kkn-box { padding: 28px 20px; }
+}
+
+@media (max-width: 400px) {
+  .hero h1 { font-size: 1.7rem; }
+  .section-title { font-size: 1.45rem; }
+  .hero p { font-size: 1rem; }
+  .hero-badge { font-size: 0.64rem; letter-spacing: 0.15em; padding: 8px 14px; }
+  .btn { padding: 12px 20px; font-size: 0.88rem; }
+  .container { padding: 0 16px; }
+  .about-text-box.has-media { gap: 12px; }
+  .about-text-box .section-title { font-size: 1.3rem; }
+  .stat-item { padding: 20px 12px; }
+  .wa-panel { width: 260px; }
 }
