@@ -631,7 +631,7 @@ footer .copyright {
   .press-item { flex-direction: column; gap: 8px; }
   .about-text-box { padding: 32px 24px; }
   .about-text-box.has-media { flex-direction: row; gap: 16px; }
-  .about-media-col { flex: 0 0 42%; min-height: 200px; }
+  .about-media-col { flex: 0 0 48%; min-height: 200px; }
   .about-text-col { gap: 10px; }
   footer .container { grid-template-columns: 1fr; }
   #footerContent { grid-template-columns: 1fr; }
