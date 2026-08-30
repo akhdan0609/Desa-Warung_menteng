@@ -630,9 +630,14 @@ footer .copyright {
   .form-row { grid-template-columns: 1fr; }
   .press-item { flex-direction: column; gap: 8px; }
   .about-text-box { padding: 32px 24px; }
-  .about-text-box.has-media { flex-direction: row; align-items: flex-start; gap: 16px; }
-  .about-media-col { flex: 0 0 46%; width: 46%; aspect-ratio: 4 / 3; min-height: 0; }
+  .about-text-box.has-media { flex-direction: row; align-items: stretch; gap: 16px; }
+  .about-media-col { flex: 0 0 46%; min-height: 0; }
   .about-text-col { flex: 1; min-width: 0; gap: 10px; }
+  .about-text-box .section-title { font-size: 1.5rem; }
+  .about-text-box .section-desc,
+  .about-text-box #profileDesc1,
+  .about-text-box #profileDesc2 { font-size: 0.92rem; }
+  .about-text-box #profileDesc2 { line-height: 1.65; }
   footer .container { grid-template-columns: 1fr; }
   #footerContent { grid-template-columns: 1fr; }
   .search-bar { right: 16px; }
