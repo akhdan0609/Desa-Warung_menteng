@@ -265,9 +265,9 @@ header nav { display: flex; align-items: center; gap: 28px; width: 100%; }
 .about-text-box .btn-outline:hover { background: var(--on-secondary-fixed); color: #fff; }
 
 /* Beranda: kotak kuning dengan gambar suasana di samping teks */
-.about-text-box.has-media { flex-direction: row; align-items: stretch; gap: 32px; }
+.about-text-box.has-media { flex-direction: row; align-items: center; gap: 32px; }
 .about-text-col { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
-.about-media-col { flex: 0 0 44%; border-radius: var(--radius); overflow: hidden; min-height: 280px; }
+.about-media-col { flex: 0 0 44%; align-self: center; border-radius: var(--radius); overflow: hidden; height: 360px; }
 .about-media-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .about-visual { border-radius: var(--radius); overflow: hidden; min-height: 360px; background: var(--surface-container-high); position: relative; }
 
@@ -654,8 +654,8 @@ footer .copyright {
   .form-row { grid-template-columns: 1fr; }
   .press-item { flex-direction: column; gap: 8px; }
   .about-text-box { padding: 32px 24px; }
-  .about-text-box.has-media { flex-direction: row; align-items: stretch; gap: 16px; }
-  .about-media-col { flex: 0 0 48%; width: 48%; min-height: 0; }
+  .about-text-box.has-media { flex-direction: row; align-items: center; gap: 16px; }
+  .about-media-col { flex: 0 0 48%; width: 48%; align-self: center; height: 220px; }
   .about-media-col img { width: 100%; height: 100%; object-fit: cover; }
   .about-text-col { flex: 1; min-width: 0; gap: 10px; }
   .about-text-box .section-title { font-size: 1.5rem; }
