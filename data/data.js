@@ -303,7 +303,11 @@ var siteData = {
     { "label": "Pemadam Kebakaran", "icon": "\uD83D\uDE92", "contact": "628123456001" },
     { "label": "Ambulance Siaga", "icon": "\uD83D\uDE91", "contact": "628123456002" },
     { "label": "BabinkamTibmas", "icon": "\uD83D\uDC6E", "contact": "628123456003" },
-    { "label": "BPBD", "icon": "\uD83D\uDEA8", "contact": "628123456004" }
+    { "label": "BPBD", "icon": "\uD83D\uDEA8", "contact": "628123456004" },
+    { "label": "Satpol PP", "icon": "\uD83D\uDE94", "contact": "628123456005" },
+    { "label": "Babinsa", "icon": "\uD83C\uDF96\uFE0F", "contact": "628123456006" },
+    { "label": "Bidan Desa", "icon": "\uD83D\uDC69\u200D\u2695\uFE0F", "contact": "628123456007" },
+    { "label": "PLKB", "icon": "\uD83D\uDC6A", "contact": "628123456008" }
   ],
   "admin": {
     "username": "admin",
