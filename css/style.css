@@ -594,6 +594,11 @@ footer .copyright {
   .vm-grid { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 960px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .lokasi-grid { grid-template-columns: 1fr; }
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
   header .container { height: auto; min-height: 64px; padding: 14px 24px; gap: 12px; flex-wrap: wrap; }
   .hamburger { display: flex; order: 3; margin-right: -4px; }
