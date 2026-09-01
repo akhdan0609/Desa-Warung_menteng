@@ -7,9 +7,9 @@ var siteData = {
   },
   "nav": [
     { "label": "Beranda", "href": "index.html" },
-    { "label": "Profil Desa", "href": "tentang.html", "submenu": [
+    { "label": "Profil Desa", "href": "profil.html", "submenu": [
       { "label": "Tentang Desa", "href": "tentang.html" },
-      { "label": "Sejarah Desa", "href": "profil.html" },
+      { "label": "Sejarah Desa", "href": "sejarah.html" },
       { "label": "Perangkat Desa", "href": "perangkat.html" },
       { "label": "Anggaran Desa", "href": "anggaran.html" }
     ]},
@@ -17,24 +17,24 @@ var siteData = {
       { "label": "Destinasi", "href": "destinasi.html" },
       { "label": "UMKM", "href": "umkm.html" },
       { "label": "Produk Lokal", "href": "kuliner.html" },
-      { "label": "Situs Sejarah", "href": "profil.html" },
-      { "label": "Budaya & Adat", "href": "tentang.html" },
-      { "label": "Perikanan dan Budidaya", "href": "kuliner.html" }
+      { "label": "Situs Sejarah", "href": "situs-sejarah.html" },
+      { "label": "Budaya & Adat", "href": "budaya-adat.html" },
+      { "label": "Perikanan dan Budidaya", "href": "perikanan.html" }
     ]},
     { "label": "Pelayanan", "href": "layanan.html", "submenu": [
-      { "label": "Surat Keterangan", "href": "layanan.html" },
-      { "label": "Kependudukan", "href": "layanan.html" },
-      { "label": "Pindah Datang", "href": "layanan.html" },
-      { "label": "Layanan Pernikahan", "href": "layanan.html" }
+      { "label": "Surat Keterangan", "href": "surat-keterangan.html" },
+      { "label": "Kependudukan", "href": "kependudukan.html" },
+      { "label": "Pindah Datang", "href": "pindah-datang.html" },
+      { "label": "Layanan Pernikahan", "href": "layanan-pernikahan.html" }
     ]},
     { "label": "Berita", "href": "berita.html", "submenu": [
       { "label": "Press Release", "href": "berita.html" },
       { "label": "Galeri", "href": "galeri.html" }
     ]},
     { "label": "KKN", "href": "kkn.html", "submenu": [
-      { "label": "Latar Belakang", "href": "kkn.html" },
-      { "label": "Visi dan Misi", "href": "kkn.html" },
-      { "label": "Struktural", "href": "kkn.html" },
+      { "label": "Latar Belakang", "href": "kkn-latar.html" },
+      { "label": "Visi dan Misi", "href": "kkn-visi.html" },
+      { "label": "Struktural", "href": "kkn-struktural.html" },
       { "label": "Galeri", "href": "galeri.html" }
     ]}
   ],
@@ -53,6 +53,47 @@ var siteData = {
     "title": "Selamat Datang di Desa Warung Menteng",
     "description1": "Terletak di Kecamatan Cijeruk, Kabupaten Bogor, Desa Warung Menteng adalah permata tersembunyi di kaki Gunung Salak. Dengan udara sejuk, pemandangan hijau, dan masyarakat yang ramah, desa ini menawarkan pengalaman wisata alam yang autentik.",
     "description2": "Dari agrowisata Warso Farm, camping di Bukit Alesano, hingga situs sejarah Tugu Maseng \u2014 setiap sudut desa ini menyimpan cerita dan keindahan yang menunggu untuk dijelajahi."
+  },
+  "sejarah_desa": [
+    { "periode": "Awal Mula", "judul": "Asal-Usul Nama Warung Menteng", "deskripsi": "Nama Warung Menteng konon lahir dari sebuah warung kecil milik seorang pendatang yang menjual aneka kebutuhan sehari-hari di tepi jalan perbukitan. Warung tersebut menjadi tempat singgah yang ramai, sehingga kawasan di sekitarnya kemudian dikenal dengan sebutan \u201CWarung Menteng\u201D." },
+    { "periode": "Masa Penjajahan", "judul": "Perjuangan Melawan Penjajah", "deskripsi": "Pada masa perjuangan kemerdekaan, rakyat di kawasan ini ikut berjuang melawan penjajah Belanda. Peristiwa heroik tersebut diabadikan dalam sebuah monumen bernama Tugu Maseng, yang kini menjadi salah satu situs sejarah yang dijaga masyarakat." },
+    { "periode": "Pembentukan Desa", "judul": "Terbentuknya Pemerintahan Desa", "deskripsi": "Seiring perkembangan zaman, kawasan ini resmi dibentuk menjadi sebuah desa dengan nama Desa Warung Menteng di wilayah Kecamatan Cijeruk, Kabupaten Bogor. Pemerintahan dan pelayanan desa terus berkembang dari masa ke masa." },
+    { "periode": "Masa Kini", "judul": "Menuju Desa Wisata Digital", "deskripsi": "Kini Desa Warung Menteng dikenal sebagai desa wisata di kaki Gunung Salak dengan potensi agrowisata, camping, situs sejarah, hingga UMKM. Bersama mahasiswa KKN, desa ini bertransformasi menuju desa yang maju dan digital." }
+  ],
+  "situs_sejarah": [
+    { "id": 1, "name": "Tugu Maseng", "tag": "Monumen", "icon": "\uD83D\uDDFF", "description": "Monumen perjuangan rakyat melawan penjajahan Belanda. Nama \u201CMaseng\u201D berasal dari kata \u201Cmaas\u00E9ng\u201D yang berarti menyerang. Menjadi simbol semangat juang warga desa." },
+    { "id": 2, "name": "Makam Keramat Cibalung", "tag": "Religi", "icon": "\uD83D\uDD4C", "description": "Makam tokoh penyebar agama di kawasan Cibalung yang sangat dihormati masyarakat. Sering diziarahi warga, terutama menjelang hajat besar dan tradisi desa." },
+    { "id": 3, "name": "Sumur Tua Warmeng", "tag": "Peninggalan", "icon": "\uD83D\uDCA7", "description": "Sumur tua peninggalan masa lampau yang dahulu menjadi sumber air utama warga. Menjadi saksi bisu perjalanan dan kehidupan masyarakat desa sejak zaman dahulu." }
+  ],
+  "budaya_adat": [
+    { "id": 1, "name": "Hajat Lembur", "tag": "Adat", "icon": "\uD83C\uDF8A", "description": "Syukuran desa tahunan yang digelar sebagai ungkapan rasa syukur. Dimeriahkan dengan wayang golek, tarian Sunda, dan pagelaran seni budaya khas desa." },
+    { "id": 2, "name": "Wayang Golek", "tag": "Seni", "icon": "\uD83C\uDFAD", "description": "Pertunjukan wayang golek dengan gamelan Sunda yang mengisahkan cerita rakyat dan pewayangan. Biasanya digelar saat hajat desa atau khitanan." },
+    { "id": 3, "name": "Jaipong & Tari Sunda", "tag": "Tari", "icon": "\uD83D\uDC83", "description": "Tarian tradisional Sunda yang dinamis dan penuh semangat, kerap tampil dalam acara desa, penyambutan tamu, hingga festival budaya." },
+    { "id": 4, "name": "Gotong Royong & Ngariung", "tag": "Sosial", "icon": "\uD83E\uDD1D", "description": "Tradisi kebersamaan warga dalam bekerja bakti dan berkumpul bersama (ngariung) untuk mempererat silaturahmi dan menjaga kerukunan desa." }
+  ],
+  "perikanan_budidaya": [
+    { "id": 1, "name": "Budidaya Ikan Air Tawar", "tag": "Perikanan", "icon": "\uD83D\uDC1F", "description": "Pembesaran ikan nila dan mas di kolam air tawar warga. Hasilnya dijual segar maupun diolah menjadi olahan khas desa." },
+    { "id": 2, "name": "Budidaya Lele Bioflok", "tag": "Perikanan", "icon": "\uD83D\uDC20", "description": "Teknik budidaya lele dengan sistem bioflok yang hemat air dan padat tebar tinggi. Menjadi sumber penghasilan tambahan warga." },
+    { "id": 3, "name": "Kebun Durian Unggul", "tag": "Budidaya", "icon": "\uD83C\uDF48", "description": "Kebun durian varietas unggul khas Cijeruk yang menjadi magnet agrowisata. Pengunjung bisa memetik langsung saat musim panen tiba." },
+    { "id": 4, "name": "Kopi Arabika & Gula Aren", "tag": "Budidaya", "icon": "\u2615", "description": "Budidaya kopi arabika di lereng Gunung Salak serta penyadapan nira aren menjadi gula aren, produk andalan yang bernilai ekonomi tinggi." },
+    { "id": 5, "name": "Sayuran Organik", "tag": "Budidaya", "icon": "\uD83E\uDD6C", "description": "Budidaya sayuran organik melalui agrowisata Warso Farm, mendukung pangan sehat sekaligus edukasi pertanian bagi pengunjung." }
+  ],
+  "pindah_datang": {
+    "intro": "Bagi warga yang baru datang atau ingin berpindah ke Desa Warung Menteng, silakan mengurus administrasi kependudukan di Kantor Desa sesuai alur berikut.",
+    "steps": [
+      "Datang ke Kantor Desa dengan membawa KTP, KK, dan surat pengantar dari RT/RW.",
+      "Ambil formulir permohonan pindah datang dan isi dengan lengkap.",
+      "Serahkan berkas kepada petugas layanan untuk diperiksa dan diverifikasi.",
+      "Tunggu surat keterangan pindah datang diterbitkan oleh perangkat desa.",
+      "Lanjutkan pencatatan perpindahan di Dinas Kependudukan dan Catatan Sipil sesuai prosedur yang berlaku."
+    ],
+    "requirements": [
+      "KTP asli dan fotokopi",
+      "Kartu Keluarga (KK)",
+      "Surat pengantar dari RT/RW",
+      "Akta kelahiran anak (jika membawa keluarga)",
+      "Surat keterangan pindah dari daerah asal"
+    ]
   },
   "perangkat_desa": [
     {
@@ -330,21 +371,31 @@ var siteData = {
   "footer_links": [
     { "title": "Navigasi", "links": [
       { "label": "Beranda", "href": "index.html" },
-      { "label": "Tentang", "href": "tentang.html" },
-      { "label": "Pariwisata", "href": "pariwisata.html" },
+      { "label": "Profil Desa", "href": "profil.html" },
+      { "label": "Potensi Desa", "href": "pariwisata.html" },
+      { "label": "Pelayanan", "href": "layanan.html" },
       { "label": "Berita", "href": "berita.html" },
-      { "label": "Galeri", "href": "galeri.html" },
-      { "label": "Akomodasi", "href": "akomodasi.html" }
+      { "label": "Galeri", "href": "galeri.html" }
+    ]},
+    { "title": "Profil Desa", "links": [
+      { "label": "Tentang Desa", "href": "tentang.html" },
+      { "label": "Sejarah Desa", "href": "sejarah.html" },
+      { "label": "Perangkat Desa", "href": "perangkat.html" },
+      { "label": "Anggaran Desa", "href": "anggaran.html" },
+      { "label": "KKN", "href": "kkn.html" }
+    ]},
+    { "title": "Potensi & Layanan", "links": [
+      { "label": "Destinasi", "href": "destinasi.html" },
+      { "label": "Situs Sejarah", "href": "situs-sejarah.html" },
+      { "label": "Budaya & Adat", "href": "budaya-adat.html" },
+      { "label": "Perikanan dan Budidaya", "href": "perikanan.html" },
+      { "label": "Surat Keterangan", "href": "surat-keterangan.html" }
     ]},
     { "title": "Informasi", "links": [
       { "label": "Berita", "href": "berita.html" },
       { "label": "Galeri", "href": "galeri.html" },
       { "label": "Administrasi", "href": "layanan.html" },
-      { "label": "Anggaran", "href": "anggaran.html" }
-    ]},
-    { "title": "Lainnya", "links": [
-      { "label": "Profil Desa", "href": "profil.html" },
-      { "label": "Perangkat Desa", "href": "perangkat.html" },
+      { "label": "Anggaran", "href": "anggaran.html" },
       { "label": "Lokasi", "href": "index.html#lokasi" },
       { "label": "Admin", "href": "admin.html" }
     ]}

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var page = window.location.pathname.split('/').pop() || 'index.html';
 
   /* AUTO-PURGE STALE CONTENT OVERRIDES: bump DATA_VERSION setiap kali data.js berubah */
-  var DATA_VERSION = '2026-08-30-5';
+  var DATA_VERSION = '2026-08-30-6';
   try {
     if (localStorage.getItem('siteDataVersion') !== DATA_VERSION) {
       Object.keys(localStorage).forEach(function (k) {
@@ -53,9 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var pageHandlers = {
     'tentang.html': function () {
-      renderPageHeader('Profil Desa', 'Informasi lengkap Desa Warung Menteng');
-      renderAbout(); renderPerangkat(); renderAnggaran();
-      renderTentangContact(); renderTentangLokasi(); renderServices();
+      renderPageHeader('Tentang Desa', 'Informasi lengkap tentang Desa Warung Menteng');
+      renderAbout(); renderTentangContact(); renderTentangLokasi();
     },
     'pariwisata.html': function () {
       renderPageHeader('Pariwisata', 'Jelajahi destinasi, kuliner, dan UMKM Desa Warung Menteng');
@@ -64,7 +63,11 @@ document.addEventListener('DOMContentLoaded', function () {
       renderCards('accommodationGrid', getData('accommodation'), 'accommodation');
       renderUMKM();
     },
-    'profil.html': function () { renderPageHeader('Profil Desa', 'Profil dan sejarah Desa Warung Menteng'); renderAbout(); },
+    'profil.html': function () { renderPageHeader('Profil Desa', 'Gambaran umum Desa Warung Menteng'); renderAbout(); },
+    'sejarah.html': function () { renderPageHeader('Sejarah Desa', 'Perjalanan panjang Desa Warung Menteng'); renderSejarah(); },
+    'situs-sejarah.html': function () { renderPageHeader('Situs Sejarah', 'Warisan benda bersejarah yang dijaga masyarakat'); renderCards('situsGrid', getData('situs_sejarah'), 'situs'); },
+    'budaya-adat.html': function () { renderPageHeader('Budaya & Adat', 'Tradisi dan budaya masyarakat Desa Warung Menteng'); renderCards('budayaGrid', getData('budaya_adat'), 'budaya'); },
+    'perikanan.html': function () { renderPageHeader('Perikanan dan Budidaya', 'Potensi perikanan dan budidaya Desa Warung Menteng'); renderCards('perikananGrid', getData('perikanan_budidaya'), 'perikanan'); },
     'perangkat.html': function () { renderPageHeader('Perangkat Desa', 'Aparatur Desa Warung Menteng'); renderPerangkat(); },
     'anggaran.html': function () { renderPageHeader('Anggaran Desa', 'APBDes Desa Warung Menteng'); renderAnggaran(); },
     'berita.html': function () { renderPageHeader('Berita', 'Informasi terbaru dari Desa Warung Menteng'); renderNews(); },
@@ -74,6 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
     'umkm.html': function () { renderPageHeader('UMKM', 'Produk UMKM Desa Warung Menteng'); renderUMKM(); },
     'galeri.html': function () { renderPageHeader('Galeri', 'Foto-foto Desa Warung Menteng'); renderGallery(); },
     'layanan.html': function () { renderPageHeader('Administrasi Desa', 'Ajukan surat keterangan secara online'); renderServices(); },
+    'surat-keterangan.html': function () { renderPageHeader('Surat Keterangan', 'Surat keterangan domisili dan keterangan tidak mampu'); renderServicesFiltered('servicesGrid', ['skd', 'sku', 'sktm']); },
+    'kependudukan.html': function () { renderPageHeader('Kependudukan', 'Surat pengantar untuk urusan kependudukan'); renderServicesFiltered('servicesGrid', ['pengantarktp']); },
+    'layanan-pernikahan.html': function () { renderPageHeader('Layanan Pernikahan', 'Surat pengantar nikah dan formulir N1 - N4'); renderServicesFiltered('servicesGrid', ['pengantarnikah', 'n1n4']); },
+    'pindah-datang.html': function () { renderPageHeader('Pindah Datang', 'Alur pindah datang ke Desa Warung Menteng'); renderPindahDatang(); },
     'artikel.html': function () { renderArtikel(); renderTestimonials(); renderEvents(); }
   };
 
@@ -241,6 +248,54 @@ document.addEventListener('DOMContentLoaded', function () {
       }).join('');
     }
     grid.innerHTML = html;
+  }
+
+  function renderSejarah() {
+    var list = document.getElementById('sejarahList');
+    var data = getData('sejarah_desa');
+    if (!list || !data) return;
+    list.innerHTML = data.map(function (item) {
+      return '<div class="sejarah-item reveal">' +
+        '<div class="sejarah-periode">' + item.periode + '</div>' +
+        '<h3>' + item.judul + '</h3>' +
+        '<p>' + item.deskripsi + '</p></div>';
+    }).join('');
+  }
+
+  function renderServicesFiltered(gridId, ids) {
+    var grid = document.getElementById(gridId);
+    var servicesData = getData('services');
+    if (!grid || !servicesData) return;
+    var items = servicesData.filter(function (s) { return ids.indexOf(s.id) > -1; });
+    grid.innerHTML = items.map(function (item) {
+      return '<div class="service-card">' +
+        '<div class="service-icon">' + item.icon + '</div>' +
+        '<h3>' + item.name + '</h3>' +
+        '<p>' + item.description + '</p>' +
+        '<div class="service-req"><strong>Persyaratan:</strong> ' + item.requirements + '</div>' +
+        '<div class="service-actions">' +
+        '<button class="btn btn-primary btn-service-apply" data-id="' + item.id + '">Ajukan Online</button>' +
+        '<button class="btn btn-outline btn-service-print" data-id="' + item.id + '">Cetak</button>' +
+        '</div></div>';
+    }).join('');
+  }
+
+  function renderPindahDatang() {
+    var introEl = document.getElementById('pindahIntro');
+    var stepsEl = document.getElementById('pindahSteps');
+    var reqsEl = document.getElementById('pindahReqs');
+    var data = getData('pindah_datang');
+    if (introEl && data) introEl.textContent = data.intro;
+    if (stepsEl && data) {
+      stepsEl.innerHTML = data.steps.map(function (step, i) {
+        return '<div class="procedure-step reveal"><div class="procedure-num">' + (i + 1) + '</div><div>' + step + '</div></div>';
+      }).join('');
+    }
+    if (reqsEl && data) {
+      reqsEl.innerHTML = data.requirements.map(function (req) {
+        return '<li>' + req + '</li>';
+      }).join('');
+    }
   }
 
   document.addEventListener('click', function (e) {
@@ -590,6 +645,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (culinaryData) culinaryData.forEach(function (item) { searchData.push({ type: 'Kuliner', title: item.name, desc: item.description, href: 'kuliner.html', tag: item.tag }); });
     var accomData = getData('accommodation');
     if (accomData) accomData.forEach(function (item) { searchData.push({ type: 'Penginapan', title: item.name, desc: item.description, href: 'akomodasi.html', tag: item.tag }); });
+    var situsData = getData('situs_sejarah');
+    if (situsData) situsData.forEach(function (item) { searchData.push({ type: 'Situs Sejarah', title: item.name, desc: item.description, href: 'situs-sejarah.html', tag: item.tag }); });
+    var budayaData = getData('budaya_adat');
+    if (budayaData) budayaData.forEach(function (item) { searchData.push({ type: 'Budaya', title: item.name, desc: item.description, href: 'budaya-adat.html', tag: item.tag }); });
+    var perikananData = getData('perikanan_budidaya');
+    if (perikananData) perikananData.forEach(function (item) { searchData.push({ type: 'Perikanan', title: item.name, desc: item.description, href: 'perikanan.html', tag: item.tag }); });
   }
 
   buildSearchIndex();

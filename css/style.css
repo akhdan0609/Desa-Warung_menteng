@@ -722,3 +722,26 @@ footer .copyright {
   .timeline { padding-left: 24px; }
   .timeline-item h4 { font-size: 1.15rem; }
 }
+
+/* ============================================================
+   HALAMAN SEJARAH & PROSEDUR
+   ============================================================ */
+.sejarah-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.sejarah-item { background: #fff; padding: 28px; border: 1px solid var(--border); border-left: 3px solid var(--green); text-align: left; }
+.sejarah-item .sejarah-periode { color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.7rem; margin-bottom: 12px; }
+.sejarah-item h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+.sejarah-item p { color: var(--text-muted); line-height: 1.8; font-weight: 300; font-size: 0.92rem; }
+
+.procedure-list { max-width: 720px; margin: 0 auto; }
+.procedure-step { display: flex; gap: 20px; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid var(--border); text-align: left; }
+.procedure-step:last-child { border-bottom: none; }
+.procedure-num { width: 44px; height: 44px; flex: none; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; border-radius: 50%; }
+.procedure-step > div:last-child { padding-top: 8px; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+.requirement-list { max-width: 720px; margin: 0 auto; padding-left: 0; list-style: none; }
+.requirement-list li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--border); color: var(--text-muted); font-weight: 300; text-align: left; }
+.requirement-list li::before { content: '\2714'; color: var(--green); font-weight: 700; flex: none; }
+
+@media (max-width: 768px) {
+  .sejarah-grid { grid-template-columns: 1fr; }
+}
