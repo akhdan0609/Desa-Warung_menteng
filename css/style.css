@@ -587,6 +587,13 @@ footer .copyright {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  header nav { gap: 18px; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 0.82rem; }
+  header .container { padding: 0 20px; }
+}
+
 @media (max-width: 1024px) {
   .cards-grid, .service-category-grid, .services-grid, .umkm-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }

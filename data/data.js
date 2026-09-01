@@ -7,23 +7,36 @@ var siteData = {
   },
   "nav": [
     { "label": "Beranda", "href": "index.html" },
-    { "label": "Tentang", "href": "tentang.html", "submenu": [
-      { "label": "Profil Desa", "href": "profil.html" },
+    { "label": "Profil Desa", "href": "tentang.html", "submenu": [
+      { "label": "Tentang Desa", "href": "tentang.html" },
+      { "label": "Sejarah Desa", "href": "profil.html" },
       { "label": "Perangkat Desa", "href": "perangkat.html" },
-      { "label": "Anggaran Desa", "href": "anggaran.html" },
-      { "label": "Administrasi Desa", "href": "layanan.html" }
+      { "label": "Anggaran Desa", "href": "anggaran.html" }
     ]},
-    { "label": "Pariwisata", "href": "pariwisata.html", "submenu": [
+    { "label": "Potensi Desa", "href": "pariwisata.html", "submenu": [
       { "label": "Destinasi", "href": "destinasi.html" },
-      { "label": "Kuliner", "href": "kuliner.html" },
-      { "label": "Akomodasi", "href": "akomodasi.html" },
-      { "label": "UMKM", "href": "umkm.html" }
+      { "label": "UMKM", "href": "umkm.html" },
+      { "label": "Produk Lokal", "href": "kuliner.html" },
+      { "label": "Situs Sejarah", "href": "profil.html" },
+      { "label": "Budaya & Adat", "href": "tentang.html" },
+      { "label": "Perikanan dan Budidaya", "href": "kuliner.html" }
+    ]},
+    { "label": "Pelayanan", "href": "layanan.html", "submenu": [
+      { "label": "Surat Keterangan", "href": "layanan.html" },
+      { "label": "Kependudukan", "href": "layanan.html" },
+      { "label": "Pindah Datang", "href": "layanan.html" },
+      { "label": "Layanan Pernikahan", "href": "layanan.html" }
     ]},
     { "label": "Berita", "href": "berita.html", "submenu": [
-      { "label": "Artikel", "href": "berita.html" },
+      { "label": "Press Release", "href": "berita.html" },
       { "label": "Galeri", "href": "galeri.html" }
     ]},
-    { "label": "KKN", "href": "kkn.html" }
+    { "label": "KKN", "href": "kkn.html", "submenu": [
+      { "label": "Latar Belakang", "href": "kkn.html" },
+      { "label": "Visi dan Misi", "href": "kkn.html" },
+      { "label": "Struktural", "href": "kkn.html" },
+      { "label": "Galeri", "href": "galeri.html" }
+    ]}
   ],
   "hero": {
     "badge": "Smart Village",
