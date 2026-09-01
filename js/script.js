@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var page = window.location.pathname.split('/').pop() || 'index.html';
 
   /* AUTO-PURGE STALE CONTENT OVERRIDES: bump DATA_VERSION setiap kali data.js berubah */
-  var DATA_VERSION = '2026-08-30-6';
+  var DATA_VERSION = '2026-08-30-7';
   try {
     if (localStorage.getItem('siteDataVersion') !== DATA_VERSION) {
       Object.keys(localStorage).forEach(function (k) {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'sejarah.html': function () { renderPageHeader('Sejarah Desa', 'Perjalanan panjang Desa Warung Menteng'); renderSejarah(); },
     'situs-sejarah.html': function () { renderPageHeader('Situs Sejarah', 'Warisan benda bersejarah yang dijaga masyarakat'); renderCards('situsGrid', getData('situs_sejarah'), 'situs'); },
     'budaya-adat.html': function () { renderPageHeader('Budaya & Adat', 'Tradisi dan budaya masyarakat Desa Warung Menteng'); renderCards('budayaGrid', getData('budaya_adat'), 'budaya'); },
-    'perikanan.html': function () { renderPageHeader('Perikanan dan Budidaya', 'Potensi perikanan dan budidaya Desa Warung Menteng'); renderCards('perikananGrid', getData('perikanan_budidaya'), 'perikanan'); },
+    'perikanan.html': function () { renderPageHeader('Budidaya', 'Potensi budidaya Desa Warung Menteng'); renderCards('perikananGrid', getData('perikanan_budidaya'), 'perikanan'); },
     'perangkat.html': function () { renderPageHeader('Perangkat Desa', 'Aparatur Desa Warung Menteng'); renderPerangkat(); },
     'anggaran.html': function () { renderPageHeader('Anggaran Desa', 'APBDes Desa Warung Menteng'); renderAnggaran(); },
     'berita.html': function () { renderPageHeader('Berita', 'Informasi terbaru dari Desa Warung Menteng'); renderNews(); },
@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var budayaData = getData('budaya_adat');
     if (budayaData) budayaData.forEach(function (item) { searchData.push({ type: 'Budaya', title: item.name, desc: item.description, href: 'budaya-adat.html', tag: item.tag }); });
     var perikananData = getData('perikanan_budidaya');
-    if (perikananData) perikananData.forEach(function (item) { searchData.push({ type: 'Perikanan', title: item.name, desc: item.description, href: 'perikanan.html', tag: item.tag }); });
+    if (perikananData) perikananData.forEach(function (item) { searchData.push({ type: 'Budidaya', title: item.name, desc: item.description, href: 'perikanan.html', tag: item.tag }); });
   }
 
   buildSearchIndex();

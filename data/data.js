@@ -19,7 +19,7 @@ var siteData = {
       { "label": "Produk Lokal", "href": "kuliner.html" },
       { "label": "Situs Sejarah", "href": "situs-sejarah.html" },
       { "label": "Budaya & Adat", "href": "budaya-adat.html" },
-      { "label": "Perikanan dan Budidaya", "href": "perikanan.html" }
+      { "label": "Budidaya", "href": "perikanan.html" }
     ]},
     { "label": "Pelayanan", "href": "layanan.html", "submenu": [
       { "label": "Surat Keterangan", "href": "surat-keterangan.html" },
@@ -388,7 +388,7 @@ var siteData = {
       { "label": "Destinasi", "href": "destinasi.html" },
       { "label": "Situs Sejarah", "href": "situs-sejarah.html" },
       { "label": "Budaya & Adat", "href": "budaya-adat.html" },
-      { "label": "Perikanan dan Budidaya", "href": "perikanan.html" },
+      { "label": "Budidaya", "href": "perikanan.html" },
       { "label": "Surat Keterangan", "href": "surat-keterangan.html" }
     ]},
     { "title": "Informasi", "links": [
