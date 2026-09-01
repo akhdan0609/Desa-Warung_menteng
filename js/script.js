@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var page = window.location.pathname.split('/').pop() || 'index.html';
 
   /* AUTO-PURGE STALE CONTENT OVERRIDES: bump DATA_VERSION setiap kali data.js berubah */
-  var DATA_VERSION = '2026-08-30-7';
+  var DATA_VERSION = '2026-08-30-8';
   try {
     if (localStorage.getItem('siteDataVersion') !== DATA_VERSION) {
       Object.keys(localStorage).forEach(function (k) {
@@ -645,8 +645,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (culinaryData) culinaryData.forEach(function (item) { searchData.push({ type: 'Kuliner', title: item.name, desc: item.description, href: 'kuliner.html', tag: item.tag }); });
     var accomData = getData('accommodation');
     if (accomData) accomData.forEach(function (item) { searchData.push({ type: 'Penginapan', title: item.name, desc: item.description, href: 'akomodasi.html', tag: item.tag }); });
-    var situsData = getData('situs_sejarah');
-    if (situsData) situsData.forEach(function (item) { searchData.push({ type: 'Situs Sejarah', title: item.name, desc: item.description, href: 'situs-sejarah.html', tag: item.tag }); });
     var budayaData = getData('budaya_adat');
     if (budayaData) budayaData.forEach(function (item) { searchData.push({ type: 'Budaya', title: item.name, desc: item.description, href: 'budaya-adat.html', tag: item.tag }); });
     var perikananData = getData('perikanan_budidaya');
