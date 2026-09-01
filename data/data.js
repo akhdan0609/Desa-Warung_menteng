@@ -9,7 +9,6 @@ var siteData = {
     { "label": "Beranda", "href": "index.html" },
     { "label": "Profil Desa", "href": "profil.html", "submenu": [
       { "label": "Tentang Desa", "href": "tentang.html" },
-      
       { "label": "Perangkat Desa", "href": "perangkat.html" },
       { "label": "Anggaran Desa", "href": "anggaran.html" }
     ]},
@@ -17,7 +16,6 @@ var siteData = {
       { "label": "Destinasi", "href": "destinasi.html" },
       { "label": "UMKM", "href": "umkm.html" },
       { "label": "Produk Lokal", "href": "kuliner.html" },
-      
       { "label": "Budaya & Adat", "href": "budaya-adat.html" },
       { "label": "Budidaya", "href": "perikanan.html" }
     ]},
@@ -379,14 +377,14 @@ var siteData = {
     ]},
     { "title": "Profil Desa", "links": [
       { "label": "Tentang Desa", "href": "tentang.html" },
-      
+
       { "label": "Perangkat Desa", "href": "perangkat.html" },
       { "label": "Anggaran Desa", "href": "anggaran.html" },
       { "label": "KKN", "href": "kkn.html" }
     ]},
     { "title": "Potensi & Layanan", "links": [
       { "label": "Destinasi", "href": "destinasi.html" },
-      
+
       { "label": "Budaya & Adat", "href": "budaya-adat.html" },
       { "label": "Budidaya", "href": "perikanan.html" },
       { "label": "Surat Keterangan", "href": "surat-keterangan.html" }
